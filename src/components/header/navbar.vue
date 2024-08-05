@@ -11,7 +11,12 @@ export default {
       throw new Error('toggleDark not provided!');
     }
 
-    return { toggleDark };
+    const handleToggle = () => {
+      console.log('Toggling Dark Mode');
+      toggleDark();
+    }
+
+    return { handleToggle };
   }
 }
 </script>
@@ -19,11 +24,12 @@ export default {
 <template>
   <header>
     <h1>Navbar</h1>
-    <div @click="toggleDark" class="dark-mode-icon">
+    <div @click="handleToggle" class="dark-mode-icon">
       <img src="@/assets/images/dark-mode.png" alt="Toggle Dark Mode" />
     </div>
   </header>
 </template>
+
 
 <style scoped>
 header {
