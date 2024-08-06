@@ -5,7 +5,7 @@
 </script>
 
 <template>
-    
+    <h1>contact section</h1>
 </template>
 
 <style scoped>

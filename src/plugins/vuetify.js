@@ -1,8 +1,22 @@
-// src\plugins\vuetify.js
-
+// src/plugins/vuetify.js
+import 'vuetify/styles';
 import { createVuetify } from 'vuetify'
-import 'vuetify/styles' // Import Vuetify styles
 
-export default createVuetify({
-  // Any Vuetify options go here
-})
+const vuetify = createVuetify({
+  theme: {
+    themes: {
+      light: {
+        primary: '#4A90E2',
+        secondary: '#424242',
+        accent: '#82B1FF',
+        error: '#FF5252',
+        info: '#2196F3',
+        success: '#4CAF50',
+        warning: '#FFC107'
+      },
+    },
+  },
+});
+
+export default vuetify;
+

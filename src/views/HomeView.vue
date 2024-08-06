@@ -4,13 +4,17 @@
 import InfoSection from '@/components/sections/info_section/infoSection.vue'
 import StudiesSection from '@/components/sections/studies_section/studiesSection.vue'
 import WorkSection from '@/components/sections/work_section/workSection.vue'
+import PPSection from '@/components/sections/pp_section/ppSection.vue'
+import ContactSection from '@/components/sections/contact_section/contactSection.vue'
 
 export default {
   name: 'HomeView',
   components: {
     InfoSection,
     StudiesSection,
-    WorkSection
+    WorkSection,
+    PPSection,
+    ContactSection
   },
   data() {
     return {
@@ -21,7 +25,7 @@ export default {
     handleScroll(event) {
       const { deltaY } = event;
       if (deltaY > 0) {
-        if (this.currentSection < 2) this.currentSection++;
+        if (this.currentSection < 4) this.currentSection++;
       } else { 
         if (this.currentSection > 0) this.currentSection--;
       }
@@ -41,6 +45,8 @@ export default {
     <info-section v-show="currentSection === 0" />
     <studies-section v-show="currentSection === 1" />
     <work-section v-show="currentSection === 2" />
+    <PPSection v-show="currentSection === 3"/>
+    <contact-section v-show="currentSection === 4" />
   </div>
 </template>
 
