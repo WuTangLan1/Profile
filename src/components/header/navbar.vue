@@ -16,10 +16,11 @@ export default {
     const handleToggle = () => {
       toggleDark();
     };
-
     const handleSelectSection = (index) => {
-      emit('change-section', index);
-    };
+    console.log("Selected section index:", index); 
+    emit('change-section', index);
+};
+
 
     const isCurrent = (index) => {
       return index === props.currentSection;

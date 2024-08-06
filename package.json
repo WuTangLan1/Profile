@@ -10,6 +10,7 @@
     "start": "serve -s dist"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@primevue/themes": "^4.0.4",
     "@vueuse/core": "^10.11.0",
     "core-js": "^3.8.3",

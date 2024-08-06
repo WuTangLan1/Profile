@@ -28,8 +28,9 @@ export default {
     },
     computed: {
       currentComponent() {
+        console.log("Computing current component for section:", this.currentSection);
         switch (this.currentSection) {
-          case 0: return InfoSection;
+            case 0: return InfoSection;
           case 1: return StudiesSection;
           case 2: return WorkSection;
           case 3: return PPSection;
@@ -42,9 +43,10 @@ export default {
       }
     },
     watch: {
-      currentSection(newVal, oldVal) {
-        this.lastSection = oldVal;
-      }
+        currentSection(newVal, oldVal) {
+            console.log("Section changed from", oldVal, "to", newVal);
+            this.lastSection = oldVal;
+        }
     },
     methods: {
       beforeEnter(el) {
