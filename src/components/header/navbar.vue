@@ -14,7 +14,6 @@ export default {
     }
 
     const handleToggle = () => {
-      console.log('Toggling Dark Mode');
       toggleDark();
     };
 

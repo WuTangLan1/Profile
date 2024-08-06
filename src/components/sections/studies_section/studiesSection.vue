@@ -45,10 +45,10 @@ export default {
         <h1 class="text-h3 mb-4">Education</h1>
         <v-divider class="my-4"></v-divider>
         <v-row v-for="(item, index) in education" :key="index" class="education-item">
-          <v-col cols="12" sm="4" class="d-flex align-center justify-center">
+          <v-col cols="12" md="4" class="d-flex align-center justify-center">
             <v-img :src="item.image" class="education-image" contain />
           </v-col>
-          <v-col cols="12" sm="8" class="education-text">
+          <v-col cols="12" md="8" class="education-text">
             <h2 class="text-h5">{{ item.period }}</h2>
             <h3 class="text-h6">{{ item.degree }}</h3>
             <p><strong>{{ item.institution }}</strong> - {{ item.location }}</p>
@@ -64,6 +64,8 @@ export default {
 .studies-container {
   padding: 30px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: var(--v-background-base);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .studies-row {
@@ -73,19 +75,29 @@ export default {
 
 .education-item {
   margin-bottom: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+.education-item:hover {
+  transform: scale(1.05);
 }
 
 .education-image {
   width: 100px; 
   height: 100px; 
-  border-radius: 50%; 
+  border-radius: 0.5rem; 
   object-fit: cover;
+  transition: box-shadow 0.3s ease-in-out;
+}
+.education-image:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .education-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left;
+  padding: 10px;
 }
 
 .text-h3 {
@@ -104,22 +116,4 @@ export default {
   color: #777;
 }
 
-@media (max-width: 500px) {
-  .education-image {
-    width: 80px;
-    height: 80px;
-  }
-
-  .text-h3 {
-    font-size: 20px;
-  }
-
-  .text-h5 {
-    font-size: 16px;
-  }
-
-  .text-h6 {
-    font-size: 14px;
-  }
-}
 </style>
