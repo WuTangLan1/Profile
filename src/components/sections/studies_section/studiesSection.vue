@@ -1,5 +1,7 @@
 <!-- src\components\sections\studies_section\studiesSection.vue -->
 
+<!-- src\components\sections\studies_section\studiesSection.vue -->
+
 <script>
 import { VContainer, VCol, VRow, VDivider, VImg } from 'vuetify/lib/components';
 import UCTImage from '@/assets/images/UCT.png';
@@ -49,10 +51,12 @@ export default {
             <v-img :src="item.image" class="education-image" contain />
           </v-col>
           <v-col cols="12" md="8" class="education-text">
-            <h2 class="text-h5">{{ item.period }}</h2>
-            <h3 class="text-h6">{{ item.degree }}</h3>
-            <p><strong>{{ item.institution }}</strong> - {{ item.location }}</p>
-            <p><strong>Average:</strong> {{ item.average }}</p>
+            <div>
+              <h2 class="text-h5">{{ item.period }}</h2>
+              <h3 class="text-h6">{{ item.degree }}</h3>
+              <p><strong>{{ item.institution }}</strong> - {{ item.location }}</p>
+              <p><strong>Average:</strong> {{ item.average }}</p>
+            </div>
           </v-col>
         </v-row>
       </v-col>
@@ -64,8 +68,6 @@ export default {
 .studies-container {
   padding: 30px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  background-color: var(--v-background-base);
-  transition: background-color 0.3s, color 0.3s;
 }
 
 .studies-row {
@@ -75,21 +77,14 @@ export default {
 
 .education-item {
   margin-bottom: 30px;
-  transition: transform 0.3s ease-in-out;
-}
-.education-item:hover {
-  transform: scale(1.05);
+  align-items: center;  /* Ensure vertical alignment is centered */
 }
 
 .education-image {
-  width: 100px; 
-  height: 100px; 
-  border-radius: 0.5rem; 
+  width: 150px;  /* Larger and uniform size */
+  height: 150px;
+  border-radius: 0.5rem;
   object-fit: cover;
-  transition: box-shadow 0.3s ease-in-out;
-}
-.education-image:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .education-text {
@@ -100,9 +95,13 @@ export default {
   padding: 10px;
 }
 
+.text-h3, .text-h5, .text-h6, p {
+  margin: 0;  /* Remove default margins for cleaner alignment */
+}
+
 .text-h3 {
   font-weight: 600; 
-  font-size: 24px; 
+  font-size: 24px;
 }
 
 .text-h5 {
@@ -116,4 +115,22 @@ export default {
   color: #777;
 }
 
+@media (max-width: 500px) {
+  .education-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .text-h3 {
+    font-size: 20px;
+  }
+
+  .text-h5 {
+    font-size: 16px;
+  }
+
+  .text-h6 {
+    font-size: 14px;
+  }
+}
 </style>
