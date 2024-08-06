@@ -35,7 +35,7 @@ export default {
   <header>
     <nav>
       <ul>
-        <li v-for="(section, index) in ['Info', 'Studies', 'Work', 'Personal Projects', 'Contact']"
+        <li v-for="(section, index) in ['Info', 'Studies', 'Work', 'Projects', 'Contact']"
             :key="section"
             @click="handleSelectSection(index)" 
             :class="{ 'active': isCurrent(index) }">  
