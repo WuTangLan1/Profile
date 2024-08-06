@@ -5,12 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@primevue/themes": "^4.0.4",
     "@vueuse/core": "^10.11.0",
     "core-js": "^3.8.3",
+    "heroku": "^8.7.1",
     "pinia": "^2.2.0",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.4",
