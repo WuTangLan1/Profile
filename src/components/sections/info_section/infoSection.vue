@@ -1,6 +1,8 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
 import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
+import profileImage from '@/assets/images/profile.jpg'; // Ensure the path is correct
+
 export default {
   components: {
     VContainer,
@@ -11,7 +13,8 @@ export default {
   },
   data() {
     return {
-      hover: false
+      hover: false,
+      profileImage
     };
   },
   methods: {
@@ -25,7 +28,8 @@ export default {
 <template>
   <v-container class="info-container">
     <v-row justify="center">
-      <v-col cols="12" md="10">
+      <v-col cols="12" md="8">
+        <img :src="profileImage" alt="Finn Massari" class="profile-image"/>
         <h1 class="text-h3 text-center mb-2">Finn Massari</h1>
         <h2 class="text-h5 text-center grey--text">Information Systems Developer and Analyst</h2>
         <v-divider class="my-4"></v-divider>
@@ -52,22 +56,31 @@ export default {
 <style scoped>
 .info-container {
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+  text-align: center; 
+}
+
+.profile-image {
+  width: 150px; 
+  height: 150px; 
+  border-radius: 50%; 
+  margin-bottom: 20px; 
+  object-fit: cover; 
 }
 
 .contact-details p {
-  margin: 10px 0; /* Increased spacing */
+  margin: 10px 0; 
 }
 
 .hover-effect {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Hover effect for button */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .text-h3, .text-h5 {
-  font-weight: 500; /* Adjust font weight for better hierarchy */
+  font-weight: 500;
 }
 
 .body-1 {
-  line-height: 1.6; /* Improved line spacing for readability */
+  line-height: 1.6; 
 }
 </style>

@@ -4,9 +4,11 @@ import { inject } from 'vue';
 
 export default {
   name: 'Navbar-View',
-  setup() {
+  props: {
+    currentSection: Number
+  },
+  setup(props, { emit }) {
     const toggleDark = inject('toggleDark');
-
     if (!toggleDark) {
       throw new Error('toggleDark not provided!');
     }
@@ -14,22 +16,38 @@ export default {
     const handleToggle = () => {
       console.log('Toggling Dark Mode');
       toggleDark();
-    }
+    };
 
-    return { handleToggle };
+    const handleSelectSection = (index) => {
+      emit('change-section', index);
+    };
+
+    const isCurrent = (index) => {
+      return index === props.currentSection;
+    };
+
+    return { handleToggle, handleSelectSection, isCurrent };
   }
 }
 </script>
 
 <template>
   <header>
-    <h1>Navbar</h1>
+    <nav>
+      <ul>
+        <li v-for="(section, index) in ['Info', 'Studies', 'Work', 'Personal Projects', 'Contact']"
+            :key="section"
+            @click="handleSelectSection(index)" 
+            :class="{ 'active': isCurrent(index) }">  
+          {{ section }}
+        </li>
+      </ul>
+    </nav>
     <div @click="handleToggle" class="dark-mode-icon">
       <img src="@/assets/images/dark-mode.png" alt="Toggle Dark Mode" />
     </div>
   </header>
 </template>
-
 
 <style scoped>
 header {
@@ -40,6 +58,25 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav li {
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+nav li:hover, nav li.active {
+  background-color: #34495e;
+  transform: translateY(-2px);
 }
 
 .dark-mode-icon {
@@ -68,7 +105,21 @@ header {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-@media(max-width:420px)
+@media(max-width:650px)
+{
+  nav li {
+    font-size: 16px;
+  }
+}
+
+@media(max-width:550px)
+{
+  nav li {
+    font-size: 14px;
+  }
+}
+
+@media(max-width:450px)
 {
   .dark-mode-icon {
     width: 34px;
@@ -77,6 +128,14 @@ header {
   .dark-mode-icon img {
     max-width: 20px; 
     max-height: 20px;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
+
+  nav li {
+    font-size: 12px;
   }
 }
 
@@ -92,18 +151,11 @@ header {
   }
 }
 
-.dark-mode-icon:hover {
-  transform: scale(1.1);
-  background-color: #ac89c9;
-}
-
-.active-icon {
-  transform: scale(1.1);
-  background-color: #ac89c9;
-}
-
-.dark .active-icon {
-  background-color: #ac89c9;
+@media(max-width: 350px)
+{
+  nav li {
+    font-size: 10px;
+  }
 }
 
 .dark .navbar-icon:hover,

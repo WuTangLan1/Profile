@@ -1,5 +1,4 @@
 <!-- src\views\HomeView.vue -->
-
 <script>
 import InfoSection from '@/components/sections/info_section/infoSection.vue'
 import StudiesSection from '@/components/sections/studies_section/studiesSection.vue'
@@ -16,18 +15,19 @@ export default {
     PPSection,
     ContactSection
   },
-  data() {
-    return {
-      currentSection: 0 
-    };
+  props: {
+    currentSection: {
+      type: Number,
+      required: true
+    }
   },
   methods: {
     handleScroll(event) {
       const { deltaY } = event;
       if (deltaY > 0) {
-        if (this.currentSection < 4) this.currentSection++;
-      } else { 
-        if (this.currentSection > 0) this.currentSection--;
+        if (this.currentSection < 4) this.$emit('change-section', this.currentSection + 1);
+      } else {
+        if (this.currentSection > 0) this.$emit('change-section', this.currentSection - 1);
       }
     }
   },
@@ -45,10 +45,12 @@ export default {
     <info-section v-show="currentSection === 0" />
     <studies-section v-show="currentSection === 1" />
     <work-section v-show="currentSection === 2" />
-    <PPSection v-show="currentSection === 3"/>
+    <PPSection v-show="currentSection === 3" />
     <contact-section v-show="currentSection === 4" />
   </div>
 </template>
+
+
 
 <style scoped>
 .home-view {

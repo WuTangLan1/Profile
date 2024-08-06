@@ -1,17 +1,9 @@
 <!-- src\App.vue -->
-<template>
-  <div id="app">
-    <Navbar />
-    <HomeView />
-  </div>
-</template>
-
-// src/App.vue
 <script>
-import Navbar from './components/header/navbar.vue'
-import HomeView from './views/HomeView.vue'
+import Navbar from './components/header/navbar.vue';
+import HomeView from './views/HomeView.vue';
 import { useDark, useToggle } from '@vueuse/core';
-import { provide, onMounted } from 'vue';
+import { provide, onMounted, ref } from 'vue';
 
 export default {
   name: 'App',
@@ -21,16 +13,21 @@ export default {
   },
   setup() {
     const isDark = useDark({
-      selector: 'body',  
+      selector: 'body',
       attribute: 'class',
       valueDark: 'dark',
       valueLight: 'light',
       storageKey: 'dark-mode',
       storage: window.localStorage
     });
-
     const toggleDark = useToggle(isDark);
     provide('toggleDark', toggleDark);
+
+    const currentSection = ref(0);
+
+    const handleChangeSection = (index) => {
+      currentSection.value = index;
+    };
 
     onMounted(() => {
       if (isDark.value) {
@@ -38,13 +35,21 @@ export default {
       } else {
         document.body.classList.remove('dark');
       }
+      document.body.classList.toggle('dark', isDark.value);
     });
 
-    return { isDark, toggleDark };
+    return { isDark, toggleDark, currentSection, handleChangeSection };
   }
 }
 </script>
 
+
+<template>
+  <div id="app">
+    <Navbar @change-section="handleChangeSection" />
+    <HomeView :currentSection="currentSection" />
+  </div>
+</template>
 
 <style>
 html, body {
