@@ -5,7 +5,7 @@
 </script>
 
 <template>
-    
+        <h1>work section</h1>
 </template>
 
 <style scoped>
