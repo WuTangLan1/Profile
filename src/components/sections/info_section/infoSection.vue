@@ -1,10 +1,6 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
   import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
-  import me1 from '@/assets/personal photos/me1.jpg';
-  import me2 from '@/assets/personal photos/me2.jpg';
-  import me3 from '@/assets/personal photos/me3.jpg';
-  import me4 from '@/assets/personal photos/me4.jpg';
 
   export default {
     components: {
@@ -13,12 +9,6 @@
       VRow,
       VDivider,
       VBtn
-    },
-    data() {
-      return {
-        images: [me1, me2, me3, me4],
-        hover: false 
-      };
     },
     methods: {
       sendEmail() {
@@ -32,9 +22,6 @@
   <v-container class="info-container">
     <v-row class="info-row">
       <v-col cols="12" sm="10" md="8" class="d-flex flex-column align-center">
-        <div class="floating-images">
-          <img v-for="(img, index) in images" :src="img" :key="index" alt="Profile Image" class="float-img"/>
-        </div>
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
           <h2 class="text-h5 grey--text">Information Systems Developer and Analyst</h2>
@@ -64,9 +51,10 @@
 
 <style scoped>
 .info-container {
-  padding: 30px;
+  padding: 60px 30px 30px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
+  border-radius: 10px; 
 }
 .info-row {
   align-items: start;
@@ -76,24 +64,32 @@
 .floating-images {
   position: fixed; 
   width: 100%;
-  top: -89px; 
+  top: -15px; 
   left: 0;
   white-space: nowrap;
   overflow: hidden;
   z-index: 1000;
 }
-
 .float-img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 10%;
-  margin-right: 10px;
-  animation: floatImage 25s linear infinite;
+  margin-right: 15px;
+  animation: floatImage 30s linear infinite;
+}
+
+@keyframes floatImage {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 .text-container, .buttons-container, .body-1 {
-  z-index: 1; /* Lower z-index to ensure text is below floating images */
+  z-index: 1;
   position: relative;
+}
+
+.text-container {
+  text-align: center;
 }
 
 .buttons-container {
@@ -108,35 +104,35 @@
 
 .text-h3 {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 28px; /* Slightly larger for better readability */
+  color: #333; /* Darker color for better contrast */
 }
 
 .text-h5 {
   font-weight: 500;
-  color: #555;
+  color: #666; /* Slightly lighter for a smoother look */
+  margin-bottom: 20px; /* Added margin for spacing */
 }
 
 .body-1 {
-  line-height: 1.6;
-  font-size: 14px;
+  line-height: 1.8; /* Increased line height for better readability */
+  font-size: 16px; /* Slightly larger for better readability */
+  color: #555; /* Medium color for readability */
+  text-align: justify; /* Justify text for a clean look */
+  padding: 0 20px; /* Added padding for better spacing */
 }
 
 @media (max-width: 500px) {
-  .profile-image {
-    width: 120px;
-    height: 120px;
-  }
-
   .text-h3 {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .text-h5 {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .body-1 {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 </style>

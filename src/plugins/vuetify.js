@@ -6,6 +6,8 @@ import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'; 
 
 const vuetify = createVuetify({
+  components,
+  directives,
   icons: {
     iconfont: 'mdi',  
   },
@@ -21,8 +23,6 @@ const vuetify = createVuetify({
         warning: '#FFC107'
       },
     },
-    components,
-    directives
   },
 });
 

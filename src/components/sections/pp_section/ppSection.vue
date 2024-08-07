@@ -1,6 +1,6 @@
 <!-- src\components\sections\pp_section\ppSection.vue -->
 <script>
-import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VIcon } from 'vuetify/lib/components';
+import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VIcon, VBtn } from 'vuetify/lib/components';
 
 export default {
   components: {
@@ -10,7 +10,8 @@ export default {
     VCard,
     VCardTitle,
     VCardText,
-    VIcon
+    VIcon,
+    VBtn 
   },
   data() {
     return {
@@ -65,9 +66,9 @@ export default {
           ]
         },
         {
-          title: "Your Project",
-          subtitle: "Your Project Description",
-          description: "Description of your project goes here.",
+          title: "This website",
+          subtitle: "Profile Website",
+          description: "I created a profile website for myself to show a level of capability i am currently at in terms of short term projects",
           details: [],
           techStack: [
             { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
@@ -120,10 +121,14 @@ export default {
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
         <v-card v-for="(project, index) in paginatedProjects" :key="index" class="mb-5" elevation="2">
-          <v-card-title class="text-h4 blue-grey darken-3 white--text">{{ project.title }}</v-card-title>
+          <v-card-title>
+            <v-row justify="space-between" class="px-3">
+              <h3 class="text-h6">{{ project.title }}</h3>
+              <h3 class="text-h6 grey--text">{{ project.subtitle }}</h3>
+            </v-row>
+          </v-card-title>
           <v-card-text>
-            <p class="subtitle-1 mb-3">{{ project.subtitle }}</p>
-            <p>{{ project.description }}</p>
+            <p class="subtitle-1 mb-3">{{ project.description }}</p>
             <div class="details" v-for="detail in project.details" :key="detail.key">
               <v-icon left>{{ detail.icon }}</v-icon>
               <span>{{ detail.text }}</span>
@@ -133,52 +138,57 @@ export default {
             </div>
           </v-card-text>
         </v-card>
-        <v-btn @click="prevPage" :disabled="currentPage <= 1">Previous</v-btn>
-        <v-btn @click="nextPage" :disabled="currentPage >= totalPages">Next</v-btn>
+        <v-row justify="space-between">
+          <v-col cols="auto">
+            <v-btn @click="prevPage" :disabled="currentPage <= 1">Previous</v-btn>
+          </v-col>
+          <v-col cols="auto">
+            <v-btn @click="nextPage" :disabled="currentPage >= totalPages">Next</v-btn>
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
-
 <style scoped>
 .v-card {
   margin-bottom: 20px;
   transition: box-shadow .3s;
+  overflow: hidden; 
+  padding-top: 10px;
+  border: none; /* Ensures no border is visible */
+  background-color: transparent; /* Removes any background issues */
 }
 
 .v-card:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
 .details, .tech-stack {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  margin-top: 5px;
 }
 
 .details > .v-icon {
-  margin-right: 8px; 
+  margin-right: 8px;
 }
 
 .details > span {
-  text-align: left; 
-  flex: 1; 
+  text-align: left;
+  flex: 1;
 }
 
 .tech-stack {
-  justify-content: space-around; 
-  width: 100%; 
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 10px; 
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-25px); 
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); } 
 }
 
 .bounce {
@@ -188,11 +198,10 @@ export default {
 .tech-icon {
   width: 40px;
   height: 40px;
-  display: inline-block; 
 }
 
-.dark .v-card-title, .dark .v-card-text {
-  background-color: #424242;
+.dark .v-card, .dark .v-card-title, .dark .v-card-text {
+  background-color: #424242; /* Uniform dark background for all card components */
   color: #ffffff;
 }
 
@@ -207,4 +216,17 @@ export default {
 .dark .tech-icon {
   filter: invert(100%) grayscale(0);
 }
+
+.text-h6 {
+  font-size: 20px; /* Slightly larger for readability */
+}
+
+.grey--text {
+  font-size: 14px; /* Smaller for less emphasis */
+}
+
+.v-card-title {
+  margin-bottom: 10px; /* Added space below the title */
+}
 </style>
+
