@@ -1,28 +1,30 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
-import profileImage from '@/assets/images/profile.jpg'; // Ensure the path is correct
+  import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
+  import me1 from '@/assets/personal photos/me1.jpg';
+  import me2 from '@/assets/personal photos/me2.jpg';
+  import me3 from '@/assets/personal photos/me3.jpg';
+  import me4 from '@/assets/personal photos/me4.jpg';
 
-export default {
-  components: {
-    VContainer,
-    VCol,
-    VRow,
-    VDivider,
-    VBtn
-  },
-  data() {
-    return {
-      hover: false,
-      profileImage
-    };
-  },
-  methods: {
-    sendEmail() {
-      window.location.href = `mailto:finnmassari404@gmail.com`;
+  export default {
+    components: {
+      VContainer,
+      VCol,
+      VRow,
+      VDivider,
+      VBtn
+    },
+    data() {
+      return {
+        images: [me1, me2, me3, me4]
+      };
+    },
+    methods: {
+      sendEmail() {
+        window.location.href = `mailto:finnmassari404@gmail.com`;
+      }
     }
   }
-}
 </script>
 
 <template>
@@ -30,7 +32,9 @@ export default {
     <!-- Modified the row alignment to start at the top -->
     <v-row class="info-row">
       <v-col cols="12" sm="10" md="8" class="d-flex flex-column align-center">
-        <img :src="profileImage" alt="Finn Massari" class="profile-image"/>
+        <div class="floating-images">
+          <img v-for="(img, index) in images" :src="img" :key="index" alt="Profile Image" class="float-img"/>
+        </div>
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
           <h2 class="text-h5 grey--text">Information Systems Developer and Analyst</h2>
@@ -62,19 +66,39 @@ export default {
 .info-container {
   padding: 30px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative; 
 }
 
+
 .info-row {
-  align-items: start; /* Aligns items to the top of the row */
+  align-items: start;
   justify-content: center;
 }
 
-.profile-image {
+.floating-images {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.float-img {
   width: 180px;
   height: 180px;
   border-radius: 15%;
-  object-fit: cover;
-  margin-bottom: 20px;
+  margin-right: 50px; /* Space between images */
+  animation: floatImage 25s linear infinite;
+}
+
+@keyframes floatImage {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 .text-container {
