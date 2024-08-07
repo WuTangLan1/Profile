@@ -14,13 +14,83 @@ export default {
   },
   data() {
     return {
-      bounceIndex1: null, 
-      bounceIndex2: null, 
+      currentPage: 1,
+      projectsPerPage: 2,
+      bounceIndex1: null,
+      bounceIndex2: null,
+      projects: [
+        {
+          title: "CoPlaylist",
+          subtitle: "Music/Playlist Generation",
+          description: "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
+          details: [
+            { icon: "mdi-account-music", text: "Generate playlists based on options for tone, style, and similar music using the OpenAI API key." },
+            { icon: "mdi-spotify", text: "Spotify Playlist Integration for enhanced musical exploration." }
+          ],
+          techStack: [
+          { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+          { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
+          { name: "OpenAI", src: require("@/assets/images/tech stack/gpticon.png") },
+          { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
+          ]
+        },
+        {
+          title: "The Big Picture",
+          subtitle: "Daily Puzzle Game",
+          description: "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
+          details: [
+            { icon: "mdi-image-area", text: "Daily puzzles with a unique set of terms every day." },
+            { icon: "mdi-school", text: "Account registration to track efforts." },
+            { icon: "mdi-share-variant", text: "Social Sharing to engage with a community of players." }
+          ],
+          techStack: [
+            { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+            { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
+            { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
+            { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
+          ]
+        },
+        {
+          title: "Mapple",
+          subtitle: "Geography Game",
+          description: "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
+          details: [
+            { icon: "", text: "The user can set streaks and challenge themselves to recognise more countries across the world." }
+          ],
+          techStack: [
+          { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+            { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
+            { name: "Pinia", src: require("@/assets/images/tech stack/piniaicon.png") },
+            { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
+          ]
+        },
+        {
+          title: "Your Project",
+          subtitle: "Your Project Description",
+          description: "Description of your project goes here.",
+          details: [],
+          techStack: [
+            { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+            { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
+            { name: "Tailwind", src: require("@/assets/images/tech stack/tailwindicon.png") },
+          ]
+        }
+      ]
     };
   },
   mounted() {
     this.startRandomBounce();
   },
+  computed: {
+      totalPages() {
+        return Math.ceil(this.projects.length / this.projectsPerPage);
+      },
+      paginatedProjects() {
+        const start = (this.currentPage - 1) * this.projectsPerPage;
+        const end = start + this.projectsPerPage;
+        return this.projects.slice(start, end);
+      }
+    },
   methods: {
     startRandomBounce() {
       setInterval(() => {
@@ -34,7 +104,13 @@ export default {
           } while (this.bounceIndex1 === this.bounceIndex2);
         }, 500);
       }, 4000); 
-    }
+    },
+    nextPage() {
+    this.currentPage++;
+    },
+    prevPage() {
+      this.currentPage--;
+    },
   }
 }
 </script>
@@ -43,85 +119,27 @@ export default {
   <v-container>
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
-        <v-card class="mb-5" elevation="2">
-          <v-card-title class="text-h4 blue-grey darken-3 white--text">CoPlaylist</v-card-title>
+        <v-card v-for="(project, index) in paginatedProjects" :key="index" class="mb-5" elevation="2">
+          <v-card-title class="text-h4 blue-grey darken-3 white--text">{{ project.title }}</v-card-title>
           <v-card-text>
-            <p class="subtitle-1 mb-3">Music/Playlist Generation</p>
-            <p>CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.</p>
-            <div class="details">
-              <v-icon left>mdi-account-music</v-icon>
-              <span>Generate playlists based on options for tone, style, and similar music using the OpenAI API key.</span>
-            </div>
-            <div class="details">
-              <v-icon left>mdi-spotify</v-icon>
-              <span>Spotify Playlist Integration for enhanced musical exploration.</span>
+            <p class="subtitle-1 mb-3">{{ project.subtitle }}</p>
+            <p>{{ project.description }}</p>
+            <div class="details" v-for="detail in project.details" :key="detail.key">
+              <v-icon left>{{ detail.icon }}</v-icon>
+              <span>{{ detail.text }}</span>
             </div>
             <div class="tech-stack">
-              <img :class="{ bounce: bounceIndex1 === 0 }" src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 === 1 }" src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 === 2 }" src="@/assets/images/tech stack/gpticon.png" alt="OpenAI" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 === 3 }" src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
+              <img v-for="tech in project.techStack" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon">
             </div>
           </v-card-text>
         </v-card>
-
-        <v-card elevation="2">
-          <v-card-title class="text-h4 blue-grey darken-3 white--text">The Big Picture</v-card-title>
-          <v-card-text>
-            <p class="subtitle-1 mb-3">Daily Puzzle Game</p>
-            <p>A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.</p>
-            <div class="details">
-              <v-icon left>mdi-image-area</v-icon>
-              <span>Daily puzzles with a unique set of terms every day.</span>
-            </div>
-            <div class="details">
-              <v-icon left>mdi-school</v-icon>
-              <span>Account registration to track efforts.</span>
-            </div>
-            <div class="details">
-              <v-icon left>mdi-share-variant</v-icon>
-              <span>Social Sharing to engage with a community of players.</span>
-            </div>
-            <div class="tech-stack">
-              <img :class="{ bounce: bounceIndex1 ===3 }" src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 === 0 }" src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 === 2 }" src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon">
-              <img :class="{ bounce: bounceIndex1 ===1 }" src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card class="mb-5" elevation="2">
-          <v-card-title class="text-h4 blue-grey darken-3 white--text">Mapple</v-card-title>
-          <v-card-text>
-            <p class="subtitle-1 mb-3">Daily Geography Game</p>
-            <p>Mapple is a geography game providing users with sets of information about countries which the user has to guess.</p>
-            <div class="details">
-              <span>The user can set streaks and challenge themselves to recognise more countries across the world.</span>
-            </div>
-            <div class="tech-stack">
-              <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-              <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
-              <img src="@/assets/images/tech stack/tailwindicon.png" alt="Tailwind CSS" class="tech-icon">
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <v-card elevation="2">
-          <v-card-title class="text-h4 blue-grey darken-3 white--text">Your Project</v-card-title>
-          <v-card-text>
-            <p class="subtitle-1 mb-3">Your Project Description</p>
-            <div class="tech-stack">
-              <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-              <img src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon">
-              <img src="@/assets/images/tech stack/tailwindicon.png" alt="Tailwind CSS" class="tech-icon">
-            </div>
-          </v-card-text>
-        </v-card>
+        <v-btn @click="prevPage" :disabled="currentPage <= 1">Previous</v-btn>
+        <v-btn @click="nextPage" :disabled="currentPage >= totalPages">Next</v-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
 
 <style scoped>
 .v-card {

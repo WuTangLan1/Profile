@@ -16,7 +16,8 @@
     },
     data() {
       return {
-        images: [me1, me2, me3, me4]
+        images: [me1, me2, me3, me4],
+        hover: false 
       };
     },
     methods: {
@@ -29,7 +30,6 @@
 
 <template>
   <v-container class="info-container">
-    <!-- Modified the row alignment to start at the top -->
     <v-row class="info-row">
       <v-col cols="12" sm="10" md="8" class="d-flex flex-column align-center">
         <div class="floating-images">
@@ -66,43 +66,34 @@
 .info-container {
   padding: 30px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  position: relative; 
+  position: relative;
 }
-
-
 .info-row {
   align-items: start;
   justify-content: center;
 }
 
 .floating-images {
-  position: absolute;
+  position: fixed; 
   width: 100%;
-  top: 0;
+  top: -89px; 
   left: 0;
   white-space: nowrap;
   overflow: hidden;
+  z-index: 1000;
 }
 
 .float-img {
-  width: 180px;
-  height: 180px;
-  border-radius: 15%;
-  margin-right: 50px; /* Space between images */
+  width: 80px;
+  height: 80px;
+  border-radius: 10%;
+  margin-right: 10px;
   animation: floatImage 25s linear infinite;
 }
 
-@keyframes floatImage {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-.text-container {
-  text-align: center;
+.text-container, .buttons-container, .body-1 {
+  z-index: 1; /* Lower z-index to ensure text is below floating images */
+  position: relative;
 }
 
 .buttons-container {
