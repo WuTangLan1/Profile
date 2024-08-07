@@ -162,22 +162,18 @@ export default {
   }
 
   .education-item {
-    margin-bottom: 5px;
+    margin-bottom: 2px; /* Further reduce the space between items */
   }
   
   .education-image {
-    width: 80px; 
-    height: 80px;
+    width: 70px; /* Further reduce the image size */
+    height: 70px;
   }
 
   .text-h3, .text-h5, .text-h6, p {
-    font-size: smaller; 
-  }
-
-  .studies-container {
-    padding-top: 1-px;
-    padding-bottom: 15px;
+    font-size: 10px; /* Further reduce font sizes for more compact text display */
   }
 }
+
 
 </style>

@@ -48,15 +48,11 @@ export default {
           <v-card class="mb-5" elevation="2">
             <v-card-title class="text-h4 blue-grey darken-3 white--text">CoPlaylist</v-card-title>
             <v-card-text>
-              <p class="subtitle-1 mb-3">Revolutionizing the Music Discovery Experience</p>
-              <p>CoPlaylist is a groundbreaking music streaming platform designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.</p>
+              <p class="subtitle-1 mb-3">Music/Playlist Generation</p>
+              <p>CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.</p>
               <div class="details">
                 <v-icon left>mdi-account-music</v-icon>
-                <span>User Profiles, Dynamic Playlist Creation, Vibes and Tone selection.</span>
-              </div>
-              <div class="details">
-                <v-icon left>mdi-star-circle</v-icon>
-                <span>Interactive Rating System and Social Integration.</span>
+                <span>Generate playlists based on optinos for tone, style and similar music using the openAI API key.</span>
               </div>
               <div class="details">
                 <v-icon left>mdi-spotify</v-icon>
@@ -74,15 +70,15 @@ export default {
           <v-card elevation="2">
             <v-card-title class="text-h4 blue-grey darken-3 white--text">The Big Picture</v-card-title>
             <v-card-text>
-              <p class="subtitle-1 mb-3">Engaging Daily Puzzle Game</p>
-              <p>A daily puzzle game that challenges users to find connections between various images to promote logical thinking and cognitive skills.</p>
+              <p class="subtitle-1 mb-3">Daily Puzzle Game</p>
+              <p>A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.</p>
               <div class="details">
                 <v-icon left>mdi-image-area</v-icon>
-                <span>Daily puzzles with a unique set of images every day.</span>
+                <span>Daily puzzles with a unique set of terms every day.</span>
               </div>
               <div class="details">
                 <v-icon left>mdi-school</v-icon>
-                <span>Educational insights after puzzle completion.</span>
+                <span>Account registration to track efforts.</span>
               </div>
               <div class="details">
                 <v-icon left>mdi-share-variant</v-icon>
@@ -114,11 +110,12 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    margin-top: 5px;
   }
   
   .tech-stack {
-    justify-content: space-around; /* This will distribute space around each icon */
-    width: 100%; /* Ensure the tech-stack div takes full width */
+    justify-content: space-around; 
+    width: 100%; 
   }
   
   @keyframes bounce {
@@ -137,7 +134,7 @@ export default {
   .tech-icon {
     width: 40px;
     height: 40px;
-    display: inline-block; /* Keep inline-block but remove margin-right */
+    display: inline-block; 
   }
   
   .dark .v-card-title, .dark .v-card-text {

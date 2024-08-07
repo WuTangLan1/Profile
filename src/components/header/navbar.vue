@@ -56,14 +56,21 @@ header {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Ensures space between navigation and the dark mode icon */
   padding: 0 20px;
+}
+
+nav {
+  flex-grow: 1; /* Allows the nav to take all available space pushing the icon to the right */
+  display: flex;
 }
 
 nav ul {
   list-style-type: none;
   display: flex;
   gap: 20px;
+  margin: 0; /* Removes default margin to ensure ul starts from the far left */
+  padding: 0; /* Removes default padding */
 }
 
 nav li {
@@ -105,6 +112,7 @@ nav li:hover, nav li.active {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
+
 @media(max-width:650px)
 {
   nav li {
@@ -122,8 +130,8 @@ nav li:hover, nav li.active {
 @media(max-width:450px)
 {
   .dark-mode-icon {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
   }
   .dark-mode-icon img {
     max-width: 20px; 
@@ -131,7 +139,7 @@ nav li:hover, nav li.active {
   }
 
   nav ul {
-    gap: 10px;
+    gap: 8px;
   }
 
   nav li {
@@ -148,6 +156,9 @@ nav li:hover, nav li.active {
   .dark-mode-icon img {
     max-width: 15px; 
     max-height: 15px;
+  }
+  nav ul {
+    gap: 4px;
   }
 }
 
