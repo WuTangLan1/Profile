@@ -155,10 +155,14 @@ export default {
 .v-card {
   margin-bottom: 20px;
   transition: box-shadow .3s;
-  overflow: hidden; 
+  overflow: hidden;
   padding-top: 10px;
-  border: none; /* Ensures no border is visible */
-  background-color: transparent; /* Removes any background issues */
+  border: none;
+  background-color: transparent;
+}
+
+.dark .v-btn {
+  color: black;
 }
 
 .v-card:hover {
@@ -183,12 +187,12 @@ export default {
 .tech-stack {
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 10px; 
+  margin-bottom: 20px; 
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); } 
+  50% { transform: translateY(-10px); }
 }
 
 .bounce {
@@ -201,16 +205,16 @@ export default {
 }
 
 .dark .v-card, .dark .v-card-title, .dark .v-card-text {
-  background-color: #424242; /* Uniform dark background for all card components */
+  background-color: #424242; 
   color: #ffffff;
 }
 
 .dark .v-icon {
-  color: #90CAF9;
+  color: #90CAF9; 
 }
 
 .dark .subtitle-1 {
-  color: #CFD8DC;
+  color: #CFD8DC; 
 }
 
 .dark .tech-icon {
@@ -218,15 +222,69 @@ export default {
 }
 
 .text-h6 {
-  font-size: 20px; /* Slightly larger for readability */
+  font-size: 20px; 
 }
 
 .grey--text {
-  font-size: 14px; /* Smaller for less emphasis */
+  font-size: 14px; 
 }
 
 .v-card-title {
-  margin-bottom: 10px; /* Added space below the title */
+  margin-bottom: 20px; 
+}
+
+.v-btn {
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.v-btn:not(.v-btn--disabled):hover,
+.v-btn:not(.v-btn--disabled):focus {
+  color: #FFFFFF; 
+  background-color: #1976D2; 
+}
+
+.dark .v-btn:not(.v-btn--disabled):hover,
+.v-btn:not(.v-btn--disabled):focus {
+  color: #FFFFFF; 
+  background-color: #1976D2; 
+}
+
+
+.v-btn--disabled {
+  color: #B0BEC5; 
+}
+
+.dark .v-btn--disabled {
+  color: #B0BEC5; 
+}
+
+@media (max-height: 780px) {
+  .v-card {
+    padding-top: 5px;
+    margin-bottom: 10px; 
+  }
+
+  .tech-stack, .details {
+    margin-bottom: 5px; 
+  }
+
+  .text-h6 {
+    font-size: 18px; 
+  }
+
+  .grey--text {
+    font-size: 12px; 
+  }
+
+  .subtitle-1 {
+    margin-bottom: 5px; 
+  }
+
+  .tech-icon {
+    width: 30px; 
+    height: 30px;
+  }
 }
 </style>
+
 

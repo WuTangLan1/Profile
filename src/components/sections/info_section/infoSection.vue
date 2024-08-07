@@ -1,6 +1,7 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
   import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
+  import me2 from '@/assets/personal photos/me2.jpg';
 
   export default {
     components: {
@@ -9,6 +10,12 @@
       VRow,
       VDivider,
       VBtn
+    },
+    data() {
+      return {
+        hover: false,
+        me2 // Add me2 to the data function
+      };
     },
     methods: {
       sendEmail() {
@@ -28,13 +35,18 @@
         </div>
         <v-divider class="my-4"></v-divider>
         <v-row>
+          <v-col cols="12" sm="4" class="d-flex justify-center">
+            <img :src="me2" alt="Profile Image" class="profile-image"/>
+          </v-col>
+          <v-col cols="12" sm="8" class="d-flex flex-column justify-center">
+            <p><strong>E-mail:</strong> finnmassari404@gmail.com</p>
+            <p><strong>GitHub Username:</strong> WuTangLan1</p>
+          </v-col>
+        </v-row>
+        <v-row>
           <v-col cols="12" sm="6">
             <p><strong>Address:</strong> Cape Town, South Africa 7979</p>
             <p><strong>Phone:</strong> +27 786867785</p>
-          </v-col>
-          <v-col cols="12" sm="6">
-            <p><strong>E-mail:</strong> finnmassari404@gmail.com</p>
-            <p><strong>GitHub Username:</strong> WuTangLan1</p>
           </v-col>
         </v-row>
         <div class="buttons-container">
@@ -61,23 +73,6 @@
   justify-content: center;
 }
 
-.floating-images {
-  position: fixed; 
-  width: 100%;
-  top: -15px; 
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  z-index: 1000;
-}
-.float-img {
-  width: 70px;
-  height: 70px;
-  border-radius: 10%;
-  margin-right: 15px;
-  animation: floatImage 30s linear infinite;
-}
-
 @keyframes floatImage {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
@@ -92,6 +87,11 @@
   text-align: center;
 }
 
+.profile-image {
+  width: 30%; 
+  border-radius: 10px;
+}
+
 .buttons-container {
   display: flex;
   justify-content: center;
@@ -104,22 +104,22 @@
 
 .text-h3 {
   font-weight: 600;
-  font-size: 28px; /* Slightly larger for better readability */
-  color: #333; /* Darker color for better contrast */
+  font-size: 28px; 
+  color: #333; 
 }
 
 .text-h5 {
   font-weight: 500;
-  color: #666; /* Slightly lighter for a smoother look */
-  margin-bottom: 20px; /* Added margin for spacing */
+  color: #666; 
+  margin-bottom: 20px; 
 }
 
 .body-1 {
-  line-height: 1.8; /* Increased line height for better readability */
-  font-size: 16px; /* Slightly larger for better readability */
-  color: #555; /* Medium color for readability */
-  text-align: justify; /* Justify text for a clean look */
-  padding: 0 20px; /* Added padding for better spacing */
+  line-height: 1.8;
+  font-size: 16px;
+  color: #555; 
+  text-align: justify; 
+  padding: 0 20px; 
 }
 
 @media (max-width: 500px) {
