@@ -11,9 +11,35 @@ export default {
     VCardTitle,
     VCardText,
     VIcon
+  },
+  data() {
+    return {
+      bounceIndex1: null, // Index for the first tech stack
+      bounceIndex2: null, // Index for the second tech stack
+    };
+  },
+  mounted() {
+    this.startRandomBounce();
+  },
+  methods: {
+    startRandomBounce() {
+      setInterval(() => {
+        // Reset bounce effect
+        this.bounceIndex1 = null;
+        this.bounceIndex2 = null;
+        
+        setTimeout(() => {
+          this.bounceIndex1 = Math.floor(Math.random() * 4);
+          do {
+            this.bounceIndex2 = Math.floor(Math.random() * 4);
+          } while (this.bounceIndex1 === this.bounceIndex2);
+        }, 500);
+      }, 4000); 
+    }
   }
 }
 </script>
+
 
 <template>
     <v-container>
@@ -37,10 +63,10 @@ export default {
                 <span>Spotify Playlist Integration for enhanced musical exploration.</span>
               </div>
               <div class="tech-stack">
-                <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-                <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
-                <img src="@/assets/images/tech stack/gpticon.jpg" alt="OpenAI" class="tech-icon">
-                <img src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
+                <img :class="{ bounce: bounceIndex1 === 0 }" src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
+                <img :class="{ bounce: bounceIndex1 === 1 }" src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
+                <img :class="{ bounce: bounceIndex1 === 2 }" src="@/assets/images/tech stack/gpticon.png" alt="OpenAI" class="tech-icon">
+                <img :class="{ bounce: bounceIndex1 === 3 }" src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
               </div>
             </v-card-text>
           </v-card>
@@ -63,19 +89,17 @@ export default {
                 <span>Social Sharing to engage with a community of players.</span>
               </div>
               <div class="tech-stack">
-                <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
-                <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
-                <img src="@/assets/images/tech stack/typescripticon.png" alt="TypeScript" class="tech-icon">
-                <img src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
-                <img src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon">
-              </div>
+              <img :class="{ bounce: bounceIndex1 ===3 }" src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon">
+              <img :class="{ bounce: bounceIndex1 === 0 }" src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon">
+              <img :class="{ bounce: bounceIndex1 === 2 }" src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon">
+              <img :class="{ bounce: bounceIndex1 ===1 }" src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon">
+            </div>
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
   </template>
-  
   <style scoped>
   .v-card {
     margin-bottom: 20px;
@@ -90,31 +114,43 @@ export default {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    justify-content: start;
   }
   
   .tech-stack {
-    justify-content: center; /* Center the tech stack icons */
+    justify-content: space-around; /* This will distribute space around each icon */
+    width: 100%; /* Ensure the tech-stack div takes full width */
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25px);
+    }
+  }
+  
+  .bounce {
+    animation: bounce 1s ease;
   }
   
   .tech-icon {
     width: 40px;
     height: 40px;
-    margin-right: 10px;
-    filter: grayscale(100%); /* Optional: Adds a nice effect for the icons */
+    display: inline-block; /* Keep inline-block but remove margin-right */
   }
   
   .dark .v-card-title, .dark .v-card-text {
-    background-color: #424242; 
-    color: #ffffff; 
+    background-color: #424242;
+    color: #ffffff;
   }
   
   .dark .v-icon {
-    color: #90CAF9; 
+    color: #90CAF9;
   }
   
   .dark .subtitle-1 {
-    color: #CFD8DC; 
+    color: #CFD8DC;
   }
   
   .dark .tech-icon {

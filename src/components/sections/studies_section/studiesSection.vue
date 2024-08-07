@@ -1,7 +1,4 @@
 <!-- src\components\sections\studies_section\studiesSection.vue -->
-
-<!-- src\components\sections\studies_section\studiesSection.vue -->
-
 <script>
 import { VContainer, VCol, VRow, VDivider, VImg } from 'vuetify/lib/components';
 import UCTImage from '@/assets/images/UCT.png';
@@ -66,7 +63,7 @@ export default {
 
 <style scoped>
 .studies-container {
-  padding: 30px; 
+  padding: 20px; 
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -77,11 +74,11 @@ export default {
 
 .education-item {
   margin-bottom: 30px;
-  align-items: center;  /* Ensure vertical alignment is centered */
+  align-items: center;  
 }
 
 .education-image {
-  width: 150px;  /* Larger and uniform size */
+  width: 150px;  
   height: 150px;
   border-radius: 0.5rem;
   object-fit: cover;
@@ -96,12 +93,12 @@ export default {
 }
 
 .text-h3, .text-h5, .text-h6, p {
-  margin: 0;  /* Remove default margins for cleaner alignment */
+  margin: 0;  
 }
 
 .text-h3 {
   font-weight: 600; 
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .text-h5 {
@@ -133,4 +130,54 @@ export default {
     font-size: 14px;
   }
 }
+
+@media (max-height: 850px) {
+  .studies-container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .education-item {
+    margin-bottom: 5px;
+  }
+
+  .education-image {
+    width: 120px; 
+    height: 120px;
+  }
+
+  .text-h3 {
+    font-size: 16px; 
+  }
+
+  .text-h5, .text-h6, p {
+    font-size: 12px; 
+  }
+}
+
+@media (max-height: 730px) {
+  .studies-container {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  .education-item {
+    margin-bottom: 5px;
+  }
+  
+  .education-image {
+    width: 80px; 
+    height: 80px;
+  }
+
+  .text-h3, .text-h5, .text-h6, p {
+    font-size: smaller; 
+  }
+
+  .studies-container {
+    padding-top: 1-px;
+    padding-bottom: 15px;
+  }
+}
+
 </style>
