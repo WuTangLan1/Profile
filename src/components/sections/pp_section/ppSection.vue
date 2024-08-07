@@ -285,6 +285,40 @@ export default {
     height: 30px;
   }
 }
+
+@media (max-height: 680px) {
+  .v-card {
+    padding-top: 3px;
+    margin-bottom: 5px; 
+  }
+
+  .tech-stack, .details {
+    margin-bottom: 3px; 
+  }
+
+  .text-h6 {
+    font-size: 16px; 
+  }
+
+  .grey--text {
+    font-size: 10px; 
+  }
+
+  .subtitle-1 {
+    font-size: 12px; 
+    margin-bottom: 3px; 
+  }
+
+  .tech-icon {
+    width: 25px; 
+    height: 25px;
+  }
+
+  .v-btn {
+    padding: 6px 12px; 
+    font-size: 12px; 
+  }
+}
 </style>
 
 
