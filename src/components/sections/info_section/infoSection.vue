@@ -34,19 +34,13 @@
           <h2 class="text-h5 grey--text">Information Systems Developer and Analyst</h2>
         </div>
         <v-divider class="my-4"></v-divider>
-        <v-row>
-          <v-col cols="12" sm="4" class="d-flex justify-center">
+        <v-row class="profile-row">
+          <v-col cols="12" sm="4" class="d-flex justify-center align-center">
             <img :src="me2" alt="Profile Image" class="profile-image"/>
           </v-col>
           <v-col cols="12" sm="8" class="d-flex flex-column justify-center">
             <p><strong>E-mail:</strong> finnmassari404@gmail.com</p>
             <p><strong>GitHub Username:</strong> WuTangLan1</p>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col cols="12" sm="6">
-            <p><strong>Address:</strong> Cape Town, South Africa 7979</p>
-            <p><strong>Phone:</strong> +27 786867785</p>
           </v-col>
         </v-row>
         <div class="buttons-container">
@@ -67,15 +61,15 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
   border-radius: 10px; 
+  overflow-y: auto;
 }
 .info-row {
   align-items: start;
   justify-content: center;
 }
 
-@keyframes floatImage {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+.profile-row {
+  align-items: center; 
 }
 
 .text-container, .buttons-container, .body-1 {
@@ -88,7 +82,7 @@
 }
 
 .profile-image {
-  width: 30%; 
+  width: 100%; 
   border-radius: 10px;
 }
 

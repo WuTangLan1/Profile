@@ -59,35 +59,75 @@ export default {
 <style scoped>
 .contact-container {
   padding: 20px;
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #FFFFFF;  
+  color: #333;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, color 0.3s;  
+  border-radius: 10px; 
 }
 
 .contact-detail {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 10px;  
+}
+
+.v-icon {
+  color: #666;  
 }
 
 a {
-  color: #1976D2;
-  text-decoration: none;
+  color: #1976D2; 
+  text-decoration: none;  
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline; 
 }
 
-  .dark .contact-container {
-    background-color: #424242;
-    color: #fff;
+.v-card {
+  background-color: transparent;  
+  border: none;  
+}
+
+.dark .v-card-title {
+  color:white;
   }
 
-  .dark a {
-    color: #90CAF9;
-  }
+.v-card-title {
+  font-weight: 500;  
+  font-size: 20px;  
+}
 
-  .dark .v-btn {
-    border: 1px solid #90CAF9;
-  }
+.v-card-text {
+  font-size: 16px;  
+}
 
+.dark .v-card-text {
+color: white;
+}
+
+.v-btn {
+  border-radius: 5px;  
+  text-transform: none;  
+  font-weight: normal; 
+}
+
+.dark .contact-container {
+  background-color: #424242;  
+  color: #fff;
+}
+
+.dark a {
+  color: #90CAF9;  
+}
+
+.dark .v-btn {
+  color: #90CAF9;  
+  border: 1px solid #90CAF9;  
+}
+
+.dark .v-icon {
+  color: #90CAF9;  
+}
 </style>

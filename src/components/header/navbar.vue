@@ -17,7 +17,6 @@ export default {
       toggleDark();
     };
     const handleSelectSection = (index) => {
-    console.log("Selected section index:", index); 
     emit('change-section', index);
 };
 
