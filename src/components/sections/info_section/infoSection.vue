@@ -1,7 +1,7 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
   import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
-  import me2 from '@/assets/personal photos/me2.jpg';
+  import imageMe from '@/assets/personal photos/me2.jpg';
 
   export default {
     components: {
@@ -14,7 +14,7 @@
     data() {
       return {
         hover: false,
-        me2 // Add me2 to the data function
+        imageMe
       };
     },
     methods: {
@@ -36,7 +36,7 @@
         <v-divider class="my-4"></v-divider>
         <v-row class="profile-row">
           <v-col cols="12" sm="4" class="d-flex justify-center align-center">
-            <img :src="me2" alt="Profile Image" class="profile-image"/>
+            <img :src="imageMe" alt="Profile Image" class="profile-image"/>
           </v-col>
           <v-col cols="12" sm="8" class="d-flex flex-column justify-center">
             <p><strong>E-mail:</strong> finnmassari404@gmail.com</p>
