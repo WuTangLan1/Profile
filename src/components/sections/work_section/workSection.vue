@@ -11,6 +11,7 @@ export default {
                         position: 'Lead Author for a Published Dissertation',
                         company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
                         date: 'Mar 2023 – June 2024',
+                        tag: 'Personal',
                         details: [
                           'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR, available at the following DOI: 10.1145/3656650.3656702',
                           'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
@@ -21,6 +22,7 @@ export default {
                         position: 'Project Manager and Software Developer',
                         company: 'Strapp.rent',
                         date: 'Mar 2023 - Oct 2023',
+                        tag: 'Uni',
                         details: [
                         'Served as project manager and lead software developer for a full-stack second-hand virtual marketplace project, targeting a new mechanism for engaging buyers and sellers on second-hand virtual marketplace.',
                         'Contributed to front-end design using Vue3.js, and database management utilizing Firebase SDK – including the development of the NoSQL schema.',
@@ -32,6 +34,7 @@ export default {
                         position: 'Lead Software Developer',
                         company: 'University Of Cape Town, Information Systems Department',
                         date: 'Mar 2022 - Oct 2022',
+                        tag: 'Uni',
                         details: [
                         'Worked on the development of a full-stack system for capturing the post-graduate study and course selections for UCT students, decreasing the complexity of the original process.',
                         'Revised, modularized, and updated old code bases to modern development standards, ensuring that the process of registering a student\'s postgraduate studies accounted for developments in the UCT curriculum and structure.',
@@ -42,6 +45,7 @@ export default {
                         position: 'Business System Analyst',
                         company: 'KwaZulu Natal Department of Public Service and Administration',
                         date: 'Jul 2021 - Oct 2021',
+                        tag: 'Uni',
                         details: [
                         'Analyzed the existing business process for registering educator leave at schools across the Kwa-Zulu Natal province.',
                         'Created 5 proposed processes leveraging a combination of emerging technologies to improve the educator leave process, all of which focused on ensuring lean re-engineering processes were adhered to.'
@@ -80,6 +84,7 @@ export default {
     <v-col cols="12">
       <h1 class="display-1 text-center mb-5">Work Experience</h1>
       <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
+        <div class="tag" v-if="item.tag">{{ item.tag }}</div> 
         <h2 class="title">{{ item.position }}</h2>
         <h3 class="subtitle">{{ item.company }}</h3>
         <p class="date">{{ item.date }}</p>
@@ -89,10 +94,10 @@ export default {
       </div>
       <v-row justify="space-between" class="my-4 pagination-row">
         <v-col cols="auto">
-          <v-btn @click="prevPage" :disabled="currentPage === 0">Previous</v-btn>
+          <v-btn @click="prevPage" :disabled="currentPage === 0" aria-label="Go to previous page">Previous</v-btn>
         </v-col>
         <v-col cols="auto">
-          <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</v-btn>
+          <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1" aria-label="Go to next page">Next</v-btn>
         </v-col>
       </v-row>
     </v-col>
@@ -101,31 +106,49 @@ export default {
 </template>
 
 <style scoped>
+.v-container {
+  overflow-y: auto; 
+}
+
 .work-item {
-  margin-bottom: 40px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 10px;
+  position: relative;
+  margin-bottom: 20px;
+  transition: box-shadow .3s;
+  overflow: hidden;
+  border-radius: 0.3em;
+  padding-top: 10px;
+  border: none;
+  background-color: rgb(236, 239, 245);
 }
 
-.title, .subtitle {
-  color: #2C3E50;
+.work-item:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
-.title {
-  font-size: 1.25em;
-  font-weight: 600;
+.tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #1976D2;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
 }
 
-.subtitle {
-  font-size: 1.1em;
+.title, .subtitle, .date {
   margin-bottom: 5px;
 }
 
-.date {
-  font-size: 0.9em;
-  color: #7F8C8D;
-  margin-bottom: 15px;
+.title {
+  color: #2C3E50; 
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subtitle, .date {
+  color: #666;
+  font-size: 16px;
 }
 
 ul {
@@ -139,8 +162,41 @@ ul {
   font-weight: bold;
 }
 
-.v-container {
-  overflow-y: auto; 
+.dark .work-item, .dark .title, .dark .subtitle, .dark .date {
+  background-color: #424242; 
+  color: #ffffff;
+}
+
+.dark ul {
+  color: #CFD8DC;
+}
+
+.v-btn {
+  transition: color 0.3s, background-color 0.3s;
+}
+
+.v-btn:not(.v-btn--disabled):hover,
+.v-btn:not(.v-btn--disabled):focus {
+  color: #FFFFFF;
+  background-color: #1976D2;
+}
+
+.dark .v-btn {
+  color: black;
+}
+
+.dark .v-btn:not(.v-btn--disabled):hover,
+.v-btn:not(.v-btn--disabled):focus {
+  color: #FFFFFF;
+  background-color: #1976D2;
+}
+
+.v-btn--disabled {
+  color: #B0BEC5;
+}
+
+.dark .v-btn--disabled {
+  color: #B0BEC5;
 }
 
 @media (max-width: 600px) {
@@ -148,12 +204,64 @@ ul {
     font-size: 1em;
   }
 
-  .subtitle {
+  .subtitle, .date {
     font-size: 0.9em;
   }
+}
 
-  .date {
+@media (max-height: 850px) {
+  .v-container {
+    padding: 10px;
+  }
+
+  .work-item {
+    margin-bottom: 10px; 
+    padding: 8px; 
+  }
+
+  .title, .subtitle, .date {
+    font-size: 0.9em; 
+  }
+
+  .display-1 {
+    font-size: 1.8em; 
+  }
+
+  ul {
+    padding-left: 15px; 
+  }
+
+  .v-btn {
+    padding: 6px 12px; 
+    font-size: 0.8em; 
+  }
+}
+
+@media (max-height: 750px) {
+  .v-container {
+    padding: 5px;
+  }
+
+  .work-item {
+    margin-bottom: 5px;
+    padding: 5px;
+  }
+
+  .title, .subtitle, .date {
     font-size: 0.8em;
+  }
+
+  .display-1 {
+    font-size: 1.6em;
+  }
+
+  ul {
+    padding-left: 10px;
+  }
+
+  .v-btn {
+    padding: 4px 8px;
+    font-size: 0.7em;
   }
 }
 </style>
