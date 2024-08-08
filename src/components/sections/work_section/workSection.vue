@@ -11,7 +11,7 @@ export default {
                         position: 'Lead Author for a Published Dissertation',
                         company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
                         date: 'Mar 2023 – June 2024',
-                        tag: 'Personal',
+                        tag: 'Per',
                         details: [
                           'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR, available at the following DOI: 10.1145/3656650.3656702',
                           'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
@@ -84,7 +84,7 @@ export default {
     <v-col cols="12">
       <h1 class="display-1 text-center mb-5">Work Experience</h1>
       <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
-        <div class="tag" v-if="item.tag">{{ item.tag }}</div> 
+        <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
         <h2 class="title">{{ item.position }}</h2>
         <h3 class="subtitle">{{ item.company }}</h3>
         <p class="date">{{ item.date }}</p>
@@ -116,9 +116,12 @@ export default {
   transition: box-shadow .3s;
   overflow: hidden;
   border-radius: 0.3em;
-  padding-top: 10px;
+  padding: 10px 20px;
   border: none;
   background-color: rgb(236, 239, 245);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
 }
 
 .work-item:hover {
@@ -127,28 +130,53 @@ export default {
 
 .tag {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 10px; 
+  right: 3px; 
   background-color: #1976D2;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 0.8em;
+  font-size: 0.9em;
+  transform: rotate(45deg); 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
 }
 
-.title, .subtitle, .date {
-  margin-bottom: 5px;
+.tag.personal {
+  background-color: #4CAF50; 
+}
+
+.tag.uni {
+  background-color: #2196F3;
+}
+
+.dark .tag.personal {
+  background-color: #388E3C; 
+}
+
+.dark .tag.uni {
+  background-color: #1976D2; 
+}
+
+.dark .tag {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
 .title {
-  color: #2C3E50; 
-  font-size: 20px;
-  font-weight: 600;
+  font-weight: bold; 
+  margin-bottom: 2px;
 }
 
-.subtitle, .date {
+.subtitle {
   color: #666;
-  font-size: 16px;
+  font-size: 18px; 
+  margin-top: 0; 
+  text-align: left;
+}
+
+.date {
+  color: #666;
+  font-size: 14px; 
+  margin-bottom: 10px; 
 }
 
 ul {
