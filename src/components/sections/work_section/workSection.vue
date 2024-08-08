@@ -87,9 +87,13 @@ export default {
           <li v-for="(detail, dIndex) in item.details" :key="dIndex">{{ detail }}</li>
         </ul>
       </div>
-      <v-row justify="center" class="my-4">
-        <v-btn @click="prevPage" :disabled="currentPage === 0">Previous</v-btn>
-        <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</v-btn>
+      <v-row justify="space-between" class="my-4 pagination-row">
+        <v-col cols="auto">
+          <v-btn @click="prevPage" :disabled="currentPage === 0">Previous</v-btn>
+        </v-col>
+        <v-col cols="auto">
+          <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</v-btn>
+        </v-col>
       </v-row>
     </v-col>
   </v-row>
@@ -136,7 +140,6 @@ ul {
 }
 
 .v-container {
-  max-height: 100vh; 
   overflow-y: auto; 
 }
 
