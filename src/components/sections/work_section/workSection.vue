@@ -98,54 +98,59 @@ export default {
 
 <style scoped>
 .work-item {
-margin-bottom: 40px;
-border: 1px solid #ccc;
-padding: 20px;
-border-radius: 10px;
+  margin-bottom: 40px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .title, .subtitle {
-color: #2C3E50;
+  color: #2C3E50;
 }
 
 .title {
-font-size: 1.25em;
-font-weight: 600;
+  font-size: 1.25em;
+  font-weight: 600;
 }
 
 .subtitle {
-font-size: 1.1em;
-margin-bottom: 5px;
+  font-size: 1.1em;
+  margin-bottom: 5px;
 }
 
 .date {
-font-size: 0.9em;
-color: #7F8C8D;
-margin-bottom: 15px;
+  font-size: 0.9em;
+  color: #7F8C8D;
+  margin-bottom: 15px;
 }
 
 ul {
-padding-left: 20px;
-list-style-type: circle;
-color: #34495E;
+  padding-left: 20px;
+  list-style-type: circle;
+  color: #34495E;
 }
 
 .display-1 {
-font-size: 2em;
-font-weight: bold;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.v-container {
+  max-height: 100vh; 
+  overflow-y: auto; 
 }
 
 @media (max-width: 600px) {
-.title {
-  font-size: 1em;
-}
+  .title {
+    font-size: 1em;
+  }
 
-.subtitle {
-  font-size: 0.9em;
-}
+  .subtitle {
+    font-size: 0.9em;
+  }
 
-.date {
-  font-size: 0.8em;
-}
+  .date {
+    font-size: 0.8em;
+  }
 }
 </style>
