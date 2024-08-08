@@ -4,17 +4,19 @@ export default {
   name: 'WorkSection',
   data() {
         return {
+          currentPage: 0,
+          itemsPerPage: 2,
                 workItems: [
-                        {
+                      {
                         position: 'Lead Author for a Published Dissertation',
                         company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
                         date: 'Mar 2023 – June 2024',
                         details: [
-                        'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR, available at the following DOI: 10.1145/3656650.3656702',
-                        'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
-                        'Available online, the published thesis currently has 24 reads and 5 requests for corroboration.'
+                          'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR, available at the following DOI: 10.1145/3656650.3656702',
+                          'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
+                          'Available online, the published thesis currently has 24 reads and 5 requests for corroboration.'
                         ]
-                        },
+                      },
                         {
                         position: 'Project Manager and Software Developer',
                         company: 'Strapp.rent',
@@ -46,64 +48,104 @@ export default {
                         ]
                         }
                 ]};
+        },
+      computed: {
+        paginatedItems() {
+          const start = this.currentPage * this.itemsPerPage;
+          const end = start + this.itemsPerPage;
+          return this.workItems.slice(start, end);
+        },
+        totalPages() {
+          return Math.ceil(this.workItems.length / this.itemsPerPage);
         }
+      },
+      methods: {
+        nextPage() {
+          if (this.currentPage < this.totalPages - 1) {
+            this.currentPage++;
+          }
+        },
+        prevPage() {
+          if (this.currentPage > 0) {
+            this.currentPage--;
+          }
+        }
+      }
 }
 </script>
 
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12">
-        <h1 class="display-1 mb-4">Work Experience</h1>
-        <div class="work-item" v-for="(item, index) in workItems" :key="index">
-          <h2 class="title">{{ item.position }}</h2>
-          <h3 class="subtitle">{{ item.company }}</h3>
-          <p class="date">{{ item.date }}</p>
-          <ul>
-            <li v-for="(detail, dIndex) in item.details" :key="dIndex">{{ detail }}</li>
-          </ul>
-        </div>
-      </v-col>
-    </v-row>
-  </v-container>
+<v-container fluid class="px-4">
+  <v-row>
+    <v-col cols="12">
+      <h1 class="display-1 text-center mb-5">Work Experience</h1>
+      <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
+        <h2 class="title">{{ item.position }}</h2>
+        <h3 class="subtitle">{{ item.company }}</h3>
+        <p class="date">{{ item.date }}</p>
+        <ul>
+          <li v-for="(detail, dIndex) in item.details" :key="dIndex">{{ detail }}</li>
+        </ul>
+      </div>
+      <v-row justify="center" class="my-4">
+        <v-btn @click="prevPage" :disabled="currentPage === 0">Previous</v-btn>
+        <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1">Next</v-btn>
+      </v-row>
+    </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <style scoped>
-
-v-container {
- overflow-y:auto;
+.work-item {
+margin-bottom: 40px;
+border: 1px solid #ccc;
+padding: 20px;
+border-radius: 10px;
 }
 
-.work-item {
-  margin-bottom: 20px;
+.title, .subtitle {
+color: #2C3E50;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: bold;
+font-size: 1.25em;
+font-weight: 600;
 }
 
 .subtitle {
-  font-size: 18px;
-  color: #666;
+font-size: 1.1em;
+margin-bottom: 5px;
 }
 
 .date {
-  font-size: 16px;
-  margin-bottom: 10px;
+font-size: 0.9em;
+color: #7F8C8D;
+margin-bottom: 15px;
 }
 
 ul {
-  margin-left: 20px;
-  list-style-type: disc;
+padding-left: 20px;
+list-style-type: circle;
+color: #34495E;
 }
 
 .display-1 {
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
+font-size: 2em;
+font-weight: bold;
+}
+
+@media (max-width: 600px) {
+.title {
+  font-size: 1em;
+}
+
+.subtitle {
+  font-size: 0.9em;
+}
+
+.date {
+  font-size: 0.8em;
+}
 }
 </style>
-
-

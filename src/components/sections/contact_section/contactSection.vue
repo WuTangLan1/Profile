@@ -1,6 +1,7 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
+<!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VCardActions, VBtn, VIcon } from 'vuetify/lib/components';
+import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VCardActions, VBtn, VIcon, VDivider } from 'vuetify/lib/components';
 
 export default {
   components: {
@@ -12,7 +13,8 @@ export default {
     VCardText,
     VCardActions,
     VBtn,
-    VIcon
+    VIcon,
+    VDivider
   },
   methods: {
     onContactMe() {
@@ -29,18 +31,22 @@ export default {
         <v-card class="elevation-2">
           <v-card-title class="headline">Contact Information</v-card-title>
           <v-card-text>
+            <v-divider class="my-4"></v-divider>
             <div class="contact-detail">
               <v-icon left>mdi-map-marker</v-icon>
-              Cape Town, South Africa 7979
+              <span>Cape Town, South Africa 7979</span>
             </div>
+            <v-divider class="my-4"></v-divider>
             <div class="contact-detail">
               <v-icon left>mdi-phone</v-icon>
-              +27 786867785
+              <span>+27 786867785</span>
             </div>
+            <v-divider class="my-4"></v-divider>
             <div class="contact-detail">
               <v-icon left>mdi-email</v-icon>
               <a href="mailto:finnmassari404@gmail.com">finnmassari404@gmail.com</a>
             </div>
+            <v-divider class="my-4"></v-divider>
             <div class="contact-detail">
               <v-icon left>mdi-github</v-icon>
               <a href="https://github.com/WuTangLan1" target="_blank">WuTangLan1</a>
@@ -69,11 +75,20 @@ export default {
 .contact-detail {
   display: flex;
   align-items: center;
+  padding: 10px;
   margin-bottom: 10px;  
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+.contact-detail:hover {
+  background-color: #f1f1f1;
 }
 
 .v-icon {
-  color: #666;  
+  color: #666;
+  margin-right: 10px;
 }
 
 a {
@@ -86,13 +101,17 @@ a:hover {
 }
 
 .v-card {
-  background-color: transparent;  
+  background-color: #fff;  
   border: none;  
 }
 
+.dark .v-card {
+  background-color: #333;  
+}
+
 .dark .v-card-title {
-  color:white;
-  }
+  color: #fff;
+}
 
 .v-card-title {
   font-weight: 500;  
@@ -104,7 +123,7 @@ a:hover {
 }
 
 .dark .v-card-text {
-color: white;
+  color: #e0e0e0;
 }
 
 .v-btn {
@@ -114,8 +133,9 @@ color: white;
 }
 
 .dark .contact-container {
-  background-color: #424242;  
+  background-color: #212121;  
   color: #fff;
+  box-shadow: 0 4px 6px rgba(255,255,255,0.1);
 }
 
 .dark a {
@@ -129,5 +149,22 @@ color: white;
 
 .dark .v-icon {
   color: #90CAF9;  
+}
+
+.v-divider {
+  background-color: #e0e0e0;
+}
+
+.dark .v-divider {
+  background-color: #555;
+}
+
+.dark .contact-detail {
+  background-color: #424242;
+  color: #e0e0e0;
+}
+
+.dark .contact-detail:hover {
+  background-color: #333;
 }
 </style>
