@@ -7,17 +7,17 @@ export default {
           currentPage: 0,
           itemsPerPage: 2,
                 workItems: [
-                      {
-                        position: 'Lead Author for a Published Dissertation',
-                        company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
-                        date: 'Mar 2023 – June 2024',
-                        tag: 'Per',
-                        details: [
-                          'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR, available at the following DOI: 10.1145/3656650.3656702',
-                          'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
-                          'Available online, the published thesis currently has 24 reads and 5 requests for corroboration.'
-                        ]
-                      },
+                {
+                  position: 'Lead Author for a Published Dissertation',
+                  company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
+                  date: 'Mar 2023 – June 2024',
+                  tag: 'Per',
+                  details: [
+                    'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR.',
+                    'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
+                    { text: 'Available online, the published thesis currently has 24 reads and 5 requests for corroboration.', doi: '10.1145/3656650.3656702' }
+                  ]
+                },
                         {
                         position: 'Project Manager and Software Developer',
                         company: 'Strapp.rent',
@@ -79,31 +79,36 @@ export default {
 </script>
 
 <template>
-<v-container fluid class="px-4">
-  <v-row>
-    <v-col cols="12">
-      <h1 class="display-1 text-center mb-5">Work Experience</h1>
-      <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
-        <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
-        <h2 class="title">{{ item.position }}</h2>
-        <h3 class="subtitle">{{ item.company }}</h3>
-        <p class="date">{{ item.date }}</p>
-        <ul>
-          <li v-for="(detail, dIndex) in item.details" :key="dIndex">{{ detail }}</li>
-        </ul>
-      </div>
-      <v-row justify="space-between" class="my-4 pagination-row">
-        <v-col cols="auto">
-          <v-btn @click="prevPage" :disabled="currentPage === 0" aria-label="Go to previous page">Previous</v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1" aria-label="Go to next page">Next</v-btn>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
-</v-container>
+  <v-container fluid class="px-4">
+    <v-row>
+      <v-col cols="12">
+        <h1 class="display-1 text-center mb-5">Work Experience</h1>
+        <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
+          <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
+          <h2 class="title">{{ item.position }}</h2>
+          <h3 class="subtitle">{{ item.company }}</h3>
+          <p class="date">{{ item.date }}</p>
+          <div class="details" v-for="detail in item.details" :key="detail.text || detail">
+            <p v-if="typeof detail === 'object'">
+              {{ detail.text }}
+              <a :href="'https://doi.org/' + detail.doi" target="_blank">{{ detail.doi }}</a>
+            </p>
+            <p v-else>{{ detail }}</p>
+          </div>
+        </div>
+        <v-row justify="space-between" class="my-4 pagination-row">
+          <v-col cols="auto">
+            <v-btn @click="prevPage" :disabled="currentPage === 0" aria-label="Go to previous page">Previous</v-btn>
+          </v-col>
+          <v-col cols="auto">
+            <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1" aria-label="Go to next page">Next</v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
+  
 
 <style scoped>
 .v-container {
@@ -183,6 +188,16 @@ ul {
   padding-left: 20px;
   list-style-type: circle;
   color: #34495E;
+}
+
+.details {
+  margin-bottom: 10px;
+}
+
+.details p {
+  margin: 0;
+  padding-left: 20px;
+  text-align: left; 
 }
 
 .display-1 {

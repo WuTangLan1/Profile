@@ -23,6 +23,7 @@ export default {
         {
           title: "CoPlaylist",
           subtitle: "Music/Playlist Generation",
+          url: "https://coplaylist-5ec2820dd416.herokuapp.com/",
           description: "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
           details: [
             { icon: "mdi-account-music", text: "Generate playlists based on options for tone, style, and similar music using the OpenAI API key." },
@@ -38,6 +39,7 @@ export default {
         {
           title: "The Big Picture",
           subtitle: "Daily Puzzle Game",
+          url: "https://fullcircle-4856e527cad2.herokuapp.com/",
           description: "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
           details: [
             { icon: "mdi-image-area", text: "Daily puzzles with a unique set of terms every day." },
@@ -125,6 +127,7 @@ export default {
             <v-row justify="space-between" class="px-3">
               <h3 class="text-h6">{{ project.title }}</h3>
               <h3 class="text-h6 grey--text">{{ project.subtitle }}</h3>
+              <a v-if="project.url" :href="project.url" target="_blank" class="project-link">{{ project.url }}</a>
             </v-row>
           </v-card-title>
           <v-card-text>
@@ -169,10 +172,25 @@ export default {
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
 
+.v-container {
+  overflow-y: auto; 
+}
+
 .details, .tech-stack {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.project-link {
+  color: #1976D2;
+  margin-top: 5px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  text-decoration: underline;
 }
 
 .details > .v-icon {
