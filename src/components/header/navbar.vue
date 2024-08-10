@@ -51,16 +51,21 @@ export default {
 <style scoped>
 header {
   height: 50px; 
-  background-color: #2c3e50;
-  color: white;
+  background-color: #8abdf0;
+  color: rgb(0, 0, 0);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensures space between navigation and the dark mode icon */
-  padding: 0 20px;
+  justify-content: space-between; 
+  padding: 0 5px;
+}
+
+.dark header {
+  background-color: #2c3e50;
+  color: white;
 }
 
 nav {
-  flex-grow: 1; /* Allows the nav to take all available space pushing the icon to the right */
+  flex-grow: 1; 
   display: flex;
 }
 
@@ -68,13 +73,12 @@ nav ul {
   list-style-type: none;
   display: flex;
   gap: 20px;
-  margin: 0; /* Removes default margin to ensure ul starts from the far left */
-  padding: 0; /* Removes default padding */
+  margin: 0; 
+  padding: 0; 
 }
 
 nav li {
   cursor: pointer;
-  color: white;
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s, transform 0.2s;
