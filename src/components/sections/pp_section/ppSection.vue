@@ -56,9 +56,11 @@ export default {
         {
           title: "Mapple",
           subtitle: "Geography Game",
+          url: "https://mapple-15f9c29f3ed1.herokuapp.com/",
           description: "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
           details: [
-            { icon: "", text: "The user can set streaks and challenge themselves to recognise more countries across the world." }
+            { icon: "mdi-tooltip-check", text: "The user can choose between different levels of difficulty depending on their skill" }  ,
+            { icon: "mdi-earth", text: "The user can set streaks and challenge themselves to recognise more countries across the world." }
           ],
           techStack: [
           { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
@@ -71,7 +73,10 @@ export default {
           title: "This website",
           subtitle: "Profile Website",
           description: "I created a profile website for myself to show a level of capability i am currently at in terms of short term projects",
-          details: [],
+          details: [
+          { icon: "mdi-web", text: "The website leverages my prefered technology stack for developing and styling small-to-medium sized projects" },
+          { icon: "mdi-directions", text: "Serves as a directory to different passion projects I have developed this year" }
+          ],
           techStack: [
             { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
             { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
@@ -216,6 +221,13 @@ export default {
 .bounce {
   animation: bounce 1s ease;
 }
+
+.subtitle-1 {
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: #103d50;
+    font-style: italic; 
+  }
 
 .tech-icon {
   width: 40px;
