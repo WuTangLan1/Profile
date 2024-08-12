@@ -1,7 +1,6 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
-<!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VCardActions, VBtn, VIcon, VDivider } from 'vuetify/lib/components';
+import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText,  VIcon, VDivider } from 'vuetify/lib/components';
 
 export default {
   components: {
@@ -11,15 +10,8 @@ export default {
     VCard,
     VCardTitle,
     VCardText,
-    VCardActions,
-    VBtn,
     VIcon,
     VDivider
-  },
-  methods: {
-    onContactMe() {
-      console.log("Contact Me button clicked");
-    }
   }
 }
 </script>
@@ -52,9 +44,6 @@ export default {
               <a href="https://github.com/WuTangLan1" target="_blank">WuTangLan1</a>
             </div>
           </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" text @click="onContactMe">Contact Me</v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
