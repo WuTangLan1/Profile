@@ -167,6 +167,7 @@ export default {
   padding-top: 10px;
   border: none;
   background-color: transparent;
+  max-width: 600px;
 }
 
 .dark .v-btn {

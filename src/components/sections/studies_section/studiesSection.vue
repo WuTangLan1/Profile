@@ -71,7 +71,7 @@ export default {
 }
 
 .education-image {
-  max-width: 800%;
+  max-width: 60%;
   height: auto;
   border-radius: 0.5rem;
 }

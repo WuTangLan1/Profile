@@ -75,12 +75,12 @@ body:not(.dark) #app {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: none;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #f3f4f6; 
+  background-color: #ffffff; 
   color: #2c3e50;
   transition: background-color 0.3s, color 0.3s;
 }

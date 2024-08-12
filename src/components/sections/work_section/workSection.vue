@@ -129,6 +129,10 @@ export default {
   align-items: flex-start; 
 }
 
+.work-item {
+  flex: 0 0 100%;
+}
+
 .work-item:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
@@ -307,4 +311,18 @@ ul {
     font-size: 0.7em;
   }
 }
+
+@media (min-width: 1200px) {
+  .v-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .work-item {
+    flex: 1 0 48%; /* Slightly less than half to fit two items with some gap */
+    max-width: 48%;
+    margin: 1%; /* Adds slight margin around items */
+  }
+}
 </style>
+
