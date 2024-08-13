@@ -61,6 +61,13 @@ export default {
   border-radius: 10px; 
 }
 
+@media (max-width : 800px)
+{
+  .contact-container {
+    overflow-y: hidden;
+  }
+}
+
 .contact-detail {
   display: flex;
   align-items: center;

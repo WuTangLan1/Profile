@@ -87,6 +87,13 @@ nav li {
 nav li:hover, nav li.active {
   background-color: #34495e;
   transform: translateY(-2px);
+  color: white;
+}
+
+.dark nav li:hover, nav li.active {
+  background-color: #99b0c8;
+  transform: translateY(-2px);
+  color: black;
 }
 
 .dark-mode-icon {
