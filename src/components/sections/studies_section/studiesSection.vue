@@ -1,6 +1,6 @@
 <!-- src\components\sections\studies_section\studiesSection.vue -->
 <script>
-import { VContainer, VCol, VRow, VDivider, VImg } from 'vuetify/lib/components';
+import { VContainer, VCol, VRow, VDivider, VImg, VProgressCircular } from 'vuetify/lib/components';
 import UCTImage from '@/assets/images/UCT.png';
 import WBHSImage from '@/assets/images/wbhs.png';
 
@@ -10,7 +10,8 @@ export default {
     VCol,
     VRow,
     VDivider,
-    VImg
+    VImg,
+    VProgressCircular
   },
   data() {
     return {
@@ -31,11 +32,18 @@ export default {
           average: '80% average',
           image: WBHSImage
         }
-      ]
+      ],
+      loadingState: [true, true] // Use an array to manage loading state by index
     };
+  },
+  methods: {
+    handleImageLoaded(index) {
+      this.$set(this.loadingState, index, false); // Ensure reactivity is maintained
+    }
   }
 }
 </script>
+
 
 <template>
   <v-container class="studies-container">
@@ -45,7 +53,16 @@ export default {
         <v-divider class="my-4"></v-divider>
         <v-row v-for="(item, index) in education" :key="index" class="education-item">
           <v-col cols="12" md="3" class="d-flex justify-center">
-            <v-img :src="item.image" class="education-image" contain />
+            <v-progress-circular
+              v-if="loadingState[index]"
+              indeterminate
+              color="primary"
+              size="64"
+            ></v-progress-circular>
+            <v-img :src="item.image" class="education-image" contain
+              @load="() => handleImageLoaded(index)"
+              v-show="!loadingState[index]"
+            />
           </v-col>
           <v-col cols="12" md="9">
             <h2 class="text-h5">{{ item.period }}</h2>
@@ -58,6 +75,7 @@ export default {
     </v-row>
   </v-container>
 </template>
+
 
 <style scoped>
 .studies-container {
@@ -100,6 +118,22 @@ export default {
 .institution, .average {
   font-size: 16px;
   margin-top: 5px;
+}
+
+.education-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  visibility: hidden;  
+  animation: fadeIn 1s ease-out forwards; 
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 </style>

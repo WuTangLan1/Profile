@@ -1,6 +1,6 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-  import { VContainer, VCol, VRow, VDivider, VBtn } from 'vuetify/lib/components';
+  import { VContainer, VCol, VRow, VDivider, VBtn, VProgressCircular } from 'vuetify/lib/components';
   import imageMe from '@/assets/personal photos/personalphoto.png';
 
   export default {
@@ -9,27 +9,44 @@
       VCol,
       VRow,
       VDivider,
-      VBtn
+      VBtn,
+      VProgressCircular
     },
     data() {
       return {
         hover: false,
-        imageMe
+        imageMe,
+        imageLoading: true 
       };
     },
     methods: {
       sendEmail() {
         window.location.href = `mailto:finnmassari404@gmail.com`;
-      }
-    }
+      },
+      handleImageLoaded(event) {
+        this.imageLoading = false;
+        event.target.style.opacity = 1; }
   }
+}
 </script>
 
 <template>
   <v-container class="info-container">
     <v-row class="info-row">
       <v-col cols="12" md="6" class="d-flex justify-center align-center">
-        <img :src="imageMe" alt="Profile Image" class="profile-image"/>
+        <v-progress-circular
+          v-if="imageLoading"
+          indeterminate
+          color="primary"
+          size="64"
+        ></v-progress-circular>
+        <img
+          :src="imageMe"
+          alt="Profile Image"
+          class="profile-image"
+          @load="handleImageLoaded"
+          v-show="!imageLoading"
+        />
       </v-col>
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
@@ -164,6 +181,21 @@
   color: #555; 
   text-align: justify; 
   padding: 0 20px; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.profile-image {
+  width: 100%; 
+  border-radius: 10px;
+  animation: fadeIn 1s ease-out forwards; /* Apply the animation to the image */
 }
 
 @media (max-width: 500px) {
