@@ -91,15 +91,14 @@ export default {
 .home-view {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   overflow: hidden;
   align-items: center;
+  height: 100%;
   justify-content: center;
 }
 
 .info-section, .studies-section, .work-section, .pp-section, .contact-section {
   width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -128,7 +128,7 @@ export default {
   padding-top: 10px;
   border: none;
   background-color: transparent; 
-  max-width: 720px;
+  max-width: 800px;
 }
 
 
