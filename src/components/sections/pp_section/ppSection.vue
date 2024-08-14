@@ -127,6 +127,7 @@ export default {
   <v-container>
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
+        <h1 class="display-1 text-center mb-5">Passion Projects</h1>
         <v-card v-for="(project, index) in paginatedProjects" :key="index" class="mb-5" elevation="2">
           <v-card-title>
             <v-row justify="space-between" class="px-3">

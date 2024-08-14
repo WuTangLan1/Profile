@@ -63,6 +63,14 @@
   border-radius: 10px; 
   overflow-y: auto;
 }
+
+@media(min-width: 1000px)
+{
+  .info-container {
+    overflow-y: hidden;
+  }
+}
+
 .info-row {
   align-items: start;
   justify-content: center;

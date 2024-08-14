@@ -15,7 +15,7 @@ export default {
                   details: [
                     'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR.',
                     'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
-                    { text: 'Available online, the published thesis currently has 24 reads and 5 requests for corroboration.', doi: '10.1145/3656650.3656702' }
+                    { text: 'Available online, the published thesis currently has 19 reads and 2 requests for corroboration.', doi: '10.1145/3656650.3656702' }
                   ]
                 },
                         {
@@ -80,22 +80,28 @@ export default {
 
 <template>
   <v-container fluid class="px-4">
-    <v-row>
-      <v-col cols="12">
+    <v-row justify="center"> 
+      <v-col cols="12" md="10" lg="8"> 
         <h1 class="display-1 text-center mb-5">Work Experience</h1>
-        <div class="work-item" v-for="(item, index) in paginatedItems" :key="index">
-          <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
-          <h2 class="title">{{ item.position }}</h2>
-          <h3 class="subtitle">{{ item.company }}</h3>
-          <p class="date">{{ item.date }}</p>
-          <div class="details" v-for="detail in item.details" :key="detail.text || detail">
-            <p v-if="typeof detail === 'object'">
-              {{ detail.text }}
-              <a :href="'https://doi.org/' + detail.doi" target="_blank">{{ detail.doi }}</a>
-            </p>
-            <p v-else>{{ detail }}</p>
-          </div>
-        </div>
+        <v-card v-for="(item, index) in paginatedItems" :key="index" class="mb-5 work-item" elevation="2">
+          <v-card-title class="card-header">
+            <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
+            <div class="header-text">
+              <h3 class="text-h6">{{ item.position }}</h3>
+              <h3 class="text-h6 grey--text">{{ item.company }}</h3>
+            </div>
+          </v-card-title>
+          <v-card-text>
+            <p class="date">{{ item.date }}</p>
+            <div class="details" v-for="detail in item.details" :key="detail.text || detail">
+              <p v-if="typeof detail === 'object'">
+                {{ detail.text }}
+                <a :href="'https://doi.org/' + detail.doi" target="_blank">{{ detail.doi }}</a>
+              </p>
+              <p v-else>{{ detail }}</p>
+            </div>
+          </v-card-text>
+        </v-card>
         <v-row justify="space-between" class="my-4 pagination-row">
           <v-col cols="auto">
             <v-btn @click="prevPage" :disabled="currentPage === 0" aria-label="Go to previous page">Previous</v-btn>
@@ -108,7 +114,6 @@ export default {
     </v-row>
   </v-container>
 </template>
-  
 
 <style scoped>
 .v-container {
@@ -116,18 +121,16 @@ export default {
 }
 
 .work-item {
-  position: relative;
+  margin: auto; 
   margin-bottom: 20px;
   transition: box-shadow .3s;
   overflow: hidden;
-  border-radius: 0.3em;
-  padding: 10px 20px;
+  padding-top: 10px;
   border: none;
-  background-color: rgb(236, 239, 245);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; 
+  background-color: transparent; 
+  max-width: 720px;
 }
+
 
 .work-item:hover {
   box-shadow: 0 8px 16px rgba(0,0,0,0.3);
@@ -135,15 +138,15 @@ export default {
 
 .tag {
   position: absolute;
-  top: 10px; 
-  right: 3px; 
-  background-color: #1976D2;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(25, 118, 210, 0.8);
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.9em;
-  transform: rotate(45deg); 
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .tag.personal {
@@ -166,17 +169,34 @@ export default {
   box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
-.title {
-  font-weight: bold; 
-  margin-bottom: 2px;
+.card-header {
+  position: relative;
+  width: 100%;
+}
+
+.header-text {
+  padding-right: 50px;
+}
+
+.title, .subtitle, .date {
+  margin: 0;
+  text-align: left;
 }
 
 .subtitle {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   color: #666;
-  font-size: 18px; 
-  margin-top: 0; 
+  font-size: 18px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  margin-top: 0;
   text-align: left;
+  padding-right: 40px; /* Ensure padding here too if necessary */
 }
+
 
 .date {
   color: #666;
@@ -203,6 +223,18 @@ ul {
 .display-1 {
   font-size: 2em;
   font-weight: bold;
+}
+
+.text-h6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 20px;
+  white-space: normal;
+  text-overflow: ellipsis;
+  margin: 0;
+  padding-right: 40px; 
 }
 
 .dark .work-item, .dark .title, .dark .subtitle, .dark .date {
