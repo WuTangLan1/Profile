@@ -1,6 +1,6 @@
 <!-- src\components\sections\studies_section\studiesSection.vue -->
 <script>
-import { VContainer, VCol, VRow, VDivider, VImg, VProgressCircular } from 'vuetify/lib/components';
+import { VContainer, VCol, VRow, VDivider, VProgressCircular } from 'vuetify/lib/components';
 import UCTImage from '@/assets/images/UCT.png';
 import WBHSImage from '@/assets/images/wbhs.png';
 
@@ -10,8 +10,10 @@ export default {
     VCol,
     VRow,
     VDivider,
-    VImg,
     VProgressCircular
+  },
+  mounted() {
+    console.log("Component mounted");
   },
   data() {
     return {
@@ -33,12 +35,13 @@ export default {
           image: WBHSImage
         }
       ],
-      loadingState: [true, true] // Use an array to manage loading state by index
+      loadingState: [true, true] 
     };
   },
   methods: {
     handleImageLoaded(index) {
-      this.$set(this.loadingState, index, false); // Ensure reactivity is maintained
+      console.log("Image Loaded:", index);
+      this.loadingState[index] = false;
     }
   }
 }
@@ -59,10 +62,10 @@ export default {
               color="primary"
               size="64"
             ></v-progress-circular>
-            <v-img :src="item.image" class="education-image" contain
-              @load="() => handleImageLoaded(index)"
+            <img :src="item.image"
+             @load="handleImageLoaded(index)"
               v-show="!loadingState[index]"
-            />
+             class="education-image" />
           </v-col>
           <v-col cols="12" md="9">
             <h2 class="text-h5">{{ item.period }}</h2>
@@ -86,12 +89,6 @@ export default {
 .education-item {
   margin-bottom: 40px;
   align-items: center;
-}
-
-.education-image {
-  max-width: 800%;
-  height: auto;
-  border-radius: 0.5rem;
 }
 
 .education-text {
@@ -121,10 +118,9 @@ export default {
 }
 
 .education-image {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: 0.5rem;
-  visibility: hidden;  
   animation: fadeIn 1s ease-out forwards; 
 }
 @keyframes fadeIn {
