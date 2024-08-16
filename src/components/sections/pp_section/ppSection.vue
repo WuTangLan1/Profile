@@ -1,24 +1,9 @@
 <!-- src\components\sections\pp_section\ppSection.vue -->
 <script>
-import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText, VIcon, VBtn } from 'vuetify/lib/components';
 
 export default {
-  components: {
-    VContainer,
-    VRow,
-    VCol,
-    VCard,
-    VCardTitle,
-    VCardText,
-    VIcon,
-    VBtn 
-  },
   data() {
     return {
-      currentPage: 1,
-      projectsPerPage: 2,
-      bounceIndex1: null,
-      bounceIndex2: null,
       projects: [
         {
           title: "CoPlaylist",
@@ -86,270 +71,61 @@ export default {
       ]
     };
   },
-  mounted() {
-    this.startRandomBounce();
-  },
-  computed: {
-      totalPages() {
-        return Math.ceil(this.projects.length / this.projectsPerPage);
-      },
-      paginatedProjects() {
-        const start = (this.currentPage - 1) * this.projectsPerPage;
-        const end = start + this.projectsPerPage;
-        return this.projects.slice(start, end);
-      }
-    },
   methods: {
-    startRandomBounce() {
-      setInterval(() => {
-        this.bounceIndex1 = null;
-        this.bounceIndex2 = null;
-        
-        setTimeout(() => {
-          this.bounceIndex1 = Math.floor(Math.random() * 4);
-          do {
-            this.bounceIndex2 = Math.floor(Math.random() * 4);
-          } while (this.bounceIndex1 === this.bounceIndex2);
-        }, 500);
-      }, 4000); 
-    },
-    nextPage() {
-    this.currentPage++;
-    },
-    prevPage() {
-      this.currentPage--;
-    },
+    getRandomColor() {
+      const colors = ['purple', 'red', 'green', 'blue', 'orange', 'cyan', 'pink', 'teal'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
   }
 }
 </script>
 
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="10" lg="8">
-        <h1 class="display-1 text-center mb-5">Passion Projects</h1>
-        <v-card v-for="(project, index) in paginatedProjects" :key="index" class="mb-5" elevation="2">
-          <v-card-title>
-            <v-row justify="space-between" class="px-3">
-              <h3 class="text-h6">{{ project.title }}</h3>
-              <h3 class="text-h6 grey--text">{{ project.subtitle }}</h3>
-              <a v-if="project.url" :href="project.url" target="_blank" class="project-link">{{ project.url }}</a>
-            </v-row>
-          </v-card-title>
+    <v-row>
+      <v-col
+        v-for="(project, index) in projects"
+        :key="index"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        class="d-flex align-stretch"
+      >
+        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2">
+          <v-img :src="project.techStack[0].src" height="200px" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)">
+            <v-card-title>{{ project.title }}</v-card-title>
+          </v-img>
+          <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
           <v-card-text>
-            <p class="subtitle-1 mb-3">{{ project.description }}</p>
-            <div class="details" v-for="detail in project.details" :key="detail.key">
-              <v-icon left>{{ detail.icon }}</v-icon>
-              <span>{{ detail.text }}</span>
-            </div>
-            <div class="tech-stack">
-              <img v-for="tech in project.techStack" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon">
-            </div>
+            {{ project.description }}
+            <v-list dense>
+              <v-list-item v-for="detail in project.details" :key="detail.text">
+                <v-list-item-icon>
+                  <v-icon>{{ detail.icon }}</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>{{ detail.text }}</v-list-item-content>
+              </v-list-item>
+            </v-list>
           </v-card-text>
+          <v-card-actions>
+            <v-btn :href="project.url" text color="white">Learn More</v-btn>
+          </v-card-actions>
         </v-card>
-        <v-row justify="space-between">
-          <v-col cols="auto">
-            <v-btn @click="prevPage" :disabled="currentPage <= 1">Previous</v-btn>
-          </v-col>
-          <v-col cols="auto">
-            <v-btn @click="nextPage" :disabled="currentPage >= totalPages">Next</v-btn>
-          </v-col>
-        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
+
 <style scoped>
-.v-card {
-  margin-bottom: 20px;
-  transition: box-shadow .3s;
-  overflow: hidden;
-  padding-top: 10px;
-  border: none;
-  background-color: transparent;
-}
-
-.dark .v-btn {
-  color: black;
-}
-
-.v-card:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-}
-
 .v-container {
-  overflow-y: auto; 
+  overflow-y:auto;
 }
 
-.details, .tech-stack {
+.v-card {
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.project-link {
-  color: #1976D2;
-  margin-top: 5px;
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.project-link:hover {
-  text-decoration: underline;
-}
-
-.details > .v-icon {
-  margin-right: 8px;
-}
-
-.details > span {
-  text-align: left;
-  flex: 1;
-}
-
-.tech-stack {
-  justify-content: space-around;
-  width: 100%;
-  margin-bottom: 20px; 
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.bounce {
-  animation: bounce 1s ease;
-}
-
-.subtitle-1 {
-    font-size: 16px;
-    margin-bottom: 3px;
-    color: #103d50;
-    font-style: italic; 
-  }
-
-.tech-icon {
-  width: 40px;
-  height: 40px;
-}
-
-.dark .v-card, .dark .v-card-title, .dark .v-card-text {
-  background-color: #424242; 
-  color: #ffffff;
-}
-
-.dark .v-icon {
-  color: #90CAF9; 
-}
-
-.dark .subtitle-1 {
-  color: #CFD8DC; 
-}
-
-.dark .tech-icon {
-  filter: invert(100%) grayscale(0);
-}
-
-.text-h6 {
-  font-size: 20px; 
-}
-
-.grey--text {
-  font-size: 14px; 
-}
-
-.v-card-title {
-  margin-bottom: 20px; 
-}
-
-.v-btn {
-  transition: color 0.3s, background-color 0.3s;
-}
-
-.v-btn:not(.v-btn--disabled):hover,
-.v-btn:not(.v-btn--disabled):focus {
-  color: #FFFFFF; 
-  background-color: #1976D2; 
-}
-
-.dark .v-btn:not(.v-btn--disabled):hover,
-.v-btn:not(.v-btn--disabled):focus {
-  color: #FFFFFF; 
-  background-color: #1976D2; 
-}
-
-
-.v-btn--disabled {
-  color: #B0BEC5; 
-}
-
-.dark .v-btn--disabled {
-  color: #B0BEC5; 
-}
-
-@media (max-height: 780px) {
-  .v-card {
-    padding-top: 5px;
-    margin-bottom: 10px; 
-  }
-
-  .tech-stack, .details {
-    margin-bottom: 5px; 
-  }
-
-  .text-h6 {
-    font-size: 18px; 
-  }
-
-  .grey--text {
-    font-size: 12px; 
-  }
-
-  .subtitle-1 {
-    margin-bottom: 5px; 
-  }
-
-  .tech-icon {
-    width: 30px; 
-    height: 30px;
-  }
-}
-
-@media (max-height: 680px) {
-  .v-card {
-    padding-top: 3px;
-    margin-bottom: 5px; 
-  }
-
-  .tech-stack, .details {
-    margin-bottom: 3px; 
-  }
-
-  .text-h6 {
-    font-size: 16px; 
-  }
-
-  .grey--text {
-    font-size: 10px; 
-  }
-
-  .subtitle-1 {
-    font-size: 12px; 
-    margin-bottom: 3px; 
-  }
-
-  .tech-icon {
-    width: 25px; 
-    height: 25px;
-  }
-
-  .v-btn {
-    padding: 6px 12px; 
-    font-size: 12px; 
-  }
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
-
-

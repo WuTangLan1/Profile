@@ -1,11 +1,32 @@
 <!-- src\components\sections/work_section/workSection.vue -->
 <script>
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+
 export default {
   name: 'WorkSection',
+  setup() {
+    const windowWidth = ref(window.innerWidth);
+
+    const onResize = () => {
+      windowWidth.value = window.innerWidth;
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', onResize);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', onResize);
+    });
+    const isVertical = computed(() => {
+      return windowWidth.value < 960;  
+    });
+
+    return { isVertical };
+  },
   data() {
         return {
-          currentPage: 0,
-          itemsPerPage: 2,
+                detailsShown: null,
                 workItems: [
                 {
                   position: 'Lead Author for a Published Dissertation',
@@ -53,290 +74,96 @@ export default {
                         }
                 ]};
         },
-      computed: {
-        paginatedItems() {
-          const start = this.currentPage * this.itemsPerPage;
-          const end = start + this.itemsPerPage;
-          return this.workItems.slice(start, end);
-        },
-        totalPages() {
-          return Math.ceil(this.workItems.length / this.itemsPerPage);
-        }
-      },
-      methods: {
-        nextPage() {
-          if (this.currentPage < this.totalPages - 1) {
-            this.currentPage++;
-          }
-        },
-        prevPage() {
-          if (this.currentPage > 0) {
-            this.currentPage--;
-          }
-        }
-      }
-}
+        methods: {
+    getColor(tag) {
+      return tag === 'Per' ? 'deep-purple accent-4' : 'cyan darken-2';
+    },
+    toggleDetail(position) {
+      this.detailsShown = this.detailsShown === position ? null : position;
+    },
+  },
+};
 </script>
 
 <template>
-  <v-container fluid class="px-4">
-    <v-row justify="center"> 
-      <v-col cols="12" md="10" lg="8"> 
-        <h1 class="display-1 text-center mb-5">Work Experience</h1>
-        <v-card v-for="(item, index) in paginatedItems" :key="index" class="mb-5 work-item" elevation="2">
-          <v-card-title class="card-header">
-            <div class="tag" :class="{'personal': item.tag === 'Per', 'uni': item.tag === 'Uni'}" v-if="item.tag">{{ item.tag }}</div> 
-            <div class="header-text">
-              <h3 class="text-h6">{{ item.position }}</h3>
-              <h3 class="text-h6 grey--text">{{ item.company }}</h3>
-            </div>
-          </v-card-title>
-          <v-card-text>
-            <p class="date">{{ item.date }}</p>
-            <div class="details" v-for="detail in item.details" :key="detail.text || detail">
-              <p v-if="typeof detail === 'object'">
-                {{ detail.text }}
-                <a :href="'https://doi.org/' + detail.doi" target="_blank">{{ detail.doi }}</a>
-              </p>
-              <p v-else>{{ detail }}</p>
-            </div>
-          </v-card-text>
-        </v-card>
-        <v-row justify="space-between" class="my-4 pagination-row">
-          <v-col cols="auto">
-            <v-btn @click="prevPage" :disabled="currentPage === 0" aria-label="Go to previous page">Previous</v-btn>
-          </v-col>
-          <v-col cols="auto">
-            <v-btn @click="nextPage" :disabled="currentPage >= totalPages - 1" aria-label="Go to next page">Next</v-btn>
-          </v-col>
-        </v-row>
+  <v-container fluid class="fill-height">
+    <v-row justify="center" class="fill-height">
+      <v-col cols="12" md="10" lg="8">
+        <v-timeline :dense="true" :align-top="isVertical" class="fill-height">
+          <v-timeline-item
+            v-for="item in workItems"
+            :key="item.position"
+            :dot-color="getColor(item.tag)" 
+            fill-dot
+            class="timeline-item"
+          >
+            <template v-slot:opposite>
+              <span class="date-label">{{ item.date }}</span>
+            </template>
+            <v-card
+              class="elevation-2 timeline-card"
+              @click="toggleDetail(item.position)"
+              :class="{ raised: detailsShown === item.position }"
+            >
+              <v-card-title class="headline">{{ item.position }}</v-card-title>
+              <v-card-subtitle>{{ item.company }}</v-card-subtitle>
+              <v-card-text v-if="detailsShown === item.position">
+                <ul>
+                  <li v-for="detail in item.details" :key="detail.text || detail">
+                    <span v-if="typeof detail === 'string'">{{ detail }}</span>
+                    <span v-else>{{ detail.text }} <a :href="'https://doi.org/' + detail.doi" target="_blank">[DOI]</a></span>
+                  </li>
+                </ul>
+              </v-card-text>
+            </v-card>
+          </v-timeline-item>
+        </v-timeline>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <style scoped>
-.v-container {
-  overflow-y: auto; 
+.fill-height {
+  height: 100vh; /* Makes the container full viewport height */
 }
 
-.work-item {
-  margin: auto; 
-  margin-bottom: 20px;
-  transition: box-shadow .3s;
-  overflow: hidden;
-  padding-top: 10px;
-  border: none;
-  background-color: transparent; 
-  max-width: 800px;
+.v-timeline-item .v-timeline-item__dot {
+  width: 12px !important;
+  height: 12px !important;
+  border: 2px solid white !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1) !important;
+  transition: transform 0.3s ease-in-out;
 }
 
-
-.work-item:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+.v-timeline-item .v-timeline-item__dot:hover {
+  transform: scale(1.3);
 }
 
-.tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(25, 118, 210, 0.8);
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+.date-label {
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 
-.tag.personal {
-  background-color: #4CAF50; 
+.timeline-card {
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out;
+  width: 100%; /* Full width on small screens */
 }
 
-.tag.uni {
-  background-color: #2196F3;
-}
-
-.dark .tag.personal {
-  background-color: #388E3C; 
-}
-
-.dark .tag.uni {
-  background-color: #1976D2; 
-}
-
-.dark .tag {
-  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
-}
-
-.card-header {
-  position: relative;
-  width: 100%;
-}
-
-.header-text {
-  padding-right: 50px;
-}
-
-.title, .subtitle, .date {
-  margin: 0;
-  text-align: left;
-}
-
-.subtitle {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  color: #666;
-  font-size: 18px;
-  white-space: normal;
-  text-overflow: ellipsis;
-  margin-top: 0;
-  text-align: left;
-  padding-right: 40px; /* Ensure padding here too if necessary */
-}
-
-
-.date {
-  color: #666;
-  font-size: 14px; 
-  margin-bottom: 10px; 
-}
-
-ul {
-  padding-left: 20px;
-  list-style-type: circle;
-  color: #34495E;
-}
-
-.details {
-  margin-bottom: 10px;
-}
-
-.details p {
-  margin: 0;
-  padding-left: 20px;
-  text-align: left; 
-}
-
-.display-1 {
-  font-size: 2em;
-  font-weight: bold;
-}
-
-.text-h6 {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 20px;
-  white-space: normal;
-  text-overflow: ellipsis;
-  margin: 0;
-  padding-right: 40px; 
-}
-
-.dark .work-item, .dark .title, .dark .subtitle, .dark .date {
-  background-color: #424242; 
-  color: #ffffff;
-}
-
-.dark ul {
-  color: #CFD8DC;
-}
-
-.v-btn {
-  transition: color 0.3s, background-color 0.3s;
-}
-
-.v-btn:not(.v-btn--disabled):hover,
-.v-btn:not(.v-btn--disabled):focus {
-  color: #FFFFFF;
-  background-color: #1976D2;
-}
-
-.dark .v-btn {
-  color: black;
-}
-
-.dark .v-btn:not(.v-btn--disabled):hover,
-.v-btn:not(.v-btn--disabled):focus {
-  color: #FFFFFF;
-  background-color: #1976D2;
-}
-
-.v-btn--disabled {
-  color: #B0BEC5;
-}
-
-.dark .v-btn--disabled {
-  color: #B0BEC5;
+.timeline-card:hover,
+.timeline-card:active,
+.timeline-card:focus {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 @media (max-width: 600px) {
-  .title {
-    font-size: 1em;
+  .date-label {
+    font-size: 0.75rem; /* Smaller text on smaller screens */
   }
-
-  .subtitle, .date {
-    font-size: 0.9em;
-  }
-}
-
-@media (max-height: 850px) {
-  .v-container {
-    padding: 10px;
-  }
-
-  .work-item {
-    margin-bottom: 10px; 
-    padding: 8px; 
-  }
-
-  .title, .subtitle, .date {
-    font-size: 0.9em; 
-  }
-
-  .display-1 {
-    font-size: 1.8em; 
-  }
-
-  ul {
-    padding-left: 15px; 
-  }
-
-  .v-btn {
-    padding: 6px 12px; 
-    font-size: 0.8em; 
-  }
-}
-
-@media (max-height: 750px) {
-  .v-container {
-    padding: 5px;
-  }
-
-  .work-item {
-    margin-bottom: 5px;
-    padding: 5px;
-  }
-
-  .title, .subtitle, .date {
-    font-size: 0.8em;
-  }
-
-  .display-1 {
-    font-size: 1.6em;
-  }
-
-  ul {
-    padding-left: 10px;
-  }
-
-  .v-btn {
-    padding: 4px 8px;
-    font-size: 0.7em;
+  .timeline-card {
+    width: 95%; /* Slightly smaller cards on mobile for better fit */
+    font-size: 0.8rem; /* Smaller font size for text in cards */
   }
 }
 </style>
