@@ -73,8 +73,21 @@ export default {
   },
   methods: {
     getRandomColor() {
-      const colors = ['purple', 'red', 'green', 'blue', 'orange', 'cyan', 'pink', 'teal'];
+      const colors = [
+        'rgba(255, 193, 7, 0.2)',   
+        'rgba(76, 175, 80, 0.2)',   
+        'rgba(33, 150, 243, 0.2)', 
+        'rgba(156, 39, 176, 0.2)',  
+        'rgba(255, 87, 34, 0.2)',  
+        'rgba(96, 125, 139, 0.2)'   
+      ];
       return colors[Math.floor(Math.random() * colors.length)];
+    },
+    goToProject(url) {
+      window.open(url, '_blank');
+    },
+    handleTechIconClick(src) {
+      console.log('Tech icon clicked:', src);
     }
   }
 }
@@ -92,24 +105,32 @@ export default {
         lg="3"
         class="d-flex align-stretch"
       >
-        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2">
-          <v-img :src="project.techStack[0].src" height="200px" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)">
-            <v-card-title>{{ project.title }}</v-card-title>
-          </v-img>
-          <v-card-subtitle>{{ project.subtitle }}</v-card-subtitle>
+        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2" @click="goToProject(project.url)">
+          <v-card-title class="d-flex justify-space-between align-center">
+            <span>{{ project.title }}</span>
+            <span class="subtitle">{{ project.subtitle }}</span>
+          </v-card-title>
           <v-card-text>
             {{ project.description }}
             <v-list dense>
-              <v-list-item v-for="detail in project.details" :key="detail.text">
-                <v-list-item-icon>
-                  <v-icon>{{ detail.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>{{ detail.text }}</v-list-item-content>
+              <v-list-item v-for="detail in project.details" :key="detail.text" class="detail-item">
+                <v-icon left>{{ detail.icon }}</v-icon>
+                <span class="detail-text">{{ detail.text }}</span>
               </v-list-item>
             </v-list>
           </v-card-text>
-          <v-card-actions>
-            <v-btn :href="project.url" text color="white">Learn More</v-btn>
+          <v-card-actions class="justify-space-between">
+            <div>
+              <v-btn 
+                v-for="tech in project.techStack" 
+                :key="tech.name" 
+                icon 
+                @click.stop="handleTechIconClick(tech.src)"
+              >
+                <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              </v-btn>
+            </div>
+            <a :href="project.url" target="_blank" class="white--text">Visit</a>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -117,15 +138,44 @@ export default {
   </v-container>
 </template>
 
-
 <style scoped>
 .v-container {
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 .v-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
+}
+
+.v-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.subtitle {
+  font-size: 0.9rem; /* Smaller font size for subtitle */
+  color: rgba(34, 33, 33, 0.7); /* Lighter text color for contrast */
+}
+
+.detail-item {
+  margin-top: 5px;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.detail-text {
+  margin-left: 10px; 
+  font-size: 0.9rem; 
+  text-align: left;
+}
+
+.tech-icon {
+  width: 40px;
+  height: 40px;
 }
 </style>

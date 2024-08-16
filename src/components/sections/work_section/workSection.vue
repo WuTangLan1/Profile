@@ -22,7 +22,18 @@ export default {
       return windowWidth.value < 960;  
     });
 
-    return { isVertical };
+    const colors = [
+      { dot: '#673AB7', bg: '#D1C4E9' },
+      { dot: '#3F51B5', bg: '#C5CAE9' },
+      { dot: '#009688', bg: '#B2DFDB' },
+      { dot: '#FFC107', bg: '#FFECB3' }
+    ];
+
+    function getColor(index) {
+      return colors[index % colors.length];
+    }
+
+    return { isVertical, getColor, windowWidth };
   },
   data() {
         return {
@@ -75,9 +86,6 @@ export default {
                 ]};
         },
         methods: {
-    getColor(tag) {
-      return tag === 'Per' ? 'deep-purple accent-4' : 'cyan darken-2';
-    },
     toggleDetail(position) {
       this.detailsShown = this.detailsShown === position ? null : position;
     },
@@ -88,12 +96,12 @@ export default {
 <template>
   <v-container fluid class="fill-height">
     <v-row justify="center" class="fill-height">
-      <v-col cols="12" md="10" lg="8">
+      <v-col cols="12" :md="windowWidth > 1300 ? 10 : 12" :lg="windowWidth > 1300 ? 8 : 12">
         <v-timeline :dense="true" :align-top="isVertical" class="fill-height">
           <v-timeline-item
-            v-for="item in workItems"
+            v-for="(item, index) in workItems"
             :key="item.position"
-            :dot-color="getColor(item.tag)" 
+            :color="getColor(index).dot"
             fill-dot
             class="timeline-item"
           >
@@ -101,7 +109,8 @@ export default {
               <span class="date-label">{{ item.date }}</span>
             </template>
             <v-card
-              class="elevation-2 timeline-card"
+              class="timeline-card"
+              :style="{ backgroundColor: getColor(index).bg }"
               @click="toggleDetail(item.position)"
               :class="{ raised: detailsShown === item.position }"
             >
@@ -124,15 +133,17 @@ export default {
 </template>
 
 <style scoped>
-.fill-height {
-  height: 100vh; /* Makes the container full viewport height */
+.v-container {
+  overflow-y: auto;
+  margin: 0 auto; /* Center the container */
+  width: 100%; /* Use full width to maximize space */
 }
 
 .v-timeline-item .v-timeline-item__dot {
-  width: 12px !important;
-  height: 12px !important;
-  border: 2px solid white !important;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1) !important;
+  width: 12px;
+  height: 12px;
+  border: 2px solid white;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -148,22 +159,49 @@ export default {
 .timeline-card {
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
-  width: 100%; /* Full width on small screens */
+  border-radius: 8px;
+  padding: 15px;
+  width: 100%; /* Ensure cards do not overflow the container */
 }
 
 .timeline-card:hover,
 .timeline-card:active,
 .timeline-card:focus {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 1300px) {
+  .v-container {
+    padding: 0 10px;
+  }
+
+  .date-label,
+  .v-card-title,
+  .v-card-subtitle {
+    font-size: 0.75rem; /* Reduce font size for better fit */
+  }
 }
 
 @media (max-width: 600px) {
-  .date-label {
-    font-size: 0.75rem; /* Smaller text on smaller screens */
-  }
   .timeline-card {
-    width: 95%; /* Slightly smaller cards on mobile for better fit */
-    font-size: 0.8rem; /* Smaller font size for text in cards */
+    padding: 10px; /* Reduce padding for more space */
+  }
+
+  .v-timeline-item {
+    padding: 5px 0; /* Less vertical space between items */
+  }
+}
+
+/* Very small screens specific styles */
+@media (max-width: 300px) {
+  .timeline-card {
+    padding: 5px; /* Minimal padding */
+    font-size: 0.65rem; /* Smaller text to ensure everything fits */
+  }
+
+  .date-label {
+    display: none; /* Hide date labels to save space */
   }
 }
 </style>
