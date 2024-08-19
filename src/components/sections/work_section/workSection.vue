@@ -1,6 +1,6 @@
 <!-- src\components\sections/work_section/workSection.vue -->
 <script>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { ref, onMounted, onUnmounted} from 'vue';
 
 export default {
   name: 'WorkSection',
@@ -18,9 +18,6 @@ export default {
     onUnmounted(() => {
       window.removeEventListener('resize', onResize);
     });
-    const isVertical = computed(() => {
-      return windowWidth.value < 960;  
-    });
 
     const colors = [
       { dot: '#673AB7', bg: '#D1C4E9' },
@@ -33,8 +30,13 @@ export default {
       return colors[index % colors.length];
     }
 
-    return { isVertical, getColor, windowWidth };
+    return { getColor, windowWidth };
   },
+  computed: {
+  isVertical() {
+    return this.windowWidth <= 960;  
+  }
+},
   data() {
         return {
                 detailsShown: null,
@@ -96,7 +98,7 @@ export default {
 <template>
   <v-container fluid class="fill-height">
     <v-row justify="center" class="fill-height">
-      <v-col cols="12" :md="windowWidth > 1300 ? 10 : 12" :lg="windowWidth > 1300 ? 8 : 12">
+      <v-col cols="12" sm="12" md="6" lg="6">
         <v-timeline :dense="true" :align-top="isVertical" class="fill-height">
           <v-timeline-item
             v-for="(item, index) in workItems"
@@ -134,15 +136,15 @@ export default {
 
 <style scoped>
 .v-container {
-  overflow-y: auto;
   margin: 0 auto; 
   width: 100%; 
-  padding: 0 10px;
+  padding: 0 5px; 
 }
 
 .v-timeline-item .v-timeline-item__dot {
   width: 12px;
   height: 12px;
+  max-width: 100%;
   border: 2px solid white;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
@@ -230,4 +232,5 @@ export default {
     display: none; /* Hide dates to save space */
   }
 }
+
 </style>

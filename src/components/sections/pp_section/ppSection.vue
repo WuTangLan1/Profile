@@ -73,7 +73,9 @@ export default {
   },
   methods: {
     getRandomDelay() {
-      return (2 + Math.random() * 3).toFixed(2); 
+      const minDelay = 2; 
+      const maxDelay = 10; 
+      return Math.random() * (maxDelay - minDelay) + minDelay; 
     },
     getRandomColor() {
       const colors = [
@@ -130,12 +132,12 @@ export default {
                 icon 
                 @click.stop="handleTechIconClick(tech.src)"
               >
-                <v-img 
-                  :src="tech.src"
-                  :alt="tech.name"
-                  class="tech-icon"
-                  :style="{ animationDelay: getRandomDelay() + 's' }"
-                ></v-img>
+              <v-img 
+                :src="tech.src"
+                :alt="tech.name"
+                class="tech-icon"
+                :style="{ animationDelay: getRandomDelay() + 's' }"
+              ></v-img>
               </v-btn>
             </div>
             <a :href="project.url" target="_blank" class="white--text">Visit</a>
@@ -186,12 +188,11 @@ export default {
   width: 40px;
   height: 40px;
   animation-name: hop;
-  animation-duration: 500ms;
+  animation-duration: 1s; 
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
-  animation-delay: calc(2s + 3s * rand()); 
+  animation-delay: getRandomDelay() + 's'; 
 }
-
 
 @keyframes hop {
   0%, 100% {
@@ -200,6 +201,22 @@ export default {
   50% {
     transform: translateY(-10px);
   }
+}
+
+.dark .v-card {
+  color: #fff; 
+}
+
+.dark .subtitle {
+  color: #ccc;
+}
+
+.dark .detail-item {
+  background-color: white;
+}
+
+.dark .v-card-title {
+  border-bottom: 1px solid #555; 
 }
 
 </style>
