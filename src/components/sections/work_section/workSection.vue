@@ -135,8 +135,9 @@ export default {
 <style scoped>
 .v-container {
   overflow-y: auto;
-  margin: 0 auto; /* Center the container */
-  width: 100%; /* Use full width to maximize space */
+  margin: 0 auto; 
+  width: 100%; 
+  padding: 0 10px;
 }
 
 .v-timeline-item .v-timeline-item__dot {
@@ -151,17 +152,35 @@ export default {
   transform: scale(1.3);
 }
 
-.date-label {
-  font-size: 0.85rem;
-  color: rgba(0, 0, 0, 0.6);
+.v-timeline-item__opposite .date-label {
+  margin-right: 110px; 
+  margin-left: 10px;  
 }
+
+.date-label {
+  width: 120px; 
+  text-align: right; 
+}
+
+.date-label,
+  .v-card-title,
+  .v-card-subtitle {
+    font-size: 0.75rem; 
+  }
+
+.v-timeline-item__opposite {
+  display: flex;
+  align-items: center; 
+  justify-content: flex-end; 
+}
+
 
 .timeline-card {
   cursor: pointer;
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 8px;
   padding: 15px;
-  width: 100%; /* Ensure cards do not overflow the container */
+  width: 100%; 
 }
 
 .timeline-card:hover,
@@ -170,38 +189,45 @@ export default {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Adjustments for smaller screens */
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .v-container {
-    padding: 0 10px;
+    padding: 0 5px; /* Reduce padding */
   }
 
+  .timeline-card,
   .date-label,
   .v-card-title,
   .v-card-subtitle {
-    font-size: 0.75rem; /* Reduce font size for better fit */
+    padding: 8px; /* Reduce padding inside cards */
+    font-size: 0.8rem; /* Smaller font size */
+  }
+
+  .v-timeline-item .v-timeline-item__dot {
+    width: 8px; /* Smaller dots */
+    height: 8px;
   }
 }
 
+/* More specific adjustments for very small screens */
 @media (max-width: 600px) {
   .timeline-card {
-    padding: 10px; /* Reduce padding for more space */
+    padding: 5px; /* Further reduce padding for tiny screens */
+    font-size: 0.7rem; /* Even smaller font size */
   }
 
   .v-timeline-item {
-    padding: 5px 0; /* Less vertical space between items */
+    padding: 2px 0; /* Reduce vertical space between items */
   }
 }
 
-/* Very small screens specific styles */
+/* Adjustments for extremely small screens */
 @media (max-width: 300px) {
   .timeline-card {
-    padding: 5px; /* Minimal padding */
-    font-size: 0.65rem; /* Smaller text to ensure everything fits */
+    font-size: 0.6rem; /* Minimally viable font size */
   }
 
   .date-label {
-    display: none; /* Hide date labels to save space */
+    display: none; /* Hide dates to save space */
   }
 }
 </style>

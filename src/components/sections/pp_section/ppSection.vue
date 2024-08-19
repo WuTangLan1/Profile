@@ -72,6 +72,9 @@ export default {
     };
   },
   methods: {
+    getRandomDelay() {
+      return (2 + Math.random() * 3).toFixed(2); 
+    },
     getRandomColor() {
       const colors = [
         'rgba(255, 193, 7, 0.2)',   
@@ -127,7 +130,12 @@ export default {
                 icon 
                 @click.stop="handleTechIconClick(tech.src)"
               >
-                <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+                <v-img 
+                  :src="tech.src"
+                  :alt="tech.name"
+                  class="tech-icon"
+                  :style="{ animationDelay: getRandomDelay() + 's' }"
+                ></v-img>
               </v-btn>
             </div>
             <a :href="project.url" target="_blank" class="white--text">Visit</a>
@@ -158,8 +166,8 @@ export default {
 }
 
 .subtitle {
-  font-size: 0.9rem; /* Smaller font size for subtitle */
-  color: rgba(34, 33, 33, 0.7); /* Lighter text color for contrast */
+  font-size: 0.9rem; 
+  color: rgba(34, 33, 33, 0.7); 
 }
 
 .detail-item {
@@ -177,5 +185,21 @@ export default {
 .tech-icon {
   width: 40px;
   height: 40px;
+  animation-name: hop;
+  animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-delay: calc(2s + 3s * rand()); 
 }
+
+
+@keyframes hop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 </style>
