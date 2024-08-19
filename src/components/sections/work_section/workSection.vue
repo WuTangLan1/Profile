@@ -70,6 +70,10 @@ export default {
             },
             toggleDetails(item) {
               item.expanded = !item.expanded;
+            },
+            cardClass(index) {
+              const classes = ['card-one', 'card-two', 'card-three', 'card-four'];
+              return classes[index % classes.length]; 
             }
           },
           computed: {
@@ -94,7 +98,7 @@ export default {
         <template #opposite>
           {{ item.date }}
         </template>
-        <v-card class="elevation-2" @click="toggleDetails(item)">
+        <v-card :class="['elevation-2', cardClass(index)]" @click="toggleDetails(item)">
           <v-card-title>{{ item.position }}</v-card-title>
           <v-card-subtitle>{{ item.company }}</v-card-subtitle>
           <transition name="fade" mode="out-in">
@@ -124,11 +128,10 @@ export default {
 <style scoped>
 .work-section {
   margin-top: 50px;
-    padding: 10px;
+  padding: 10px;
   overflow: auto;
   width: 100%;
   height: 100%;
-  max-height: 95vh;
   box-sizing: border-box;
 }
 
@@ -155,7 +158,7 @@ export default {
 }
 
 .v-card.Per { background-color: #e3f2fd; }
-.v-card.Uni { background-color: #e8f5e9; }
+.v-card.Uni { background-color: #bacebb; }
 
 .tag {
   display: block;
@@ -169,6 +172,7 @@ export default {
   padding: 3px 8px;
   border-radius: 5px;
 }
+
 .v-card-title,
 .v-card-subtitle,
 .v-card-text {
@@ -184,6 +188,11 @@ export default {
 .fade-enter, .fade-leave-to  {
   opacity: 0;
 }
+
+.card-one { background-color: #cadeec; }
+.card-two { background-color: #b2dfb6; } 
+.card-three { background-color: #fff3cd; }
+.card-four { background-color: #fce4ec; } 
 
 
 @media (max-width: 450px) {
