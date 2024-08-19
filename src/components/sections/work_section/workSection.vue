@@ -92,7 +92,6 @@ export default {
         :key="index"
         :class="[item.tag]"
         :color="item.tag === 'Per' ? 'deep-purple lighten-2' : 'cyan lighten-2'"
-        fill-dot
         :icon="item.tag === 'Per' ? 'mdi-book-open-page-variant' : 'mdi-briefcase'"
       >
         <template #opposite>
@@ -127,25 +126,28 @@ export default {
 
 <style scoped>
 .work-section {
-  margin-top: 50px;
   padding: 10px;
-  overflow: auto;
   width: 100%;
-  height: 100%;
+  height: 100vh; 
   box-sizing: border-box;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
 }
 
 .v-timeline {
+  flex: 1; /* Ensures it grows to take up available space */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow-y: auto;
 }
 
 .v-timeline-item {
   width: 90%;
   max-width: 500px;
-  margin: 10px auto; 
+  margin: 5px auto;
 }
 
 .v-card {
@@ -181,6 +183,10 @@ export default {
   overflow-wrap: break-word;
 }
 
+.v-timeline-item .v-timeline-divider__inner-dot .v-icon {
+  color: white !important;
+}
+
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -202,7 +208,7 @@ export default {
     font-size: 0.8rem; 
   }
   .v-timeline-item {
-    margin: 5px auto; 
+    margin: 2px auto; 
   }
 
   .v-card {
