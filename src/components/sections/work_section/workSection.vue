@@ -1,42 +1,9 @@
 <!-- src\components\sections/work_section/workSection.vue -->
 <script>
-import { ref, onMounted, onUnmounted} from 'vue';
 
 export default {
   name: 'WorkSection',
-  setup() {
-    const windowWidth = ref(window.innerWidth);
 
-    const onResize = () => {
-      windowWidth.value = window.innerWidth;
-    };
-
-    onMounted(() => {
-      window.addEventListener('resize', onResize);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener('resize', onResize);
-    });
-
-    const colors = [
-      { dot: '#673AB7', bg: '#D1C4E9' },
-      { dot: '#3F51B5', bg: '#C5CAE9' },
-      { dot: '#009688', bg: '#B2DFDB' },
-      { dot: '#FFC107', bg: '#FFECB3' }
-    ];
-
-    function getColor(index) {
-      return colors[index % colors.length];
-    }
-
-    return { getColor, windowWidth };
-  },
-  computed: {
-  isVertical() {
-    return this.windowWidth <= 960;  
-  }
-},
   data() {
         return {
                 detailsShown: null,
@@ -46,6 +13,7 @@ export default {
                   company: 'Navigating New Realities: Experiences of Early Adopters in the Metaverse',
                   date: 'Mar 2023 – June 2024',
                   tag: 'Per',
+                  expanded: false,
                   details: [
                     'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR.',
                     'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
@@ -57,6 +25,7 @@ export default {
                         company: 'Strapp.rent',
                         date: 'Mar 2023 - Oct 2023',
                         tag: 'Uni',
+                        expanded: false,
                         details: [
                         'Served as project manager and lead software developer for a full-stack second-hand virtual marketplace project, targeting a new mechanism for engaging buyers and sellers on second-hand virtual marketplace.',
                         'Contributed to front-end design using Vue3.js, and database management utilizing Firebase SDK – including the development of the NoSQL schema.',
@@ -69,6 +38,7 @@ export default {
                         company: 'University Of Cape Town, Information Systems Department',
                         date: 'Mar 2022 - Oct 2022',
                         tag: 'Uni',
+                        expanded: false,
                         details: [
                         'Worked on the development of a full-stack system for capturing the post-graduate study and course selections for UCT students, decreasing the complexity of the original process.',
                         'Revised, modularized, and updated old code bases to modern development standards, ensuring that the process of registering a student\'s postgraduate studies accounted for developments in the UCT curriculum and structure.',
@@ -80,6 +50,7 @@ export default {
                         company: 'KwaZulu Natal Department of Public Service and Administration',
                         date: 'Jul 2021 - Oct 2021',
                         tag: 'Uni',
+                        expanded: false,
                         details: [
                         'Analyzed the existing business process for registering educator leave at schools across the Kwa-Zulu Natal province.',
                         'Created 5 proposed processes leveraging a combination of emerging technologies to improve the educator leave process, all of which focused on ensuring lean re-engineering processes were adhered to.'
@@ -87,150 +58,169 @@ export default {
                         }
                 ]};
         },
-        methods: {
-    toggleDetail(position) {
-      this.detailsShown = this.detailsShown === position ? null : position;
-    },
-  },
+        created() {
+            window.addEventListener('resize', this.handleResize);
+          },
+          unmounted() {
+            window.removeEventListener('resize', this.handleResize);
+          },
+          methods: {
+            handleResize() {
+              this.windowWidth = window.innerWidth;
+            },
+            toggleDetails(item) {
+              item.expanded = !item.expanded;
+            }
+          },
+          computed: {
+            isMobile() {
+              return this.windowWidth < 900;
+            }
+          }
 };
 </script>
 
 <template>
-  <v-container fluid class="fill-height">
-    <v-row justify="center" class="fill-height">
-      <v-col cols="12" sm="12" md="6" lg="6">
-        <v-timeline :dense="true" :align-top="isVertical" class="fill-height">
-          <v-timeline-item
-            v-for="(item, index) in workItems"
-            :key="item.position"
-            :color="getColor(index).dot"
-            fill-dot
-            class="timeline-item"
-          >
-            <template v-slot:opposite>
-              <span class="date-label">{{ item.date }}</span>
-            </template>
-            <v-card
-              class="timeline-card"
-              :style="{ backgroundColor: getColor(index).bg }"
-              @click="toggleDetail(item.position)"
-              :class="{ raised: detailsShown === item.position }"
-            >
-              <v-card-title class="headline">{{ item.position }}</v-card-title>
-              <v-card-subtitle>{{ item.company }}</v-card-subtitle>
-              <v-card-text v-if="detailsShown === item.position">
-                <ul>
-                  <li v-for="detail in item.details" :key="detail.text || detail">
-                    <span v-if="typeof detail === 'string'">{{ detail }}</span>
-                    <span v-else>{{ detail.text }} <a :href="'https://doi.org/' + detail.doi" target="_blank">[DOI]</a></span>
-                  </li>
-                </ul>
-              </v-card-text>
-            </v-card>
-          </v-timeline-item>
-        </v-timeline>
-      </v-col>
-    </v-row>
-  </v-container>
+  <div class="work-section">
+    <v-timeline dense>
+      <v-timeline-item
+        v-for="(item, index) in workItems"
+        :key="index"
+        :class="[item.tag]"
+        :color="item.tag === 'Per' ? 'deep-purple lighten-2' : 'cyan lighten-2'"
+        fill-dot
+        :icon="item.tag === 'Per' ? 'mdi-book-open-page-variant' : 'mdi-briefcase'"
+      >
+        <template #opposite>
+          {{ item.date }}
+        </template>
+        <v-card class="elevation-2" @click="toggleDetails(item)">
+          <v-card-title>{{ item.position }}</v-card-title>
+          <v-card-subtitle>{{ item.company }}</v-card-subtitle>
+          <transition name="fade" mode="out-in">
+            <v-card-text v-if="item.expanded">
+              <span class="tag">{{ item.tag }}</span>
+              <ul>
+                <li v-for="(detail, detailIndex) in item.details" :key="detailIndex">
+                  <div v-if="typeof detail === 'object'">
+                    {{ detail.text }}
+                    <a :href="'https://doi.org/' + detail.doi" target="_blank">DOI</a>
+                  </div>
+                  <div v-else>
+                    {{ detail }}
+                  </div>
+                </li>
+              </ul>
+            </v-card-text>
+          </transition>
+        </v-card>
+      </v-timeline-item>
+    </v-timeline>
+  </div>
 </template>
 
+
+
 <style scoped>
-.v-container {
-  margin: 0 auto; 
-  width: 100%; 
-  padding: 0 5px; 
+.work-section {
+  margin-top: 50px;
+    padding: 10px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  max-height: 95vh;
+  box-sizing: border-box;
 }
 
-.v-timeline-item .v-timeline-item__dot {
-  width: 12px;
-  height: 12px;
-  max-width: 100%;
-  border: 2px solid white;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.v-timeline-item .v-timeline-item__dot:hover {
-  transform: scale(1.3);
-}
-
-.v-timeline-item__opposite .date-label {
-  margin-right: 110px; 
-  margin-left: 10px;  
-}
-
-.date-label {
-  width: 120px; 
-  text-align: right; 
-}
-
-.date-label,
-  .v-card-title,
-  .v-card-subtitle {
-    font-size: 0.75rem; 
-  }
-
-.v-timeline-item__opposite {
+.v-timeline {
   display: flex;
-  align-items: center; 
-  justify-content: flex-end; 
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.v-timeline-item {
+  width: 90%;
+  max-width: 500px;
+  margin: 10px auto; 
+}
+
+.v-card {
+  padding: 10px;
+  word-wrap: break-word;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  background-color: #f9f9f9;
+  border-left: 5px solid #ccc; 
+}
+
+.v-card.Per { background-color: #e3f2fd; }
+.v-card.Uni { background-color: #e8f5e9; }
+
+.tag {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #666;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 3px 8px;
+  border-radius: 5px;
+}
+.v-card-title,
+.v-card-subtitle,
+.v-card-text {
+  font-size: 0.9rem;
+  white-space: normal;
+  overflow-wrap: break-word;
 }
 
 
-.timeline-card {
-  cursor: pointer;
-  transition: box-shadow 0.3s ease-in-out;
-  border-radius: 8px;
-  padding: 15px;
-  width: 100%; 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
 }
 
-.timeline-card:hover,
-.timeline-card:active,
-.timeline-card:focus {
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
-}
 
-@media (max-width: 1000px) {
-  .v-container {
-    padding: 0 5px; /* Reduce padding */
-  }
-
-  .timeline-card,
-  .date-label,
+@media (max-width: 450px) {
   .v-card-title,
-  .v-card-subtitle {
-    padding: 8px; /* Reduce padding inside cards */
-    font-size: 0.8rem; /* Smaller font size */
+  .v-card-subtitle,
+  .v-card-text {
+    font-size: 0.8rem; 
+  }
+  .v-timeline-item {
+    margin: 5px auto; 
   }
 
-  .v-timeline-item .v-timeline-item__dot {
-    width: 8px; /* Smaller dots */
-    height: 8px;
+  .v-card {
+    padding: 5px;
   }
 }
 
-/* More specific adjustments for very small screens */
-@media (max-width: 600px) {
-  .timeline-card {
-    padding: 5px; /* Further reduce padding for tiny screens */
-    font-size: 0.7rem; /* Even smaller font size */
+@media (min-width: 900px) {
+  .v-timeline {
+    flex-direction: row;
+    overflow-x: auto;
   }
 
   .v-timeline-item {
-    padding: 2px 0; /* Reduce vertical space between items */
+    width: auto; 
+    min-width: 300px; 
+  }
+
+  .v-card {
+    padding: 15px; 
+  }
+
+  .v-card-title,
+  .v-card-subtitle,
+  .v-card-text {
+    font-size: 1rem; 
   }
 }
-
-/* Adjustments for extremely small screens */
-@media (max-width: 300px) {
-  .timeline-card {
-    font-size: 0.6rem; /* Minimally viable font size */
-  }
-
-  .date-label {
-    display: none; /* Hide dates to save space */
-  }
-}
-
 </style>
+
