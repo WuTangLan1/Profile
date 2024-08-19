@@ -18,7 +18,8 @@ export default {
       valueDark: 'dark',
       valueLight: 'light',
       storageKey: 'dark-mode',
-      storage: window.localStorage
+      storage: window.localStorage,
+      defaultValue: false
     });
     const toggleDark = useToggle(isDark);
     provide('toggleDark', toggleDark);

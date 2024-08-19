@@ -140,7 +140,7 @@ export default {
               ></v-img>
               </v-btn>
             </div>
-            <a :href="project.url" target="_blank" class="white--text">Visit</a>
+            <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="white--text">Visit</a>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -151,6 +151,7 @@ export default {
 <style scoped>
 .v-container {
   overflow-y: auto;
+  margin-bottom: 10px;
 }
 
 .v-card {
