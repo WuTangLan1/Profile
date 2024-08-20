@@ -122,8 +122,6 @@ export default {
   </div>
 </template>
 
-
-
 <style scoped>
 .work-section {
   padding: 10px;
@@ -137,24 +135,14 @@ export default {
   overflow: visible; 
 }
 
-.v-timeline {
+::v-deep .v-timeline {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 20px; 
+  gap: 4.5rem;
   position: relative; 
-}
-
-.v-timeline::before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background-color: #000; 
-  z-index: 1; /* Lower than date labels but above the cards */
+  margin: 40px auto;
 }
 
 .v-timeline-item {
@@ -167,6 +155,36 @@ export default {
   margin: 20px auto; 
   position: relative; 
   z-index: 2;
+  margin-top: 60px; 
+  margin-bottom: 60px;
+}
+
+
+::v-deep .v-timeline-item__opposite {
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; 
+  background-color: white;
+  color: #333;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: max-content;
+  max-width: 80%;
+  text-align: center;
+}
+
+
+::v-deep .v-timeline::before {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: '';
+  left: 50%;
+  width: 2px;
+  background-color: #000;
 }
 
 .v-timeline-divider {
@@ -174,7 +192,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 4; /* Above all */
+  z-index: 4; 
 }
 
 .v-icon {
@@ -197,23 +215,6 @@ export default {
   justify-content: space-between; 
   margin-bottom: 0;
 }
-
-.v-timeline-item__opposite {
-  background-color: white;
-  color: #333;
-  padding: 0.5em 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-  width: max-content; 
-  max-width: 80%; 
-  text-align: center;
-}
-
-
 
 .v-card-title,
 .v-card-subtitle,
@@ -245,10 +246,6 @@ export default {
   overflow-wrap: break-word;
 }
 
-.v-timeline-item .v-timeline-divider__inner-dot .v-icon {
-  color: white !important;
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
@@ -268,8 +265,8 @@ export default {
 
 
 @media (max-width: 450px) {
-  .v-timeline-item {
-    margin: 15px auto; 
+  ::v-deep .v-timeline-item {
+    margin: 25px auto; 
   }
 
   .v-card-title,
