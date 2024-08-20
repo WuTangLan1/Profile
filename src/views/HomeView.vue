@@ -93,7 +93,8 @@ export default {
   flex-direction: column;
   overflow: hidden;
   align-items: center;
-  height: 100%;
+  min-height: 100vh; 
+  height: auto;
   justify-content: center;
 }
 
@@ -117,6 +118,11 @@ export default {
 }
 .slide-down-leave-to, .slide-up-enter {
   transform: translateY(100%); 
+}
+
+.slide-up-enter-active, .slide-down-enter-active,
+.slide-up-leave-active, .slide-down-leave-active {
+  overflow: hidden;
 }
 
 </style>

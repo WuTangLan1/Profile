@@ -12,9 +12,6 @@ export default {
     VDivider,
     VProgressCircular
   },
-  mounted() {
-    console.log("Component mounted");
-  },
   data() {
     return {
       education: [
@@ -40,7 +37,6 @@ export default {
   },
   methods: {
     handleImageLoaded(index) {
-      console.log("Image Loaded:", index);
       this.loadingState[index] = false;
     }
   }

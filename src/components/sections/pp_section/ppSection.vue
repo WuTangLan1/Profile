@@ -91,9 +91,6 @@ export default {
     goToProject(url) {
       window.open(url, '_blank');
     },
-    handleTechIconClick(src) {
-      console.log('Tech icon clicked:', src);
-    }
   }
 }
 </script>
@@ -130,7 +127,6 @@ export default {
                 v-for="tech in project.techStack" 
                 :key="tech.name" 
                 icon 
-                @click.stop="handleTechIconClick(tech.src)"
               >
               <v-img 
                 :src="tech.src"

@@ -128,26 +128,60 @@ export default {
 .work-section {
   padding: 10px;
   width: 100%;
-  height: 100vh; 
+  min-height: auto; 
+  max-height: 97vh;
   box-sizing: border-box;
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  overflow: visible; 
 }
 
 .v-timeline {
-  flex: 1; /* Ensures it grows to take up available space */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow-y: auto;
+  gap: 20px; 
+  position: relative; 
+}
+
+.v-timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #000; 
+  z-index: 1; /* Lower than date labels but above the cards */
 }
 
 .v-timeline-item {
   width: 90%;
   max-width: 500px;
-  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; 
+  position: relative; 
+  z-index: 2;
+}
+
+.v-timeline-divider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4; /* Above all */
+}
+
+.v-icon {
+  color: black;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
 }
 
 .v-card {
@@ -156,7 +190,35 @@ export default {
   overflow: hidden;
   transition: all 0.5s ease;
   background-color: #f9f9f9;
-  border-left: 5px solid #ccc; 
+  border-left: 5px solid #ccc;
+  width: 100%;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  margin-bottom: 0;
+}
+
+.v-timeline-item__opposite {
+  background-color: white;
+  color: #333;
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  width: max-content; 
+  max-width: 80%; 
+  text-align: center;
+}
+
+
+
+.v-card-title,
+.v-card-subtitle,
+.v-card-text {
+  text-align: left; 
 }
 
 .v-card.Per { background-color: #e3f2fd; }
@@ -187,12 +249,16 @@ export default {
   color: white !important;
 }
 
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
 .fade-enter, .fade-leave-to  {
   opacity: 0;
+}
+
+.slide-up-enter-active, .slide-down-enter-active,
+.slide-up-leave-active, .slide-down-leave-active {
+  overflow: hidden;
 }
 
 .card-one { background-color: #cadeec; }
@@ -202,6 +268,10 @@ export default {
 
 
 @media (max-width: 450px) {
+  .v-timeline-item {
+    margin: 15px auto; 
+  }
+
   .v-card-title,
   .v-card-subtitle,
   .v-card-text {
@@ -212,7 +282,7 @@ export default {
   }
 
   .v-card {
-    padding: 5px;
+    padding: 10px;
   }
 }
 
