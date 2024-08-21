@@ -92,7 +92,6 @@ export default {
         :key="index"
         class="timeline-item-container"
       >
-
         <div :class="['timeline-dot', 'dot-' + index]">
           <i :class="item.tag === 'Per' ? 'mdi mdi-book-open-page-variant' : 'mdi mdi-briefcase'"></i>
         </div>
@@ -124,6 +123,7 @@ export default {
   </div>
 </template>
 
+
 <style scoped>
 .work-section {
   width: 100%;
@@ -143,25 +143,21 @@ export default {
   position: relative;
   justify-content: flex-start;
   width: 100%;
-  max-height: 100vh;
-  gap: 2vh; 
+  gap: 2vh;
+  margin-bottom: 20px;
+  max-height: 100%;
   overflow-y: auto;
-  margin-bottom: 30px;
+  background: linear-gradient(to bottom, transparent 30px, #888 30px, #888 calc(100% - 30px), transparent calc(100% - 30px));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3px 100%;
 }
 
-.work-timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  background-color: #ccc;
-  z-index: 1;
-  height: auto; 
-  bottom: 0; 
+.timeline-item-container {
+  position: relative;
+  padding-top: 40px;
+  width: 100%; /* Ensure the container takes the full width */
 }
-
 
 .v-card {
   position: relative;
@@ -170,7 +166,8 @@ export default {
   overflow: hidden;
   transition: all 0.5s ease;
   background-color: rgb(152, 152, 206);
-  border-left: none;
+  border-radius: 8px; 
+  border: 1px solid #ddd;
   width: 85%;
   max-width: 550px;
   margin-top: 40px;
@@ -179,9 +176,11 @@ export default {
   justify-content: space-between;
   z-index: 2; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  left: 50%;
-  transform: translateX(-50%);
+  left: 50%; /* Position it 50% from the left */
+  transform: translateX(-50%); /* Center it horizontally */
+  text-align: center; /* Optional: Center the text content inside the card */
 }
+
 
 .v-card.expanded {
   margin-bottom: 40px;
@@ -203,13 +202,14 @@ export default {
   background-color: #FFE0B2; 
 }
 
+
 .timeline-dot {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 30px;
   height: 30px;
-  background-color: #ccc;
+  background-color: #666;
   border-radius: 50%;
   display: flex;
   align-items: center;
