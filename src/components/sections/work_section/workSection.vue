@@ -92,7 +92,8 @@ export default {
         :key="index"
         class="timeline-item-container"
       >
-        <div class="timeline-dot">
+
+        <div :class="['timeline-dot', 'dot-' + index]">
           <i :class="item.tag === 'Per' ? 'mdi mdi-book-open-page-variant' : 'mdi mdi-briefcase'"></i>
         </div>
         <v-card :class="['elevation-2', cardClass(index)]" @click="toggleDetails(item)">
@@ -123,10 +124,8 @@ export default {
   </div>
 </template>
 
-
 <style scoped>
 .work-section {
-  padding-bottom: 20px;
   width: 100%;
   height: 100%;
   max-height: 100vh;
@@ -154,7 +153,7 @@ export default {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
   width: 2px;
   background-color: #ccc;
@@ -199,7 +198,6 @@ export default {
 
 .timeline-dot {
   position: absolute;
-  top: -20px; 
   left: 50%;
   transform: translateX(-50%);
   width: 30px;
@@ -210,12 +208,33 @@ export default {
   align-items: center;
   justify-content: center;
   z-index: 3;
-  border: 3px solid white; 
+  border: 3px solid white;
 }
 
 .timeline-dot i {
-  font-size: 16px; 
+  font-size: 20px;
   color: white;
+}
+
+.timeline-item-container {
+  position: relative;
+  padding-top: 40px; 
+}
+
+.dot-0 {
+  top: 20px; 
+}
+
+.dot-1 {
+  top: 20px;
+}
+
+.dot-2 {
+  top: 20px;
+}
+
+.dot-3 {
+  top: 20px;
 }
 
 .v-card-title,
@@ -248,18 +267,18 @@ export default {
   font-size: 1.1rem; 
   font-weight: bold; 
   margin-bottom: 8px; 
-  position: relative; /* Set position to relative for the title */
+  position: relative; 
 }
 
 .toggle-icon {
   font-size: 24px;
   color: #666;
   transition: transform 0.3s ease;
-  position: absolute; /* Set position to absolute */
-  top: 0; /* Align to the top */
-  right: 0; /* Align to the right */
-  margin-right: 10px; /* Optional: Adjust spacing from the right edge */
-  cursor: pointer; /* Indicate clickable */
+  position: absolute; 
+  top: 0;
+  right: 0; 
+  margin-right: 10px; 
+  cursor: pointer;
 }
 
 .v-card-title,
