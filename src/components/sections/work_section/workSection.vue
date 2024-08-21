@@ -202,7 +202,6 @@ export default {
   background-color: #FFE0B2; 
 }
 
-
 .timeline-dot {
   position: absolute;
   left: 50%;
@@ -330,4 +329,53 @@ export default {
     font-size: 1rem; 
   }
 }
+
+.dark .work-section {
+  background-color: #1e1e2f;
+  color: #e0e0e0;
+}
+
+.dark .work-timeline {
+  background: linear-gradient(to bottom, transparent 30px, #555 30px, #555 calc(100% - 30px), transparent calc(100% - 30px));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3px 100%;
+}
+
+.dark .v-card {
+  background-color: #2b2b3b;
+  border: 1px solid #444;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  color: #e0e0e0;
+}
+
+.dark .v-card-title {
+  color: #e0e0e0;
+}
+
+.dark .v-card-subtitle {
+  color: #cccccc;
+}
+
+.dark .tag {
+  background-color: rgba(60, 60, 60, 0.9);
+  color: #e0e0e0;
+}
+
+.dark .timeline-dot {
+  background-color: #888;
+}
+
+.dark .timeline-dot i {
+  color: #e0e0e0;
+}
+
+.dark .v-card:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
+}
+
+.dark .toggle-icon {
+  color: #e0e0e0;
+}
+
 </style>
