@@ -477,18 +477,21 @@ export default {
     overflow: hidden;
   }
 
+  .v-card-text {
+    margin-bottom: 20px;
+  }
+
   .tag {
     position: absolute;
-    bottom: 5px;
+    bottom: 5px; 
     width: auto;
-    left: 5px;
+    left: 5px; 
     background-color: rgba(255, 255, 255, 0.8); 
-    padding: 4px 8px;
+    padding: 10px; 
     border-radius: 5px;
     font-size: 0.75rem;
     z-index: 1;
   }
-
 
   .work-timeline::before {
     content: '';
