@@ -104,6 +104,7 @@ export default {
           <transition name="fade" mode="out-in">
             <v-card-text v-if="item.expanded">
               <span class="tag">{{ item.tag }}</span>
+              <div class="work-date">{{ item.date }}</div>
               <ul>
                 <li v-for="(detail, detailIndex) in item.details" :key="detailIndex">
                   <div v-if="typeof detail === 'object'">
@@ -156,7 +157,7 @@ export default {
 .timeline-item-container {
   position: relative;
   padding-top: 40px;
-  width: 100%; /* Ensure the container takes the full width */
+  width: 100%;
 }
 
 .v-card {
@@ -176,9 +177,9 @@ export default {
   justify-content: space-between;
   z-index: 2; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  left: 50%; /* Position it 50% from the left */
-  transform: translateX(-50%); /* Center it horizontally */
-  text-align: center; /* Optional: Center the text content inside the card */
+  left: 50%;
+  transform: translateX(-50%); 
+  text-align: center; 
 }
 
 
@@ -295,6 +296,13 @@ export default {
   overflow-wrap: break-word;
 }
 
+.work-date {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 10px; 
+}
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
@@ -394,5 +402,8 @@ export default {
   color: #42a5f5; 
 }
 
+.dark .v-card-text .work-date {
+  color: #ccc;
+}
 
 </style>
