@@ -144,21 +144,24 @@ export default {
   justify-content: flex-start;
   width: 100%;
   max-height: 100vh;
-  gap: 7vh; 
+  gap: 2vh; 
   overflow-y: auto;
+  margin-bottom: 30px;
 }
 
 .work-timeline::before {
   content: '';
   position: absolute;
   top: 0;
-  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 2px;
   background-color: #ccc;
   z-index: 1;
+  height: auto; 
+  bottom: 0; 
 }
+
 
 .v-card {
   position: relative;
@@ -174,10 +177,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: 2;
+  z-index: 2; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   left: 50%;
   transform: translateX(-50%);
+}
+
+.v-card.expanded {
+  margin-bottom: 40px;
 }
 
 .v-card.card-one {
