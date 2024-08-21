@@ -378,4 +378,21 @@ export default {
   color: #e0e0e0;
 }
 
+.dark .timeline-dot.dot-0 i {
+  color: #ff6f61; 
+}
+
+.dark .timeline-dot.dot-1 i {
+  color: #ffa500; 
+}
+
+.dark .timeline-dot.dot-2 i {
+  color: #00c853; 
+}
+
+.dark .timeline-dot.dot-3 i {
+  color: #42a5f5; 
+}
+
+
 </style>
