@@ -86,19 +86,20 @@ export default {
 
 <template>
   <div class="work-section">
-    <v-timeline dense>
-      <v-timeline-item
+    <div class="work-timeline">
+      <div
         v-for="(item, index) in workItems"
         :key="index"
-        :class="[item.tag]"
-        :color="item.tag === 'Per' ? 'deep-purple lighten-2' : 'cyan lighten-2'"
-        :icon="item.tag === 'Per' ? 'mdi-book-open-page-variant' : 'mdi-briefcase'"
+        class="timeline-item-container"
       >
-        <template #opposite>
-          {{ item.date }}
-        </template>
+        <div class="timeline-dot">
+          <i :class="item.tag === 'Per' ? 'mdi mdi-book-open-page-variant' : 'mdi mdi-briefcase'"></i>
+        </div>
         <v-card :class="['elevation-2', cardClass(index)]" @click="toggleDetails(item)">
           <v-card-title>{{ item.position }}</v-card-title>
+          <v-icon class="toggle-icon">
+            {{ item.expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+          </v-icon>
           <v-card-subtitle>{{ item.company }}</v-card-subtitle>
           <transition name="fade" mode="out-in">
             <v-card-text v-if="item.expanded">
@@ -117,103 +118,104 @@ export default {
             </v-card-text>
           </transition>
         </v-card>
-      </v-timeline-item>
-    </v-timeline>
+      </div>
+    </div>
   </div>
 </template>
 
+
 <style scoped>
 .work-section {
-  padding: 10px;
+  padding-bottom: 20px;
   width: 100%;
-  min-height: auto; 
-  max-height: 97vh;
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: visible; 
 }
 
-::v-deep .v-timeline {
+.work-timeline {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  justify-content: flex-start;
   width: 100%;
-  gap: 4.5rem;
-  position: relative; 
-  margin: 40px auto;
+  max-height: 100vh;
+  gap: 7vh; 
+  overflow-y: auto;
 }
 
-.v-timeline-item {
-  width: 90%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 20px auto; 
-  position: relative; 
-  z-index: 2;
-  margin-top: 60px; 
-  margin-bottom: 60px;
-}
-
-
-::v-deep .v-timeline-item__opposite {
+.work-timeline::before {
+  content: '';
   position: absolute;
-  top: 130%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10; 
-  background-color: white;
-  color: #333;
-  padding: 0.5em 1em;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  width: max-content;
-  max-width: 80%;
-  text-align: center;
-}
-
-
-::v-deep .v-timeline::before {
   top: 0;
   bottom: 0;
-  position: absolute;
-  content: '';
-  left: 50%;
+  left: 50%; 
+  transform: translateX(-50%);
   width: 2px;
-  background-color: #000;
-}
-
-.v-timeline-divider {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 4; 
-}
-
-.v-icon {
-  color: black;
-  border-radius: 50%;
-  padding: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+  background-color: #ccc;
+  z-index: 1;
 }
 
 .v-card {
+  position: relative;
   padding: 10px;
   word-wrap: break-word;
   overflow: hidden;
   transition: all 0.5s ease;
-  background-color: #f9f9f9;
-  border-left: 5px solid #ccc;
-  width: 100%;  
+  background-color: rgb(152, 152, 206);
+  border-left: none;
+  width: 85%;
+  max-width: 550px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; 
-  margin-bottom: 0;
+  justify-content: space-between;
+  z-index: 2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.v-card.card-one {
+  background-color: #FFCDD2; 
+}
+
+.v-card.card-two {
+  background-color: #BBDEFB;
+}
+
+.v-card.card-three {
+  background-color: #C8E6C9; 
+}
+
+.v-card.card-four {
+  background-color: #FFE0B2; 
+}
+
+.timeline-dot {
+  position: absolute;
+  top: -20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  border: 3px solid white; 
+}
+
+.timeline-dot i {
+  font-size: 16px; 
+  color: white;
 }
 
 .v-card-title,
@@ -231,11 +233,33 @@ export default {
   font-weight: bold;
   color: #666;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 10px; 
+  right: 10px; 
   background-color: rgba(255, 255, 255, 0.9);
   padding: 3px 8px;
   border-radius: 5px;
+}
+
+
+.v-card-title {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  font-size: 1.1rem; 
+  font-weight: bold; 
+  margin-bottom: 8px; 
+  position: relative; /* Set position to relative for the title */
+}
+
+.toggle-icon {
+  font-size: 24px;
+  color: #666;
+  transition: transform 0.3s ease;
+  position: absolute; /* Set position to absolute */
+  top: 0; /* Align to the top */
+  right: 0; /* Align to the right */
+  margin-right: 10px; /* Optional: Adjust spacing from the right edge */
+  cursor: pointer; /* Indicate clickable */
 }
 
 .v-card-title,
@@ -258,30 +282,6 @@ export default {
   overflow: hidden;
 }
 
-.card-one { background-color: #cadeec; }
-.card-two { background-color: #b2dfb6; } 
-.card-three { background-color: #fff3cd; }
-.card-four { background-color: #fce4ec; } 
-
-
-@media (max-width: 450px) {
-  ::v-deep .v-timeline-item {
-    margin: 25px auto; 
-  }
-
-  .v-card-title,
-  .v-card-subtitle,
-  .v-card-text {
-    font-size: 0.8rem; 
-  }
-  .v-timeline-item {
-    margin: 2px auto; 
-  }
-
-  .v-card {
-    padding: 10px;
-  }
-}
 
 @media (min-width: 900px) {
   .v-timeline {
@@ -305,4 +305,3 @@ export default {
   }
 }
 </style>
-
