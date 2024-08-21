@@ -95,11 +95,13 @@ export default {
         <div :class="['timeline-dot', 'dot-' + index]">
           <i :class="item.tag === 'Per' ? 'mdi mdi-book-open-page-variant' : 'mdi mdi-briefcase'"></i>
         </div>
-        <v-card :class="['elevation-2', cardClass(index)]" @click="toggleDetails(item)">
-          <v-card-title>{{ item.position }}</v-card-title>
-          <v-icon class="toggle-icon">
-            {{ item.expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
-          </v-icon>
+        <v-card :class="['elevation-2', cardClass(index)]">
+          <v-card-title @click="toggleDetails(item)">
+            {{ item.position }}
+            <v-icon class="toggle-icon" @click.stop="toggleDetails(item)">
+              {{ item.expanded ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+            </v-icon>
+          </v-card-title>
           <v-card-subtitle>{{ item.company }}</v-card-subtitle>
           <transition name="fade" mode="out-in">
             <v-card-text v-if="item.expanded">
@@ -316,30 +318,7 @@ export default {
 }
 
 
-@media (min-width: 900px) {
-  .v-timeline {
-    flex-direction: row;
-    overflow-x: auto;
-  }
-
-  .v-timeline-item {
-    width: auto; 
-    min-width: 300px; 
-  }
-
-  .v-card {
-    padding: 15px; 
-  }
-
-  .v-card-title,
-  .v-card-subtitle,
-  .v-card-text {
-    font-size: 1rem; 
-  }
-}
-
 .dark .work-section {
-  background-color: #1e1e2f;
   color: #e0e0e0;
 }
 
@@ -405,5 +384,123 @@ export default {
 .dark .v-card-text .work-date {
   color: #ccc;
 }
+
+@media (min-width: 1000px) {
+  .work-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .work-timeline {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 1100px;
+    margin: 0 auto;
+    padding: 0 5vw;
+    background: linear-gradient(to right, transparent 20px, #888 20px, #888 calc(100% - 20px), transparent calc(100% - 20px));
+    background-size: 100% 2px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .dark .work-timeline {
+    background: linear-gradient(to right, transparent 30px, #555 30px, #555 calc(100% - 30px), transparent calc(100% - 30px));
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 3px 100%;
+  }
+
+  .timeline-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%; /* Default width for other cards */
+    padding-top: 0;
+    position: relative;
+  }
+
+  /* Adjusting width for the second card */
+  .timeline-item-container:nth-child(2) {
+    width: 28%; /* Slightly wider width for the second card */
+  }
+
+  .timeline-dot {
+    position: absolute;
+    top: -30px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+  }
+
+  .timeline-item-container::before {
+    content: '';
+    position: absolute;
+    top: -10px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px; 
+    background-color: #888;
+  }
+
+  .v-card {
+    width: 100%;
+    margin-top: 60px; 
+    text-align: left;
+    max-width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  .v-card.expanded {
+    margin-bottom: 40px;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all 0.5s ease;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .slide-up-enter-active, .slide-down-enter-active,
+  .slide-up-leave-active, .slide-down-leave-active {
+    overflow: hidden;
+  }
+
+  .tag {
+    position: absolute;
+    bottom: 5px;
+    width: auto;
+    left: 5px;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    z-index: 1;
+  }
+
+
+  .work-timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 5vw;
+    right: 5vw;
+    height: 2px;
+    background-color: #888;
+    z-index: 1;
+  }
+}
+
 
 </style>
