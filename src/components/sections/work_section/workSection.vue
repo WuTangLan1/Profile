@@ -256,18 +256,19 @@ export default {
 .v-card.Uni { background-color: #bacebb; }
 
 .tag {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #666;
   position: absolute;
-  bottom: 10px; 
-  right: 10px; 
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 3px 8px;
+  bottom: 20px; 
+  right: -5px; 
+  background-color: rgb(22, 58, 70); 
+  color: white;
+  padding: 5px 10px; 
   border-radius: 5px;
+  font-size: 0.75rem;
+  z-index: 5;
+  transform: rotate(-45deg); 
+  transform-origin: bottom right; 
+  width: auto;
 }
-
 
 .v-card-title {
   display: flex;
@@ -286,7 +287,7 @@ export default {
   position: absolute; 
   top: 0;
   right: 0; 
-  margin-right: 10px; 
+  margin-right: 2px; 
   cursor: pointer;
 }
 
@@ -421,14 +422,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%; /* Default width for other cards */
+    width: 20%; 
     padding-top: 0;
     position: relative;
   }
 
-  /* Adjusting width for the second card */
   .timeline-item-container:nth-child(2) {
-    width: 28%; /* Slightly wider width for the second card */
+    width: 28%; 
   }
 
   .timeline-dot {
@@ -483,10 +483,7 @@ export default {
 
   .tag {
     position: absolute;
-    bottom: 5px; 
     width: auto;
-    left: 5px; 
-    background-color: rgba(255, 255, 255, 0.8); 
     padding: 10px; 
     border-radius: 5px;
     font-size: 0.75rem;

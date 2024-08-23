@@ -7,7 +7,7 @@ export default {
       projects: [
         {
           title: "CoPlaylist",
-          subtitle: "Music/Playlist Generation",
+          subtitle: "Playlist Generation",
           url: "https://coplaylist-5ec2820dd416.herokuapp.com/",
           description: "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
           details: [
@@ -23,7 +23,7 @@ export default {
         },
         {
           title: "The Big Picture",
-          subtitle: "Daily Puzzle Game",
+          subtitle: "Game site",
           url: "https://fullcircle-4856e527cad2.herokuapp.com/",
           description: "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
           details: [
@@ -40,7 +40,7 @@ export default {
         },
         {
           title: "Mapple",
-          subtitle: "Geography Game",
+          subtitle: "Game site",
           url: "https://mapple-15f9c29f3ed1.herokuapp.com/",
           description: "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
           details: [
@@ -56,7 +56,7 @@ export default {
         },
         {
           title: "This website",
-          subtitle: "Profile Website",
+          subtitle: "Profile site",
           description: "I created a profile website for myself to show a level of capability i am currently at in terms of short term projects",
           details: [
           { icon: "mdi-web", text: "The website leverages my prefered technology stack for developing and styling small-to-medium sized projects" },
