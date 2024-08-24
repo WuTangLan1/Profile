@@ -136,7 +136,7 @@ export default {
               ></v-img>
               </v-btn>
             </div>
-            <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="white--text">Visit</a>
+            <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="visit">Visit</a>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -181,6 +181,10 @@ export default {
   text-align: left;
 }
 
+.visit {
+  color: rgb(50, 103, 153);
+}
+
 .tech-icon {
   width: 40px;
   height: 40px;
@@ -214,6 +218,9 @@ export default {
 
 .dark .v-card-title {
   border-bottom: 1px solid #555; 
+}
+.dark .visit {
+  color: rgb(156, 190, 221);
 }
 
 </style>
