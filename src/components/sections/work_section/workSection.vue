@@ -286,8 +286,7 @@ export default {
   transition: transform 0.3s ease;
   position: absolute; 
   top: 0;
-  right: 0; 
-  margin-right: 2px; 
+  right: -2px;  
   cursor: pointer;
 }
 
@@ -380,19 +379,19 @@ export default {
 }
 
 .dark .timeline-dot.dot-0 i {
-  color: #ff6f61; 
+  color: #962f26; 
 }
 
 .dark .timeline-dot.dot-1 i {
-  color: #ffa500; 
+  color: #1f5d8f; 
 }
 
 .dark .timeline-dot.dot-2 i {
-  color: #00c853; 
+  color: #24864d; 
 }
 
 .dark .timeline-dot.dot-3 i {
-  color: #42a5f5; 
+  color: #a3731a; 
 }
 
 .dark .v-card-text .work-date {
