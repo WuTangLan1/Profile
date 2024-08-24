@@ -105,7 +105,7 @@ export default {
           <v-card-subtitle>{{ item.company }}</v-card-subtitle>
           <transition name="fade" mode="out-in">
             <v-card-text v-if="item.expanded">
-              <span class="tag">{{ item.tag }}</span>
+              <span :class="['tag', item.tag]">{{ item.tag }}</span>
               <div class="work-date">{{ item.date }}</div>
               <ul>
                 <li v-for="(detail, detailIndex) in item.details" :key="detailIndex">
@@ -345,9 +345,22 @@ export default {
   color: #cccccc;
 }
 
+.dark .v-card-text a {
+  color: #89cfff; 
+  text-decoration: underline; 
+}
+
 .dark .tag {
   background-color: rgba(60, 60, 60, 0.9);
   color: #e0e0e0;
+}
+
+.dark .tag.Per { 
+  background-color: #7c4dff; 
+}
+
+.dark .tag.Uni { 
+  background-color: #00bfa5; 
 }
 
 .dark .timeline-dot {
