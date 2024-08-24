@@ -1,16 +1,22 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-  import { VContainer, VCol, VRow, VDivider, VBtn, VProgressCircular } from 'vuetify/lib/components';
   import imageMe from '@/assets/personal photos/personalphoto.png';
+  import { inject } from 'vue';
 
   export default {
-    components: {
-      VContainer,
-      VCol,
-      VRow,
-      VDivider,
-      VBtn,
-      VProgressCircular
+    setup() {
+      const handleChangeSection = inject('handleChangeSection');
+      if (!handleChangeSection) {
+        throw new Error('handleChangeSection not provided!');
+      }
+
+      const contact = () => {
+        handleChangeSection(4); 
+      };
+
+      return {
+        contact,
+      };
     },
     data() {
       return {
@@ -20,9 +26,6 @@
       };
     },
     methods: {
-      sendEmail() {
-        window.location.href = `mailto:finnmassari404@gmail.com`;
-      },
       handleImageLoaded(event) {
         this.imageLoading = false;
         event.target.style.opacity = 1; }
@@ -65,7 +68,7 @@
         </p>
         <div class="buttons-container">
           <v-btn color="primary" large class="ma-2">Download CV</v-btn>
-          <v-btn color="secondary" large class="ma-2" @click="sendEmail">Contact Me</v-btn>
+          <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
       </v-col>
     </v-row>

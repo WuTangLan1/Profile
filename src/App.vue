@@ -30,6 +30,8 @@ export default {
       currentSection.value = index;
     };
 
+    provide('handleChangeSection', handleChangeSection);
+
     onMounted(() => {
       if (isDark.value) {
         document.body.classList.add('dark');
@@ -64,7 +66,7 @@ body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 
 body:not(.dark) #app {
@@ -84,7 +86,7 @@ body:not(.dark) #app {
   text-align: center;
   background-color: #f3f4f6; 
   color: #2c3e50;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .dark #app {

@@ -122,7 +122,6 @@ nav li:hover, nav li.active {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-
 @media(max-width:650px)
 {
   nav li {

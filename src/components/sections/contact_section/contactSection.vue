@@ -1,21 +1,4 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
-<script>
-import { VContainer, VRow, VCol, VCard, VCardTitle, VCardText,  VIcon, VDivider } from 'vuetify/lib/components';
-
-export default {
-  components: {
-    VContainer,
-    VRow,
-    VCol,
-    VCard,
-    VCardTitle,
-    VCardText,
-    VIcon,
-    VDivider
-  }
-}
-</script>
-
 <template>
   <v-container class="contact-container">
     <v-row justify="center">
