@@ -14,21 +14,39 @@
         handleChangeSection(4); 
       };
 
+      const resumeLink = process.env.BASE_URL + 'cv/finnm_resume.pdf'
+
       return {
         contact,
+        resumeLink
       };
     },
     data() {
       return {
+
         hover: false,
         imageMe,
         imageLoading: true 
       };
     },
     methods: {
-      handleImageLoaded(event) {
-        this.imageLoading = false;
-        event.target.style.opacity = 1; }
+    handleImageLoaded(event) {
+      this.imageLoading = false;
+      event.target.style.opacity = 1;
+    },
+    downloadResume() {
+      try {
+        const link = document.createElement('a');
+        console.log(this.resumeLink); 
+        link.href = this.resumeLink;
+        link.setAttribute('download', 'finnm_resume.pdf');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error("Failed to download the file:", error);
+      }
+    }
   }
 }
 </script>
@@ -67,7 +85,7 @@
            of the Metaverse.  
         </p>
         <div class="buttons-container">
-          <v-btn color="primary" large class="ma-2">Download CV</v-btn>
+          <v-btn color="primary" large class="ma-2" :href="resumeLink" download="finnm_resume.pdf">Download CV</v-btn>
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
       </v-col>
