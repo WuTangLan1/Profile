@@ -63,7 +63,7 @@ export default {
 <template>
   <v-container class="contact-container">
     <div class="header d-flex justify-space-between align-center">
-      <h2 class="section-heading">Contact Me</h2>
+      <h2 class="section-heading heading-text">Contact Me</h2>
       <div class="switch-container d-flex align-center">
         <v-switch
           v-model="animationEnabled"
@@ -181,6 +181,28 @@ export default {
   line-height: 1;
 }
 
+.heading-text {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px; 
+  width: 100%;
+  height: 4px; 
+  background-color: currentColor; 
+  transition: all 0.3s ease-in-out;
+}
+
+.heading-text:hover::after {
+  width: 0;
+  left: 50%;
+  background-color: currentColor;
+}
+
 .switch-container {
   display: flex;
   align-items: center; 
@@ -283,6 +305,10 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.dark .section-heading {
+color: white;
 }
 
 .dark .left .message-bubble {
