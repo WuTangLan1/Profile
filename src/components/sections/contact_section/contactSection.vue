@@ -88,16 +88,18 @@ export default {
     <v-row>
       <v-col>
         <div v-if="messages[0].visible" class="message-container left">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> You
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>You</span>
           </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[0].text }}</span>
           </div>
         </div>
         <div v-if="messages[1].visible" class="message-container right">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> Me
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-map-marker</v-icon>
@@ -105,16 +107,18 @@ export default {
           </div>
         </div>
         <div v-if="messages[2].visible" class="message-container left">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> You
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>You</span>
           </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[2].text }}</span>
           </div>
         </div>
         <div v-if="messages[3].visible" class="message-container right">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> Me
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-phone</v-icon>
@@ -122,16 +126,18 @@ export default {
           </div>
         </div>
         <div v-if="messages[4].visible" class="message-container left">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> You
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>You</span>
           </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[4].text }}</span>
           </div>
         </div>
         <div v-if="messages[5].visible" class="message-container right">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> Me
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-email</v-icon>
@@ -139,16 +145,18 @@ export default {
           </div>
         </div>
         <div v-if="messages[6].visible" class="message-container left">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> You
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>You</span>
           </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[6].text }}</span>
           </div>
         </div>
         <div v-if="messages[7].visible" class="message-container right">
-          <v-avatar size="32" class="avatar">
-            <v-icon>mdi-account-circle</v-icon> Me
+          <v-avatar class="avatar" size="32">
+            <v-icon>mdi-account-circle</v-icon>
+            <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-github</v-icon>
@@ -266,14 +274,18 @@ export default {
 .avatar {
   display: flex;
   align-items: center;
-  margin-right: 10px;
+  justify-content: space-between; 
+  padding: 6px 12px; 
   border-radius: 10px;
-  padding: 6px; 
   background-color: #e0e0e0;
-  font-size: 12px;
+  font-size: 12px; 
   font-weight: bold;
   text-align: center;
-  min-width: 50px; 
+  min-width: 70px; 
+}
+
+.avatar v-icon {
+  margin-right: 8px; 
 }
 
 .message-bubble {
@@ -325,7 +337,7 @@ color: white;
 }
 
 .dark .right .message-bubble {
-  background-color: #4caf50;
+  background-color: #236525;
 }
 
 .dark a {
