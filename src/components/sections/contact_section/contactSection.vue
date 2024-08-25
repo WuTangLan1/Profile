@@ -2,149 +2,180 @@
 <template>
   <v-container class="contact-container">
     <v-row justify="center">
-      <v-col cols="12" sm="8" md="6">
-        <v-card class="elevation-2">
-          <v-card-title class="headline">Contact Information</v-card-title>
-          <v-card-text>
-            <v-divider class="my-4"></v-divider>
-            <div class="contact-detail">
-              <v-icon left>mdi-map-marker</v-icon>
-              <span>Cape Town, South Africa 7979</span>
-            </div>
-            <v-divider class="my-4"></v-divider>
-            <div class="contact-detail">
-              <v-icon left>mdi-phone</v-icon>
-              <span>+27 786867785</span>
-            </div>
-            <v-divider class="my-4"></v-divider>
-            <div class="contact-detail">
-              <v-icon left>mdi-email</v-icon>
-              <a href="mailto:finnmassari404@gmail.com">finnmassari404@gmail.com</a>
-            </div>
-            <v-divider class="my-4"></v-divider>
-            <div class="contact-detail">
-              <v-icon left>mdi-github</v-icon>
-              <a href="https://github.com/WuTangLan1" target="_blank">WuTangLan1</a>
-            </div>
-          </v-card-text>
-        </v-card>
+      <v-col cols="12" sm="10" md="8">
+        <div class="message-container left">
+          <v-avatar size="32" class="avatar">You</v-avatar>
+          <div class="message-bubble left">
+            <span>Where are you located?</span>
+          </div>
+        </div>
+        <div class="message-container right">
+          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <div class="message-bubble right">
+            <v-icon left>mdi-map-marker</v-icon>
+            <span>Cape Town, South Africa 7979</span>
+          </div>
+        </div>
+
+        <div class="message-container left">
+          <v-avatar size="32" class="avatar">You</v-avatar>
+          <div class="message-bubble left">
+            <span>What is your cell number?</span>
+          </div>
+        </div>
+        <div class="message-container right">
+          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <div class="message-bubble right">
+            <v-icon left>mdi-phone</v-icon>
+            <span>+27 786867785</span>
+          </div>
+        </div>
+
+        <div class="message-container left">
+          <v-avatar size="32" class="avatar">You</v-avatar>
+          <div class="message-bubble left">
+            <span>What's your email address?</span>
+          </div>
+        </div>
+        <div class="message-container right">
+          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <div class="message-bubble right">
+            <v-icon left>mdi-email</v-icon>
+            <a href="mailto:finnmassari404@gmail.com">finnmassari404@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="message-container left">
+          <v-avatar size="32" class="avatar">You</v-avatar>
+          <div class="message-bubble left">
+            <span>Can I see your GitHub profile?</span>
+          </div>
+        </div>
+        <div class="message-container right">
+          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <div class="message-bubble right">
+            <v-icon left>mdi-github</v-icon>
+            <a href="https://github.com/WuTangLan1" target="_blank">WuTangLan1</a>
+          </div>
+        </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
-  
 
 <style scoped>
 .contact-container {
   padding: 20px;
   margin: auto;
-  background-color: #FFFFFF;  
-  color: #333;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: background-color 0.3s, color 0.3s;  
-  border-radius: 10px; 
+  max-width: 100%;
+  background: linear-gradient(to bottom, #f7f8fa, #e8ebf0);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+  position: relative;
 }
 
-@media (max-width : 800px)
-{
-  .contact-container {
-    overflow-y: hidden;
-  }
-}
-
-.contact-detail {
+.message-container {
   display: flex;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;  
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  transition: background-color 0.3s;
+  align-items: flex-end;
+  margin: 30px 0;
 }
 
-.contact-detail:hover {
-  background-color: #f1f1f1;
+.message-container.left {
+  justify-content: flex-start;
 }
 
-.v-icon {
-  color: #666;
+.message-container.right {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.avatar {
   margin-right: 10px;
 }
 
+.message-bubble {
+  max-width: 80%;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-bubble:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.left .message-bubble {
+  background-color: #e1f5fe;
+}
+
+.right .message-bubble {
+  background-color: #c8e6c9;
+}
+
+.message-bubble v-icon {
+  margin-right: 10px;
+  color: #666;
+}
+
 a {
-  color: #1976D2; 
-  text-decoration: none;  
+  color: #1976D2;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 a:hover {
-  text-decoration: underline; 
-}
-
-.v-card {
-  background-color: #fff;  
-  border: none;  
-}
-
-.dark .v-card {
-  background-color: #333;  
-}
-
-.dark .v-card-title {
-  color: #fff;
-}
-
-.v-card-title {
-  font-weight: 500;  
-  font-size: 20px;  
-}
-
-.v-card-text {
-  font-size: 16px;  
-}
-
-.dark .v-card-text {
-  color: #e0e0e0;
-}
-
-.v-btn {
-  border-radius: 5px;  
-  text-transform: none;  
-  font-weight: normal; 
+  text-decoration: underline;
 }
 
 .dark .contact-container {
-  background-color: #212121;  
-  color: #fff;
-  box-shadow: 0 4px 6px rgba(255,255,255,0.1);
+  background-color: #212121;
+}
+
+.dark .left .message-bubble {
+  background-color: #37474f;
+}
+
+.dark .right .message-bubble {
+  background-color: #4caf50;
 }
 
 .dark a {
-  color: #90CAF9;  
+  color: #90CAF9;
 }
 
-.dark .v-btn {
-  color: #90CAF9;  
-  border: 1px solid #90CAF9;  
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.dark .v-icon {
-  color: #90CAF9;  
-}
-
-.v-divider {
-  background-color: #e0e0e0;
-}
-
-.dark .v-divider {
-  background-color: #555;
-}
-
-.dark .contact-detail {
-  background-color: #424242;
-  color: #e0e0e0;
-}
-
-.dark .contact-detail:hover {
-  background-color: #333;
+@media (max-width: 600px) {
+  .message-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .message-container.left {
+    align-items: flex-start;
+  }
+  .message-container.right {
+    align-items: flex-end;
+  }
+  .message-bubble {
+    max-width: 90%;
+    font-size: 14px;
+    padding: 10px;
+  }
 }
 </style>
