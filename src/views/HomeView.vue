@@ -93,9 +93,10 @@ export default {
   flex-direction: column;
   overflow: hidden;
   align-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
   height: auto;
   justify-content: center;
+  margin: auto 0;
 }
 
 .info-section, .studies-section, .work-section, .pp-section, .contact-section {
