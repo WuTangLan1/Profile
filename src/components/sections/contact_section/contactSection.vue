@@ -306,8 +306,19 @@ export default {
   align-items: center;
   white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: fadeInBubble 0.5s ease-out forwards; /* Animation added */
 }
 
+@keyframes fadeInBubble {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); 
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .message-bubble:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
