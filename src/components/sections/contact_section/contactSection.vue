@@ -3,6 +3,7 @@
 export default {
   data() {
     return {
+      animationEnabled: true, 
       messages: [
         { text: "", fullText: "Where are you located?", delay: 0 },
         { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000 },
@@ -15,11 +16,23 @@ export default {
       ]
     };
   },
+  watch: {
+    animationEnabled(newVal) {
+      if (!newVal) {
+        this.messages.forEach(message => {
+          message.text = message.fullText;
+        });
+      } else {
+        this.revealMessages();
+      }
+    }
+  },
   mounted() {
     this.revealMessages();
   },
   methods: {
     revealMessages() {
+      if (!this.animationEnabled) return; 
       this.messages.forEach((message) => {
         setTimeout(() => {
           message.text = "typing...";
@@ -34,8 +47,19 @@ export default {
 };
 </script>
 
+
 <template>
   <v-container class="contact-container">
+    <div class="header">
+      <div class="switch-container">
+        <v-switch
+          v-model="animationEnabled"
+          inset
+          color="primary"
+          :label="animationEnabled ? 'Animation On' : 'Animation Off'"
+        />
+      </div>
+    </div>
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8">
         <div class="message-container left">
@@ -107,6 +131,22 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-out;
   position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.switch-container {
+  display: flex;
+  align-items: center;
+}
+
+.switch-container label {
+  margin-right: 10px;
+  font-weight: bold;
 }
 
 .message-container {
