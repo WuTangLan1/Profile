@@ -1,5 +1,7 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
+import { useAnimationStore } from '@/stores/animationStore';
+
 export default {
   data() {
     return {
@@ -17,8 +19,12 @@ export default {
       ],
     };
   },
+  setup() {
+    const animationStore = useAnimationStore();
+    return { animationStore };
+  },
   watch: {
-    animationEnabled(newVal) {
+    'animationStore.animationEnabled'(newVal) {
       if (!newVal) {
         this.revealAllMessages();
       } else if (!this.animationCompleted) {
@@ -27,7 +33,7 @@ export default {
     },
   },
   mounted() {
-    if (this.animationEnabled && !this.animationCompleted) {
+    if (this.animationStore.animationEnabled && !this.animationCompleted) {
       this.revealMessages();
     } else {
       this.revealAllMessages(); 
@@ -37,27 +43,28 @@ export default {
     revealMessages() {
       this.messages.forEach((message) => {
         setTimeout(() => {
-          if (!this.animationEnabled || this.animationCompleted) return; 
+          if (!this.animationStore.animationEnabled || this.animationCompleted) return;
           message.text = "typing...";
         }, message.delay);
-
+        
         setTimeout(() => {
-          if (!this.animationEnabled || this.animationCompleted) return;
+          if (!this.animationStore.animationEnabled || this.animationCompleted) return;
           message.text = message.fullText;
           if (message === this.messages[this.messages.length - 1]) {
-            this.animationCompleted = true; 
+            this.animationCompleted = true;
           }
         }, message.delay + 2000);
       });
     },
     revealAllMessages() {
-      this.messages.forEach((message) => {
+      this.messages.forEach(message => {
         message.text = message.fullText;
       });
-      this.animationCompleted = true; 
+      this.animationCompleted = true;
     },
   },
 };
+
 </script>
 
 <template>
@@ -66,7 +73,7 @@ export default {
       <h2 class="section-heading heading-text">Contact Me</h2>
       <div class="switch-container d-flex align-center">
         <v-switch
-          v-model="animationEnabled"
+          v-model="animationStore.animationEnabled"
           inset
           color="primary"
           size="small"
@@ -361,6 +368,7 @@ color: white;
     border: 2px solid black;
     padding-left: 5px; 
     padding-right: 5px; 
+    max-width: 800px;
   }
 
   .section-heading {
