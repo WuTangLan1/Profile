@@ -8,14 +8,14 @@ export default {
       animationEnabled: true, 
       animationCompleted: false,
       messages: [
-        { text: "", fullText: "Where are you located?", delay: 0 },
-        { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000 },
-        { text: "", fullText: "What is your cell number?", delay: 4000 },
-        { text: "", fullText: "+27 786867785", delay: 6000 },
-        { text: "", fullText: "What's your email address?", delay: 8000 },
-        { text: "", fullText: "finnmassari404@gmail.com", delay: 10000 },
-        { text: "", fullText: "Can I see your GitHub profile?", delay: 12000 },
-        { text: "", fullText: "WuTangLan1", delay: 14000 },
+        { text: "", fullText: "Where are you located?", delay: 0, visible: false },
+        { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000, visible: false },
+        { text: "", fullText: "What is your cell number?", delay: 4000, visible: false },
+        { text: "", fullText: "+27 786867785", delay: 6000 , visible: false},
+        { text: "", fullText: "What's your email address?", delay: 8000 , visible: false},
+        { text: "", fullText: "finnmassari404@gmail.com", delay: 10000 , visible: false},
+        { text: "", fullText: "Can I see your GitHub profile?", delay: 12000, visible: false },
+        { text: "", fullText: "WuTangLan1", delay: 14000 , visible: false},
       ],
     };
   },
@@ -41,28 +41,32 @@ export default {
   },
   methods: {
     revealMessages() {
-      this.messages.forEach((message) => {
-        setTimeout(() => {
-          if (!this.animationStore.animationEnabled || this.animationCompleted) return;
-          message.text = "typing...";
-        }, message.delay);
-        
-        setTimeout(() => {
-          if (!this.animationStore.animationEnabled || this.animationCompleted) return;
-          message.text = message.fullText;
-          if (message === this.messages[this.messages.length - 1]) {
-            this.animationCompleted = true;
-          }
-        }, message.delay + 2000);
-      });
+        this.messages.forEach((message, index) => {
+            setTimeout(() => {
+                if (!this.animationStore.animationEnabled || this.animationCompleted) return;
+                message.visible = true; 
+                message.text = "typing...";
+            }, message.delay);
+
+            setTimeout(() => {
+                if (!this.animationStore.animationEnabled || this.animationCompleted) return;
+                message.text = message.fullText;
+                if (index === this.messages.length - 1) {
+                    this.animationCompleted = true;
+                }
+            }, message.delay + 2000);
+        });
     },
     revealAllMessages() {
-      this.messages.forEach(message => {
-        message.text = message.fullText;
-      });
-      this.animationCompleted = true;
+        this.messages.forEach(message => {
+            message.visible = true;
+            message.text = message.fullText;
+        });
+        this.animationCompleted = true;
     },
-  },
+},
+
+
 };
 
 </script>
@@ -76,7 +80,6 @@ export default {
           v-model="animationStore.animationEnabled"
           inset
           color="primary"
-          size="small"
           class="switch-control"
         />
       </div>
@@ -84,7 +87,7 @@ export default {
     <v-divider></v-divider>
     <v-row>
       <v-col>
-        <div class="message-container left">
+        <div v-if="messages[0].visible" class="message-container left">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> You
           </v-avatar>
@@ -92,7 +95,7 @@ export default {
             <span>{{ messages[0].text }}</span>
           </div>
         </div>
-        <div class="message-container right">
+        <div v-if="messages[1].visible" class="message-container right">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> Me
           </v-avatar>
@@ -101,8 +104,7 @@ export default {
             <span>{{ messages[1].text }}</span>
           </div>
         </div>
-
-        <div class="message-container left">
+        <div v-if="messages[2].visible" class="message-container left">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> You
           </v-avatar>
@@ -110,7 +112,7 @@ export default {
             <span>{{ messages[2].text }}</span>
           </div>
         </div>
-        <div class="message-container right">
+        <div v-if="messages[3].visible" class="message-container right">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> Me
           </v-avatar>
@@ -119,8 +121,7 @@ export default {
             <span>{{ messages[3].text }}</span>
           </div>
         </div>
-
-        <div class="message-container left">
+        <div v-if="messages[4].visible" class="message-container left">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> You
           </v-avatar>
@@ -128,7 +129,7 @@ export default {
             <span>{{ messages[4].text }}</span>
           </div>
         </div>
-        <div class="message-container right">
+        <div v-if="messages[5].visible" class="message-container right">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> Me
           </v-avatar>
@@ -137,8 +138,7 @@ export default {
             <a :href="'mailto:' + messages[5].text">{{ messages[5].text }}</a>
           </div>
         </div>
-
-        <div class="message-container left">
+        <div v-if="messages[6].visible" class="message-container left">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> You
           </v-avatar>
@@ -146,7 +146,7 @@ export default {
             <span>{{ messages[6].text }}</span>
           </div>
         </div>
-        <div class="message-container right">
+        <div v-if="messages[7].visible" class="message-container right">
           <v-avatar size="32" class="avatar">
             <v-icon>mdi-account-circle</v-icon> Me
           </v-avatar>
@@ -161,11 +161,13 @@ export default {
 </template>
 
 
+
 <style scoped>
 .contact-container {
   padding: 20px;
   margin: auto;
   max-width: 100%;
+  min-height: 800px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-out;
