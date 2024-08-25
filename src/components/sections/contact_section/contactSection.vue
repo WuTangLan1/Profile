@@ -292,6 +292,10 @@ export default {
   border-radius: 10px; 
 }
 
+.avatar .v-icon {
+  font-size: 28px 
+}
+
 .message-bubble {
   max-width: 85%; 
   padding: 15px;
