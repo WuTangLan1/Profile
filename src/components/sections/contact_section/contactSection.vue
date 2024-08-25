@@ -151,7 +151,6 @@ export default {
 .header {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 20px;
 }
 
 .switch-container {
@@ -259,6 +258,7 @@ a:hover {
     align-items: center;
   }
   .message-container.left {
+    flex-direction: column; 
     align-items: flex-start;
   }
   .message-container.right {
@@ -272,18 +272,46 @@ a:hover {
   }
 }
 
-@media (min-width: 1200px) {
+
+@media (min-width: 600px) {
   .contact-container {
-    max-width: 80%; 
+    width: 90%; 
+    border: 2px solid black;
+    padding: 15px;
+  }
+
+  .message-container.left {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .message-container.right {
+    justify-content: flex-end;
+    text-align: right;
+    align-items: flex-end;
+  }
+
+  .message-container.right .avatar {
+    order: 1; /* This ensures that the avatar is positioned after the message bubble */
+    margin-left: 10px; /* Adjust the spacing */
+    margin-right: 0;
+  }
+
+  .message-container.right .message-bubble {
+    order: 0; /* Ensure the message bubble comes before the avatar */
   }
 
   .message-container {
-    margin: 30px 0; 
+    margin: 30px 0;
   }
 
   .message-bubble {
     max-width: 60%;
   }
 }
+
+
+
 
 </style>
