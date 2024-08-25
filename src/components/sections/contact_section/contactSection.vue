@@ -3,8 +3,8 @@
 export default {
   data() {
     return {
-      animationEnabled: true, // Control the animation state
-      animationCompleted: false, // Track whether the animation is completed
+      animationEnabled: true, 
+      animationCompleted: false,
       messages: [
         { text: "", fullText: "Where are you located?", delay: 0 },
         { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000 },
@@ -20,10 +20,8 @@ export default {
   watch: {
     animationEnabled(newVal) {
       if (!newVal) {
-        // If animation is turned off, reveal all messages instantly
         this.revealAllMessages();
       } else if (!this.animationCompleted) {
-        // If animation is turned back on and it hasn't completed, run the reveal logic
         this.revealMessages();
       }
     },
@@ -32,14 +30,14 @@ export default {
     if (this.animationEnabled && !this.animationCompleted) {
       this.revealMessages();
     } else {
-      this.revealAllMessages(); // If the animation is disabled on load, reveal all messages
+      this.revealAllMessages(); 
     }
   },
   methods: {
     revealMessages() {
       this.messages.forEach((message) => {
         setTimeout(() => {
-          if (!this.animationEnabled || this.animationCompleted) return; // Stop if animation is turned off or completed
+          if (!this.animationEnabled || this.animationCompleted) return; 
           message.text = "typing...";
         }, message.delay);
 
@@ -47,17 +45,16 @@ export default {
           if (!this.animationEnabled || this.animationCompleted) return;
           message.text = message.fullText;
           if (message === this.messages[this.messages.length - 1]) {
-            this.animationCompleted = true; // Mark the animation as completed when the last message is revealed
+            this.animationCompleted = true; 
           }
         }, message.delay + 2000);
       });
     },
     revealAllMessages() {
-      // Reveal all messages instantly
       this.messages.forEach((message) => {
         message.text = message.fullText;
       });
-      this.animationCompleted = true; // Mark the animation as completed when all messages are shown
+      this.animationCompleted = true; 
     },
   },
 };
@@ -65,18 +62,22 @@ export default {
 
 <template>
   <v-container class="contact-container">
-    <div class="header">
-      <div class="switch-container">
+    <div class="header d-flex justify-space-between align-center">
+      <h2 class="section-heading">Contact Me</h2>
+      <div class="switch-container d-flex align-center">
         <v-switch
           v-model="animationEnabled"
           inset
           color="primary"
+          size="small"
+          class="switch-control"
           :label="animationEnabled ? 'Animation On' : 'Animation Off'"
         />
       </div>
     </div>
-    <v-row justify="center">
-      <v-col cols="12" sm="10" md="8">
+    <v-divider></v-divider>
+    <v-row>
+      <v-col>
         <div class="message-container left">
           <v-avatar size="32" class="avatar">You</v-avatar>
           <div class="message-bubble left">
@@ -150,17 +151,63 @@ export default {
 
 .header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-weight: 700;
+  font-size: clamp(24px, 5vw, 32px);
+  color: #333;
+  margin: 0;
+  align-self: center; 
+  line-height: 1;
 }
 
 .switch-container {
   display: flex;
-  align-items: center;
+  align-items: center; 
+  margin-right: 20px;
 }
 
-.switch-container label {
-  margin-right: 10px;
-  font-weight: bold;
+.switch-control {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.switch-control .v-input__control {
+  display: flex;
+  align-items: center;
+  padding: 0 !important;
+}
+
+.v-switch .v-input__control {
+  display: flex;
+  align-items: center;
+  font-size: clamp(12px, 2vw, 16px); 
+  padding: 0;
+}
+
+
+.v-switch--switch {
+  line-height: 1;
+  transform: scale(0.9);
+}
+
+.switch-container v-switch {
+  margin-left: 10px;
+}
+
+.v-divider {
+  margin-bottom: 20px;
+  height: 2px;
+  background-color: #ddd;
+}
+
+.dark .v-divider {
+  background-color: #555;
 }
 
 .message-container {
@@ -277,7 +324,8 @@ a:hover {
   .contact-container {
     width: 90%; 
     border: 2px solid black;
-    padding: 15px;
+    padding-left: 5px; 
+    padding-right: 5px; 
   }
 
   .message-container.left {
@@ -293,21 +341,27 @@ a:hover {
   }
 
   .message-container.right .avatar {
-    order: 1; /* This ensures that the avatar is positioned after the message bubble */
-    margin-left: 10px; /* Adjust the spacing */
+    order: 1; 
+    margin-left: 10px; 
     margin-right: 0;
   }
 
   .message-container.right .message-bubble {
-    order: 0; /* Ensure the message bubble comes before the avatar */
+    order: 0; 
   }
 
+  .message-container.left,
+  .message-container.right {
+    padding: 0 10px;
+  }
+
+
   .message-container {
-    margin: 30px 0;
+    margin: 20px 0;
   }
 
   .message-bubble {
-    max-width: 60%;
+    max-width: 65%;
   }
 }
 
