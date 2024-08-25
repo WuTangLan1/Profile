@@ -98,7 +98,7 @@ export default {
         </div>
         <div v-if="messages[1].visible" class="message-container right">
           <v-avatar class="avatar" size="32">
-            <v-icon>mdi-account-circle</v-icon>
+            <img src="@/assets/personal photos/me1.jpg" alt="Me">
             <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
@@ -117,7 +117,7 @@ export default {
         </div>
         <div v-if="messages[3].visible" class="message-container right">
           <v-avatar class="avatar" size="32">
-            <v-icon>mdi-account-circle</v-icon>
+            <img src="@/assets/personal photos/me1.jpg" alt="Me">
             <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
@@ -136,7 +136,7 @@ export default {
         </div>
         <div v-if="messages[5].visible" class="message-container right">
           <v-avatar class="avatar" size="32">
-            <v-icon>mdi-account-circle</v-icon>
+            <img src="@/assets/personal photos/me1.jpg" alt="Me">
             <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
@@ -155,7 +155,7 @@ export default {
         </div>
         <div v-if="messages[7].visible" class="message-container right">
           <v-avatar class="avatar" size="32">
-            <v-icon>mdi-account-circle</v-icon>
+            <img src="@/assets/personal photos/me1.jpg" alt="Me">
             <span>Me</span>
           </v-avatar>
           <div class="message-bubble right">
@@ -275,7 +275,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between; 
-  padding: 6px 12px; 
+  padding-left: 5px;
+  padding-right: 5px;
   border-radius: 10px;
   background-color: #e0e0e0;
   font-size: 12px; 
@@ -284,8 +285,11 @@ export default {
   min-width: 70px; 
 }
 
-.avatar v-icon {
-  margin-right: 8px; 
+.avatar img {
+  width: 50%; 
+  height: 80%;
+  object-fit: cover; 
+  border-radius: 10px; 
 }
 
 .message-bubble {
