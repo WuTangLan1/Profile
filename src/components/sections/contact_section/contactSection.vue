@@ -71,7 +71,6 @@ export default {
           color="primary"
           size="small"
           class="switch-control"
-          :label="animationEnabled ? 'Animation On' : 'Animation Off'"
         />
       </div>
     </div>
@@ -186,18 +185,8 @@ export default {
 .v-switch .v-input__control {
   display: flex;
   align-items: center;
-  font-size: clamp(12px, 2vw, 16px); 
+  font-size: clamp(10px, 1.5vw, 14px); 
   padding: 0;
-}
-
-
-.v-switch--switch {
-  line-height: 1;
-  transform: scale(0.9);
-}
-
-.switch-container v-switch {
-  margin-left: 10px;
 }
 
 .v-divider {
@@ -326,6 +315,10 @@ a:hover {
     border: 2px solid black;
     padding-left: 5px; 
     padding-right: 5px; 
+  }
+
+  .section-heading {
+    margin-left: 50px;
   }
 
   .message-container.left {
