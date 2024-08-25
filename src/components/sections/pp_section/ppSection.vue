@@ -121,19 +121,20 @@ export default {
               </v-list-item>
             </v-list>
           </v-card-text>
-          <v-card-actions class="justify-space-between">
-            <div>
+          <v-card-actions class="card-actions">
+            <div class="tech-stack">
               <v-btn 
                 v-for="tech in project.techStack" 
                 :key="tech.name" 
                 icon 
+                class="tech-btn"
               >
-              <v-img 
-                :src="tech.src"
-                :alt="tech.name"
-                class="tech-icon"
-                :style="{ animationDelay: getRandomDelay() + 's' }"
-              ></v-img>
+                <v-img 
+                  :src="tech.src"
+                  :alt="tech.name"
+                  class="tech-icon"
+                  :style="{ animationDelay: getRandomDelay() + 's' }"
+                ></v-img>
               </v-btn>
             </div>
             <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="visit">Visit</a>
@@ -181,11 +182,34 @@ export default {
   text-align: left;
 }
 
+.v-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.tech-stack {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  margin-right: 16px; 
+}
+
+.tech-btn {
+  flex: 1; 
+  display: flex;
+  justify-content: center; 
+}
+
 .visit {
-  color: rgb(50, 103, 153);
+  flex: 0 0 auto; 
+  text-align: right;
+  white-space: nowrap;
 }
 
 .tech-icon {
+  flex: 0 0 auto;
   width: 40px;
   height: 40px;
   animation-name: hop;
