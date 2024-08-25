@@ -3,7 +3,8 @@
 export default {
   data() {
     return {
-      animationEnabled: true, 
+      animationEnabled: true, // Control the animation state
+      animationCompleted: false, // Track whether the animation is completed
       messages: [
         { text: "", fullText: "Where are you located?", delay: 0 },
         { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000 },
@@ -13,40 +14,54 @@ export default {
         { text: "", fullText: "finnmassari404@gmail.com", delay: 10000 },
         { text: "", fullText: "Can I see your GitHub profile?", delay: 12000 },
         { text: "", fullText: "WuTangLan1", delay: 14000 },
-      ]
+      ],
     };
   },
   watch: {
     animationEnabled(newVal) {
       if (!newVal) {
-        this.messages.forEach(message => {
-          message.text = message.fullText;
-        });
-      } else {
+        // If animation is turned off, reveal all messages instantly
+        this.revealAllMessages();
+      } else if (!this.animationCompleted) {
+        // If animation is turned back on and it hasn't completed, run the reveal logic
         this.revealMessages();
       }
-    }
+    },
   },
   mounted() {
-    this.revealMessages();
+    if (this.animationEnabled && !this.animationCompleted) {
+      this.revealMessages();
+    } else {
+      this.revealAllMessages(); // If the animation is disabled on load, reveal all messages
+    }
   },
   methods: {
     revealMessages() {
-      if (!this.animationEnabled) return; 
       this.messages.forEach((message) => {
         setTimeout(() => {
+          if (!this.animationEnabled || this.animationCompleted) return; // Stop if animation is turned off or completed
           message.text = "typing...";
         }, message.delay);
 
         setTimeout(() => {
+          if (!this.animationEnabled || this.animationCompleted) return;
           message.text = message.fullText;
-        }, message.delay + 2000); 
+          if (message === this.messages[this.messages.length - 1]) {
+            this.animationCompleted = true; // Mark the animation as completed when the last message is revealed
+          }
+        }, message.delay + 2000);
       });
-    }
-  }
+    },
+    revealAllMessages() {
+      // Reveal all messages instantly
+      this.messages.forEach((message) => {
+        message.text = message.fullText;
+      });
+      this.animationCompleted = true; // Mark the animation as completed when all messages are shown
+    },
+  },
 };
 </script>
-
 
 <template>
   <v-container class="contact-container">
@@ -157,7 +172,7 @@ export default {
 
 .message-container.left {
   justify-content: flex-start;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
 .message-container.right {
@@ -168,7 +183,7 @@ export default {
 .avatar {
   margin-right: 10px;
   border-radius: 10px;
-  padding: 4px 12px; 
+  padding: 4px 12px;
   background-color: #e0e0e0;
   font-size: 14px;
   font-weight: bold;
@@ -215,7 +230,6 @@ a:hover {
   text-decoration: underline;
 }
 
-
 .dark .left .message-bubble {
   background-color: #37474f;
 }
@@ -257,4 +271,19 @@ a:hover {
     padding: 10px;
   }
 }
+
+@media (min-width: 1200px) {
+  .contact-container {
+    max-width: 80%; 
+  }
+
+  .message-container {
+    margin: 30px 0; 
+  }
+
+  .message-bubble {
+    max-width: 60%;
+  }
+}
+
 </style>
