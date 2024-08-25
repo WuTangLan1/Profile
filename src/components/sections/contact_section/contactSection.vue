@@ -78,13 +78,17 @@ export default {
     <v-row>
       <v-col>
         <div class="message-container left">
-          <v-avatar size="32" class="avatar">You</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> You
+          </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[0].text }}</span>
           </div>
         </div>
         <div class="message-container right">
-          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> Me
+          </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-map-marker</v-icon>
             <span>{{ messages[1].text }}</span>
@@ -92,13 +96,17 @@ export default {
         </div>
 
         <div class="message-container left">
-          <v-avatar size="32" class="avatar">You</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> You
+          </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[2].text }}</span>
           </div>
         </div>
         <div class="message-container right">
-          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> Me
+          </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-phone</v-icon>
             <span>{{ messages[3].text }}</span>
@@ -106,13 +114,17 @@ export default {
         </div>
 
         <div class="message-container left">
-          <v-avatar size="32" class="avatar">You</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> You
+          </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[4].text }}</span>
           </div>
         </div>
         <div class="message-container right">
-          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> Me
+          </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-email</v-icon>
             <a :href="'mailto:' + messages[5].text">{{ messages[5].text }}</a>
@@ -120,13 +132,17 @@ export default {
         </div>
 
         <div class="message-container left">
-          <v-avatar size="32" class="avatar">You</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> You
+          </v-avatar>
           <div class="message-bubble left">
             <span>{{ messages[6].text }}</span>
           </div>
         </div>
         <div class="message-container right">
-          <v-avatar size="32" class="avatar">Me</v-avatar>
+          <v-avatar size="32" class="avatar">
+            <v-icon>mdi-account-circle</v-icon> Me
+          </v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-github</v-icon>
             <a :href="'https://github.com/' + messages[7].text" target="_blank">{{ messages[7].text }}</a>
@@ -136,6 +152,7 @@ export default {
     </v-row>
   </v-container>
 </template>
+
 
 <style scoped>
 .contact-container {
@@ -216,17 +233,20 @@ export default {
 }
 
 .avatar {
+  display: flex;
+  align-items: center;
   margin-right: 10px;
   border-radius: 10px;
-  padding: 4px 12px;
+  padding: 6px; 
   background-color: #e0e0e0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   text-align: center;
+  min-width: 50px; 
 }
 
 .message-bubble {
-  max-width: 80%;
+  max-width: 85%; 
   padding: 15px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
