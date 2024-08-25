@@ -1,4 +1,39 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
+<script>
+export default {
+  data() {
+    return {
+      messages: [
+        { text: "", fullText: "Where are you located?", delay: 0 },
+        { text: "", fullText: "Cape Town, South Africa 7979", delay: 2000 },
+        { text: "", fullText: "What is your cell number?", delay: 4000 },
+        { text: "", fullText: "+27 786867785", delay: 6000 },
+        { text: "", fullText: "What's your email address?", delay: 8000 },
+        { text: "", fullText: "finnmassari404@gmail.com", delay: 10000 },
+        { text: "", fullText: "Can I see your GitHub profile?", delay: 12000 },
+        { text: "", fullText: "WuTangLan1", delay: 14000 },
+      ]
+    };
+  },
+  mounted() {
+    this.revealMessages();
+  },
+  methods: {
+    revealMessages() {
+      this.messages.forEach((message) => {
+        setTimeout(() => {
+          message.text = "typing...";
+        }, message.delay);
+
+        setTimeout(() => {
+          message.text = message.fullText;
+        }, message.delay + 2000); 
+      });
+    }
+  }
+};
+</script>
+
 <template>
   <v-container class="contact-container">
     <v-row justify="center">
@@ -6,56 +41,56 @@
         <div class="message-container left">
           <v-avatar size="32" class="avatar">You</v-avatar>
           <div class="message-bubble left">
-            <span>Where are you located?</span>
+            <span>{{ messages[0].text }}</span>
           </div>
         </div>
         <div class="message-container right">
           <v-avatar size="32" class="avatar">Me</v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-map-marker</v-icon>
-            <span>Cape Town, South Africa 7979</span>
+            <span>{{ messages[1].text }}</span>
           </div>
         </div>
 
         <div class="message-container left">
           <v-avatar size="32" class="avatar">You</v-avatar>
           <div class="message-bubble left">
-            <span>What is your cell number?</span>
+            <span>{{ messages[2].text }}</span>
           </div>
         </div>
         <div class="message-container right">
           <v-avatar size="32" class="avatar">Me</v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-phone</v-icon>
-            <span>+27 786867785</span>
+            <span>{{ messages[3].text }}</span>
           </div>
         </div>
 
         <div class="message-container left">
           <v-avatar size="32" class="avatar">You</v-avatar>
           <div class="message-bubble left">
-            <span>What's your email address?</span>
+            <span>{{ messages[4].text }}</span>
           </div>
         </div>
         <div class="message-container right">
           <v-avatar size="32" class="avatar">Me</v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-email</v-icon>
-            <a href="mailto:finnmassari404@gmail.com">finnmassari404@gmail.com</a>
+            <a :href="'mailto:' + messages[5].text">{{ messages[5].text }}</a>
           </div>
         </div>
 
         <div class="message-container left">
           <v-avatar size="32" class="avatar">You</v-avatar>
           <div class="message-bubble left">
-            <span>Can I see your GitHub profile?</span>
+            <span>{{ messages[6].text }}</span>
           </div>
         </div>
         <div class="message-container right">
           <v-avatar size="32" class="avatar">Me</v-avatar>
           <div class="message-bubble right">
             <v-icon left>mdi-github</v-icon>
-            <a href="https://github.com/WuTangLan1" target="_blank">WuTangLan1</a>
+            <a :href="'https://github.com/' + messages[7].text" target="_blank">{{ messages[7].text }}</a>
           </div>
         </div>
       </v-col>
@@ -68,7 +103,6 @@
   padding: 20px;
   margin: auto;
   max-width: 100%;
-  background: linear-gradient(to bottom, #f7f8fa, #e8ebf0);
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-out;
@@ -78,11 +112,12 @@
 .message-container {
   display: flex;
   align-items: flex-end;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .message-container.left {
   justify-content: flex-start;
+  flex-direction: row; 
 }
 
 .message-container.right {
@@ -92,12 +127,18 @@
 
 .avatar {
   margin-right: 10px;
+  border-radius: 10px;
+  padding: 4px 12px; 
+  background-color: #e0e0e0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .message-bubble {
   max-width: 80%;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   font-size: 16px;
   display: flex;
@@ -134,9 +175,6 @@ a:hover {
   text-decoration: underline;
 }
 
-.dark .contact-container {
-  background-color: #212121;
-}
 
 .dark .left .message-bubble {
   background-color: #37474f;
@@ -175,6 +213,7 @@ a:hover {
   .message-bubble {
     max-width: 90%;
     font-size: 14px;
+    margin-top: 10px;
     padding: 10px;
   }
 }
