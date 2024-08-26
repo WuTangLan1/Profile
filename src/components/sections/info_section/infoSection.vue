@@ -2,8 +2,12 @@
 <script>
   import imageMe from '@/assets/personal photos/personalphoto.png';
   import { inject } from 'vue';
+  import TechSection from '@/components/sections/info_section/techSection.vue'; 
 
   export default {
+    components: {
+      TechSection 
+    },
     setup() {
       const handleChangeSection = inject('handleChangeSection');
       if (!handleChangeSection) {
@@ -88,6 +92,7 @@
           <v-btn color="primary" large class="ma-2" :href="resumeLink" download="finnm_resume.pdf">Download CV</v-btn>
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
+        <TechSection class="mt-10 tech-section" />
       </v-col>
     </v-row>
   </v-container>
@@ -216,8 +221,14 @@
 .profile-image {
   width: 100%; 
   border-radius: 10px;
-  animation: fadeIn 1s ease-out forwards; /* Apply the animation to the image */
+  animation: fadeIn 1s ease-out forwards; 
 }
+
+.tech-section {
+  margin-top: 40px; 
+  width: 100%;
+}
+
 
 @media (max-width: 500px) {
   .text-h3 {
