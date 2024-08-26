@@ -23,14 +23,34 @@
         deployment: [
           { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png') },
           { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png') },
-        ]
-      };
-    }
-  };
+        ],
+        sectionInView: false,
+    };
+  },
+  mounted() {
+        const options = {
+        root: null,
+        threshold: 0.5,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+            this.sectionInView = true;
+            observer.unobserve(entry.target);
+            }
+        });
+        }, options);
+
+        observer.observe(this.$el);
+    },
+ };
+  
+
 </script>
 
 <template>
-    <v-container class="tech-container py-10">
+    <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
       <v-row>
         <v-col cols="12" md="6">
           <v-card class="tech-card languages">
@@ -91,7 +111,9 @@
         </v-col>
       </v-row>
     </v-container>
-</template>
+  </template>
+  
+  
   
   
 <style scoped>
@@ -106,54 +128,43 @@
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  opacity: 0;
+  visibility: hidden;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-container.in-view .tech-card {
+  animation: dropIn 0.6s ease-out forwards;
 }
 
 @keyframes dropIn {
   from {
     transform: translateY(-30px);
     opacity: 0;
-    visibility: hidden; /* Hide initially */
+    visibility: hidden;
   }
   to {
     transform: translateY(0);
     opacity: 1;
-    visibility: visible; /* Show when animation starts */
+    visibility: visible;
   }
 }
 
 .tech-card.languages {
-  animation: dropIn 0.6s ease-out forwards;
   animation-delay: 0.2s;
-  opacity: 0;
-  visibility: hidden; 
-  will-change: transform, opacity;
 }
 
 .tech-card.frameworks {
-  animation: dropIn 0.6s ease-out forwards;
   animation-delay: 0.6s;
-  opacity: 0;
-  visibility: hidden;
-  will-change: transform, opacity;
 }
 
 .tech-card.data-management {
-  animation: dropIn 0.6s ease-out forwards;
   animation-delay: 1s;
-  opacity: 0;
-  visibility: hidden;
-  will-change: transform, opacity;
 }
 
 .tech-card.deployment {
-  animation: dropIn 0.6s ease-out forwards;
   animation-delay: 1.4s;
-  opacity: 0;
-  visibility: hidden;
-  will-change: transform, opacity;
 }
-
 
 .card-title {
   font-weight: bold;
