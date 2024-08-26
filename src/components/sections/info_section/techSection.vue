@@ -109,21 +109,51 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+@keyframes dropIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+    visibility: hidden; /* Hide initially */
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible; /* Show when animation starts */
+  }
+}
+
 .tech-card.languages {
-  background-color: #f3d5e8; 
+  animation: dropIn 0.6s ease-out forwards;
+  animation-delay: 0.2s;
+  opacity: 0;
+  visibility: hidden; 
+  will-change: transform, opacity;
 }
 
 .tech-card.frameworks {
-  background-color: #d5e8d4; 
+  animation: dropIn 0.6s ease-out forwards;
+  animation-delay: 0.6s;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .tech-card.data-management {
-  background-color: #d7e6f2; 
+  animation: dropIn 0.6s ease-out forwards;
+  animation-delay: 1s;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
 }
 
 .tech-card.deployment {
-  background-color: #f7e6a1; 
+  animation: dropIn 0.6s ease-out forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
 }
+
 
 .card-title {
   font-weight: bold;
