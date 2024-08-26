@@ -92,8 +92,8 @@
           <v-btn color="primary" large class="ma-2" :href="resumeLink" download="finnm_resume.pdf">Download CV</v-btn>
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
-        <TechSection class="mt-10 tech-section" />
       </v-col>
+      <TechSection class="mt-10 tech-section" />
     </v-row>
   </v-container>
 </template>
@@ -114,46 +114,53 @@
 
 @media(min-width: 1000px)
 {
+  
   .info-container {
     overflow-y: hidden;
     padding: 80px 40px 40px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     position: relative;
     border-radius: 15px; 
+    flex-direction: column;
   }
   .profile-image {
   width: 80%; 
   border-radius: 15px;
-}
+  }
 
-.buttons-container v-btn {
-  padding: 10px 30px;
-  font-size: 18px;
-  transition: box-shadow 0.3s ease;
-}
+  .tech-section {
+    width: 100%;
+    margin-top: 40px; 
+  }
 
-.buttons-container v-btn:hover {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+  .buttons-container v-btn {
+    padding: 10px 30px;
+    font-size: 18px;
+    transition: box-shadow 0.3s ease;
+  }
 
-.text-h3 {
-  font-weight: bold;
-  font-size: 32px; 
-}
+  .buttons-container v-btn:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
 
-.text-h5 {
-  font-weight: 500;
-  font-size: 22px; 
-  color: #444; 
-  margin-bottom: 24px; 
-}
+  .text-h3 {
+    font-weight: bold;
+    font-size: 32px; 
+  }
 
-.body-1 {
-  font-size: 18px;
-  color: #333; 
-  text-align: justify; 
-  padding: 0 25px; 
-}
+  .text-h5 {
+    font-weight: 500;
+    font-size: 22px; 
+    color: #444; 
+    margin-bottom: 24px; 
+  }
+
+  .body-1 {
+    font-size: 18px;
+    color: #333; 
+    text-align: justify; 
+    padding: 0 25px; 
+  }
 }
 
 .info-row {

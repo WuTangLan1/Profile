@@ -185,11 +185,13 @@
 }
 
 .dark .tech-icon {
-  filter: brightness(0.85);
+  filter: brightness(1);
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .dark .tech-icon:hover {
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  filter: brightness(1.2); 
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); 
 }
   
   @media (max-width: 768px) {
