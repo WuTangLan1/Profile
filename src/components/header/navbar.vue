@@ -1,6 +1,6 @@
 <!-- src\components\header\Navbar.vue -->
 <script>
-import { inject } from 'vue';
+import { ref, inject, nextTick } from 'vue';
 
 export default {
   name: 'Navbar-View',
@@ -13,19 +13,24 @@ export default {
       throw new Error('toggleDark not provided!');
     }
 
-    const handleToggle = () => {
+    const isRotated = ref(false);
+
+    const handleToggle = async () => {
+      isRotated.value = !isRotated.value;
+      await nextTick(); 
       toggleDark();
     };
-    const handleSelectSection = (index) => {
-    emit('change-section', index);
-};
 
+
+    const handleSelectSection = (index) => {
+      emit('change-section', index);
+  };
 
     const isCurrent = (index) => {
       return index === props.currentSection;
     };
 
-    return { handleToggle, handleSelectSection, isCurrent };
+    return { handleToggle, handleSelectSection, isCurrent, isRotated };
   }
 }
 </script>
@@ -43,7 +48,7 @@ export default {
       </ul>
     </nav>
     <div @click="handleToggle" class="dark-mode-icon">
-      <img src="@/assets/images/dark-mode.png" alt="Toggle Dark Mode" />
+      <img :class="{ rotated: isRotated }" src="@/assets/images/dark-mode.png" alt="Toggle Dark Mode" />
     </div>
   </header>
 </template>
@@ -98,16 +103,22 @@ nav li:hover, nav li.active {
 
 .dark-mode-icon {
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease; 
 }
 
 .dark-mode-icon img {
   width: 30px; 
   height: auto;
+  transition: transform 0.5s ease;
 }
 
+.rotated {
+  transform: rotate(180deg); 
+}
+
+
 .dark-mode-icon:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) rotate(180deg); 
 }
 
 .dark-mode-icon {

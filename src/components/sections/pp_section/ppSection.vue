@@ -99,14 +99,17 @@ export default {
   <v-container>
     <v-row>
       <v-col
-        v-for="(project, index) in projects"
-        :key="index"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        class="d-flex align-stretch"
+          v-for="(project, index) in projects"
+          :key="index"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
+          xl="3"
+          class="d-flex align-stretch"
       >
+
+
         <v-card :color="getRandomColor()" dark elevation="2" class="ma-2" @click="goToProject(project.url)">
           <v-card-title class="d-flex justify-space-between align-center">
             <span>{{ project.title }}</span>
@@ -122,7 +125,7 @@ export default {
             </v-list>
           </v-card-text>
           <v-card-actions class="card-actions">
-            <div class="tech-stack">
+            <div class="tech-stack d-flex">
               <v-btn 
                 v-for="tech in project.techStack" 
                 :key="tech.name" 
@@ -137,6 +140,7 @@ export default {
                 ></v-img>
               </v-btn>
             </div>
+            <v-spacer></v-spacer>
             <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="visit">Visit</a>
           </v-card-actions>
         </v-card>
@@ -148,7 +152,9 @@ export default {
 <style scoped>
 .v-container {
   overflow-y: auto;
+  margin: 0 auto;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .v-card {
@@ -191,27 +197,26 @@ export default {
 
 .tech-stack {
   display: flex;
-  flex-grow: 1;
-  justify-content: space-evenly;
-  margin-right: 16px; 
+  justify-content: space-evenly; 
+  flex-wrap: wrap;
 }
 
 .tech-btn {
-  flex: 1; 
+  flex: 0 1 24px; 
   display: flex;
   justify-content: center; 
 }
 
 .visit {
-  flex: 0 0 auto; 
-  text-align: right;
   white-space: nowrap;
+  margin-left: 8px;
 }
+
 
 .tech-icon {
   flex: 0 0 auto;
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   animation-name: hop;
   animation-duration: 1s; 
   animation-timing-function: ease-in-out;
