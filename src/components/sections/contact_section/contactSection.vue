@@ -306,8 +306,17 @@ export default {
   align-items: center;
   white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: fadeInBubble 0.5s ease-out forwards; /* Animation added */
+  animation: fadeInBubble 0.5s ease-out forwards; 
 }
+
+.message-container.left .avatar {
+  margin-right: 10px;
+}
+
+.message-container.right .avatar {
+  margin-left: 10px;
+}
+
 
 @keyframes fadeInBubble {
   from {
@@ -334,6 +343,7 @@ export default {
 
 .message-bubble v-icon {
   margin-right: 10px;
+  margin-left: 10px;
   color: #666;
 }
 
