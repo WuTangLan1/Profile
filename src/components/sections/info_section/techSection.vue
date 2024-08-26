@@ -5,24 +5,24 @@
     data() {
       return {
         languages: [
-          { name: 'JavaScript', src: require('@/assets/images/known tech/javascript_icon.png') },
-          { name: 'TypeScript', src: require('@/assets/images/known tech/typescript_icon.png') },
-          { name: 'Python', src: require('@/assets/images/known tech/python_icon.png') }
+          { name: 'JavaScript', src: require('@/assets/images/known tech/javascript_icon.png'), rating : 5 },
+          { name: 'TypeScript', src: require('@/assets/images/known tech/typescript_icon.png'), rating : 4 },
+          { name: 'Python', src: require('@/assets/images/known tech/python_icon.png'), rating : 3 }
         ],
         frameworks: [
-          { name: 'Vue.js', src: require('@/assets/images/known tech/vue_icon.png') },
-          { name: 'Vuetify', src: require('@/assets/images/known tech/vuetify_icon.png') },
-          { name: 'Tailwind CSS', src: require('@/assets/images/known tech/tailwind_icon.png') },
-          { name: 'PrimeVue', src: require('@/assets/images/known tech/primevue_icon.png') },
-          { name: 'Blazor', src: require('@/assets/images/known tech/blazor_icon.png') }
+          { name: 'Vue.js', src: require('@/assets/images/known tech/vue_icon.png'), rating : 5 },
+          { name: 'Vuetify', src: require('@/assets/images/known tech/vuetify_icon.png'), rating : 5 },
+          { name: 'Tailwind CSS', src: require('@/assets/images/known tech/tailwind_icon.png'), rating : 4 },
+          { name: 'PrimeVue', src: require('@/assets/images/known tech/primevue_icon.png'), rating : 3 },
+          { name: 'Blazor', src: require('@/assets/images/known tech/blazor_icon.png'), rating : 3 }
         ],
         dataManagement: [
-          { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png') },
-          { name: 'MongoDB', src: require('@/assets/images/known tech/mongodb_icon.png') }
+          { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 5 },
+          { name: 'MongoDB', src: require('@/assets/images/known tech/mongodb_icon.png'), rating : 3 }
         ],
         deployment: [
-          { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png') },
-          { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png') },
+          { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png'), rating : 4 },
+          { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 4 },
         ],
         sectionInView: false,
     };
@@ -50,69 +50,105 @@
 </script>
 
 <template>
-    <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-card class="tech-card languages" :style="sectionInView ? 'animation-delay: 0.5s' : ''">
-            <v-card-title class="card-title">
-              Languages
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <div class="tech-grid">
-                <v-img v-for="tech in languages" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+  <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
+    <v-row>
+      <v-col cols="12">
+        <!-- Languages Section -->
+        <v-card class="tech-card languages" :style="sectionInView ? 'animation-delay: 0.5s' : ''">
+          <v-card-title class="card-title">Languages</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in languages" :key="tech.name" class="tech-row">
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <span class="tech-name">{{ tech.name }}</span>
+              <div class="tech-rating">
+                <v-icon
+                  v-for="i in 5"
+                  :key="i"
+                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
+                  class="star-icon"
+                >mdi-star</v-icon>
               </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-  
-        <v-col cols="12" md="6">
-          <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
-            <v-card-title class="card-title">
-              Frameworks
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <div class="tech-grid">
-                <v-img v-for="tech in frameworks" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <!-- Frameworks Section -->
+        <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
+          <v-card-title class="card-title">Frameworks</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in frameworks" :key="tech.name" class="tech-row">
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <span class="tech-name">{{ tech.name }}</span>
+              <div class="tech-rating">
+                <v-icon
+                  v-for="i in 5"
+                  :key="i"
+                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
+                  class="star-icon"
+                >mdi-star</v-icon>
               </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-  
-      <v-row class="mt-5">
-        <v-col cols="12" md="6">
-          <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
-            <v-card-title class="card-title">
-              Data Management
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <div class="tech-grid">
-                <v-img v-for="tech in dataManagement" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <!-- Data Management Section -->
+        <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
+          <v-card-title class="card-title">Data Management</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in dataManagement" :key="tech.name" class="tech-row">
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <span class="tech-name">{{ tech.name }}</span>
+              <div class="tech-rating">
+                <v-icon
+                  v-for="i in 5"
+                  :key="i"
+                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
+                  class="star-icon"
+                >mdi-star</v-icon>
               </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-  
-        <v-col cols="12" md="6">
-          <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
-            <v-card-title class="card-title">
-              Deployment & Hosting
-            </v-card-title>
-            <v-divider></v-divider>
-            <v-card-text>
-              <div class="tech-grid">
-                <v-img v-for="tech in deployment" :key="tech.name" :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <!-- Deployment & Hosting Section -->
+        <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
+          <v-card-title class="card-title">Deployment & Hosting</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in deployment" :key="tech.name" class="tech-row">
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <span class="tech-name">{{ tech.name }}</span>
+              <div class="tech-rating">
+                <v-icon
+                  v-for="i in 5"
+                  :key="i"
+                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
+                  class="star-icon"
+                >mdi-star</v-icon>
               </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-  
+
   
 <style scoped>
 .tech-container {
@@ -172,11 +208,11 @@
   color: #333;
 }
 
-.tech-grid {
+.tech-row {
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  padding-top: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .tech-icon {
@@ -190,6 +226,37 @@
   transform: scale(1.15);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+
+.tech-name {
+  font-size: 18px;
+  font-weight: bold;
+  flex-grow: 1;
+  color: #333;
+  margin-right: 20px;
+}
+
+.tech-rating {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.star-filled {
+  color: #FFD700; 
+}
+
+.star-empty {
+  color: #ccc; 
+}
+
+.dark .tech-name {
+  color: #d3d3d3;
+}
+
 
 .dark .tech-container {
   border-radius: 12px;
