@@ -30,7 +30,7 @@
   mounted() {
         const options = {
         root: null,
-        threshold: 0.5,
+        threshold: 0.2,
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -53,7 +53,7 @@
     <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
       <v-row>
         <v-col cols="12" md="6">
-          <v-card class="tech-card languages">
+          <v-card class="tech-card languages" :style="sectionInView ? 'animation-delay: 0.5s' : ''">
             <v-card-title class="card-title">
               Languages
             </v-card-title>
@@ -67,7 +67,7 @@
         </v-col>
   
         <v-col cols="12" md="6">
-          <v-card class="tech-card frameworks">
+          <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
             <v-card-title class="card-title">
               Frameworks
             </v-card-title>
@@ -83,7 +83,7 @@
   
       <v-row class="mt-5">
         <v-col cols="12" md="6">
-          <v-card class="tech-card data-management">
+          <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
             <v-card-title class="card-title">
               Data Management
             </v-card-title>
@@ -97,7 +97,7 @@
         </v-col>
   
         <v-col cols="12" md="6">
-          <v-card class="tech-card deployment">
+          <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
             <v-card-title class="card-title">
               Deployment & Hosting
             </v-card-title>
@@ -111,9 +111,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </template>
-  
-  
+</template>
   
   
 <style scoped>
