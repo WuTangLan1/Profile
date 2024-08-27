@@ -12,12 +12,14 @@
         ],
         frameworks: [
           { name: 'Vue.js', src: require('@/assets/images/known tech/vue_icon.png'), rating : 5 },
-          { name: 'Express.js', src: require('@/assets/images/known tech/expressjs_icon.png'), rating : 5 },
           { name: 'Vuetify', src: require('@/assets/images/known tech/vuetify_icon.png'), rating : 5 },
-          { name: 'ASP.NET', src: require('@/assets/images/known tech/aspnet_icon.png'), rating : 4 },
           { name: 'Tailwind CSS', src: require('@/assets/images/known tech/tailwind_icon.png'), rating : 4 },
           { name: 'PrimeVue', src: require('@/assets/images/known tech/primevue_icon.png'), rating : 3 },
           { name: 'Blazor', src: require('@/assets/images/known tech/blazor_icon.png'), rating : 3 }
+        ],
+        backend: [
+          { name: 'Express.js', src: require('@/assets/images/known tech/expressjs_icon.png'), rating : 5 },
+          { name: 'ASP.NET', src: require('@/assets/images/known tech/aspnet_icon.png'), rating : 4 },
         ],
         dataManagement: [
           { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 5 },
@@ -31,6 +33,7 @@
         management: [
           { name: 'Github', src: require('@/assets/images/known tech/github_icon.png'), rating : 5 },
           { name: 'DevOpps', src: require('@/assets/images/known tech/devopps_icon.png'), rating : 4 },
+          { name: 'Discord', src: require('@/assets/images/known tech/discord_icon.png'), rating : 4 },
         ],
         sectionInView: false,
     };
@@ -45,7 +48,7 @@
   mounted() {
         const options = {
         root: null,
-        threshold: 0.2,
+        threshold: 0.3,
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -95,7 +98,7 @@
 
       <v-col cols="12" md="6" lg="4">
         <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
-          <v-card-title class="card-title">Frameworks</v-card-title>
+          <v-card-title class="card-title">Frontend Frameworks</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
             <div v-for="tech in frameworks" :key="tech.name" class="tech-row">
@@ -122,15 +125,15 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4">
-        <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
-          <v-card-title class="card-title">Data Management</v-card-title>
+        <v-card class="tech-card backend" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
+          <v-card-title class="card-title">Backend Frameworks</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
-            <div v-for="tech in dataManagement" :key="tech.name" class="tech-row">
+            <div v-for="tech in backend" :key="tech.name" class="tech-row">
               <span class="tech-name">{{ tech.name }}</span>
               <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
-              <v-icon
+                <v-icon
                   v-for="(i, index) in 5"
                   :key="index"
                   :class="[
@@ -150,7 +153,35 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4">
-        <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
+        <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 2s' : ''">
+          <v-card-title class="card-title">Data Management</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in dataManagement" :key="tech.name" class="tech-row">
+              <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <div class="tech-rating">
+              <v-icon
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(1.4, index) }"
+                >mdi-star</v-icon>
+              </div>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="6" lg="4">
+        <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2.5s' : ''">
           <v-card-title class="card-title">Deployment & Hosting</v-card-title>
           <v-divider></v-divider>
           <v-card-text>
@@ -169,7 +200,7 @@
                       'star-empty': sectionInView && i > tech.rating
                     }
                   ]"
-                  :style="{ 'animation-delay': starAnimationDelay(1.4, index) }"
+                  :style="{ 'animation-delay': starAnimationDelay(1.8, index) }"
                 >mdi-star</v-icon>
               </div>
             </div>
