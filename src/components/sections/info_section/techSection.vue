@@ -45,14 +45,12 @@
         observer.observe(this.$el);
     },
  };
-  
-
 </script>
 
 <template>
   <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
-    <v-row>
-      <v-col cols="12">
+    <v-row class="tech-grid">
+      <v-col cols="12" md="6" lg="4">
         <!-- Languages Section -->
         <v-card class="tech-card languages" :style="sectionInView ? 'animation-delay: 0.5s' : ''">
           <v-card-title class="card-title">Languages</v-card-title>
@@ -73,10 +71,8 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col cols="12">
+      <v-col cols="12" md="6" lg="4">
         <!-- Frameworks Section -->
         <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
           <v-card-title class="card-title">Frameworks</v-card-title>
@@ -97,10 +93,8 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col cols="12">
+      <v-col cols="12" md="6" lg="4">
         <!-- Data Management Section -->
         <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
           <v-card-title class="card-title">Data Management</v-card-title>
@@ -121,10 +115,8 @@
           </v-card-text>
         </v-card>
       </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col cols="12">
+      <v-col cols="12" md="6" lg="4">
         <!-- Deployment & Hosting Section -->
         <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
           <v-card-title class="card-title">Deployment & Hosting</v-card-title>
@@ -301,6 +293,7 @@
   filter: brightness(1.2); 
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); 
 }
+
   
 @media (max-width: 768px) {
     .tech-container {
