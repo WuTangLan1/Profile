@@ -7,6 +7,7 @@
         languages: [
           { name: 'JavaScript', src: require('@/assets/images/known tech/javascript_icon.png'), rating : 5 },
           { name: 'TypeScript', src: require('@/assets/images/known tech/typescript_icon.png'), rating : 4 },
+          { name: 'C Sharp', src: require('@/assets/images/known tech/csharp_icon.png'), rating : 4 },
           { name: 'Python', src: require('@/assets/images/known tech/python_icon.png'), rating : 3 }
         ],
         frameworks: [
@@ -18,6 +19,7 @@
         ],
         dataManagement: [
           { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 5 },
+          { name: 'MySQL', src: require('@/assets/images/known tech/mysql_icon.png'), rating : 3 },
           { name: 'MongoDB', src: require('@/assets/images/known tech/mongodb_icon.png'), rating : 3 }
         ],
         deployment: [
