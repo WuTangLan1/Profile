@@ -29,6 +29,13 @@
         sectionInView: false,
     };
   },
+  computed: {
+      starAnimationDelay() {
+        return (cardDelay, index) => {
+          return this.sectionInView ? `${2 + cardDelay + 0.3 * index}s` : '0s';
+        };
+      }
+    },
   mounted() {
         const options = {
         root: null,
@@ -53,7 +60,6 @@
   <v-container :class="['tech-container', { 'in-view': sectionInView }]" py-10>
     <v-row class="tech-grid">
       <v-col cols="12" md="6" lg="4">
-        <!-- Languages Section -->
         <v-card class="tech-card languages" :style="sectionInView ? 'animation-delay: 0.5s' : ''">
           <v-card-title class="card-title">Languages</v-card-title>
           <v-divider></v-divider>
@@ -63,10 +69,17 @@
               <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
-                  v-for="i in 5"
-                  :key="i"
-                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
-                  class="star-icon"
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(0.2, index) }"
                 >mdi-star</v-icon>
               </div>
             </div>
@@ -75,7 +88,6 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4">
-        <!-- Frameworks Section -->
         <v-card class="tech-card frameworks" :style="sectionInView ? 'animation-delay: 1s' : ''">
           <v-card-title class="card-title">Frameworks</v-card-title>
           <v-divider></v-divider>
@@ -85,10 +97,17 @@
               <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
-                  v-for="i in 5"
-                  :key="i"
-                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
-                  class="star-icon"
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(0.6, index) }"
                 >mdi-star</v-icon>
               </div>
             </div>
@@ -97,7 +116,6 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4">
-        <!-- Data Management Section -->
         <v-card class="tech-card data-management" :style="sectionInView ? 'animation-delay: 1.5s' : ''">
           <v-card-title class="card-title">Data Management</v-card-title>
           <v-divider></v-divider>
@@ -106,11 +124,18 @@
               <span class="tech-name">{{ tech.name }}</span>
               <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
-                <v-icon
-                  v-for="i in 5"
-                  :key="i"
-                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
-                  class="star-icon"
+              <v-icon
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(1, index) }"
                 >mdi-star</v-icon>
               </div>
             </div>
@@ -119,7 +144,6 @@
       </v-col>
 
       <v-col cols="12" md="6" lg="4">
-        <!-- Deployment & Hosting Section -->
         <v-card class="tech-card deployment" :style="sectionInView ? 'animation-delay: 2s' : ''">
           <v-card-title class="card-title">Deployment & Hosting</v-card-title>
           <v-divider></v-divider>
@@ -129,10 +153,17 @@
               <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
-                  v-for="i in 5"
-                  :key="i"
-                  :class="{ 'star-filled': i <= tech.rating, 'star-empty': i > tech.rating }"
-                  class="star-icon"
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(1.4, index) }"
                 >mdi-star</v-icon>
               </div>
             </div>
@@ -235,24 +266,34 @@
   order: 3;
 }
 
-
-.star-icon {
-  font-size: 24px;
-  margin-left: 5px;
+.tech-rating .star-icon {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: flashIn 0.6s forwards ease-in-out;
+  color: black; 
 }
 
-.star-filled {
+@keyframes flashIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tech-rating .star-icon.star-filled {
   color: #FFD700; 
 }
 
-.star-empty {
-  color: #ccc; 
+.tech-rating .star-icon.star-empty {
+  color: black; 
 }
-
 .dark .tech-name {
   color: #d3d3d3;
 }
-
 
 .dark .tech-container {
   border-radius: 12px;
