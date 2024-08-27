@@ -257,6 +257,16 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.tech-card:hover {
+  transform: translateY(-5px); 
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
+}
+
+.dark .tech-card:hover {
+  box-shadow: 0 8px 16px #d782e28f; 
+}
+
 .tech-container.in-view .tech-card {
   animation: dropIn 0.6s ease-out forwards;
 }
