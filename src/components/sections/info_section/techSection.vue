@@ -12,7 +12,9 @@
         ],
         frameworks: [
           { name: 'Vue.js', src: require('@/assets/images/known tech/vue_icon.png'), rating : 5 },
+          { name: 'Express.js', src: require('@/assets/images/known tech/expressjs_icon.png'), rating : 5 },
           { name: 'Vuetify', src: require('@/assets/images/known tech/vuetify_icon.png'), rating : 5 },
+          { name: 'ASP.NET', src: require('@/assets/images/known tech/aspnet_icon.png'), rating : 4 },
           { name: 'Tailwind CSS', src: require('@/assets/images/known tech/tailwind_icon.png'), rating : 4 },
           { name: 'PrimeVue', src: require('@/assets/images/known tech/primevue_icon.png'), rating : 3 },
           { name: 'Blazor', src: require('@/assets/images/known tech/blazor_icon.png'), rating : 3 }
@@ -25,6 +27,10 @@
         deployment: [
           { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png'), rating : 4 },
           { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 4 },
+        ],
+        management: [
+          { name: 'Github', src: require('@/assets/images/known tech/github_icon.png'), rating : 5 },
+          { name: 'DevOpps', src: require('@/assets/images/known tech/devopps_icon.png'), rating : 4 },
         ],
         sectionInView: false,
     };
@@ -170,6 +176,35 @@
           </v-card-text>
         </v-card>
       </v-col>
+
+      <v-col cols="12" md="6" lg="4">
+        <v-card class="tech-card management" :style="sectionInView ? 'animation-delay: 2.5s' : ''">
+          <v-card-title class="card-title">Project Management</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text>
+            <div v-for="tech in management" :key="tech.name" class="tech-row">
+              <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
+              <div class="tech-rating">
+                <v-icon
+                  v-for="(i, index) in 5"
+                  :key="index"
+                  :class="[
+                    'star-icon', 
+                    { 
+                      'star-visible': sectionInView && i <= tech.rating,
+                      'star-filled': sectionInView && i <= tech.rating,
+                      'star-empty': sectionInView && i > tech.rating
+                    }
+                  ]"
+                  :style="{ 'animation-delay': starAnimationDelay(1.8, index) }"
+                >mdi-star</v-icon>
+              </div>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
     </v-row>
   </v-container>
 </template>
@@ -222,6 +257,10 @@
 
 .tech-card.deployment {
   animation-delay: 1.4s;
+}
+
+.tech-card.management {
+  animation-delay: 1.8s;
 }
 
 .card-title {
@@ -323,6 +362,10 @@
   background-color: #3b2a3a; 
 }
 
+.dark .tech-card.management {
+  background-color: #2a3b36; 
+}
+
 .dark .card-title {
   color: #d3d3d3;
 }
@@ -331,6 +374,9 @@
   filter: brightness(1);
   transition: filter 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+
   
 @media (max-width: 768px) {
     .tech-container {
