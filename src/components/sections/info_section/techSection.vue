@@ -59,8 +59,8 @@
           <v-divider></v-divider>
           <v-card-text>
             <div v-for="tech in languages" :key="tech.name" class="tech-row">
-              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
                   v-for="i in 5"
@@ -83,8 +83,8 @@
           <v-divider></v-divider>
           <v-card-text>
             <div v-for="tech in frameworks" :key="tech.name" class="tech-row">
-              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
                   v-for="i in 5"
@@ -107,8 +107,8 @@
           <v-divider></v-divider>
           <v-card-text>
             <div v-for="tech in dataManagement" :key="tech.name" class="tech-row">
-              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
                   v-for="i in 5"
@@ -131,8 +131,8 @@
           <v-divider></v-divider>
           <v-card-text>
             <div v-for="tech in deployment" :key="tech.name" class="tech-row">
-              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <span class="tech-name">{{ tech.name }}</span>
+              <v-img :src="tech.src" :alt="tech.name" class="tech-icon"></v-img>
               <div class="tech-rating">
                 <v-icon
                   v-for="i in 5"
@@ -148,7 +148,6 @@
     </v-row>
   </v-container>
 </template>
-
   
 <style scoped>
 .tech-container {
@@ -159,7 +158,7 @@
 }
 
 .tech-card {
-  padding: 20px;
+  padding: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   opacity: 0;
@@ -211,38 +210,41 @@
 .tech-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 15px;
+  width: 100%;
+}
+
+.tech-name {
+  font-size: clamp(10px, 3.5vw, 18px); 
+  font-weight: bold;
+  color: #333;
+  flex: 1;
+  order: 1;
+  text-align: left;
+  margin-right: 10px; 
 }
 
 .tech-icon {
   width: 50px;
   height: 50px;
-  margin: 10px;
+  align-items: center;
+  justify-content: flex-start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tech-icon:hover {
-  transform: scale(1.15);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.tech-name {
-  font-size: 18px;
-  font-weight: bold;
-  flex-grow: 1;
-  color: #333;
-  margin-right: 20px;
+  order: 2; 
 }
 
 .tech-rating {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  order: 3;
 }
+
 
 .star-icon {
   font-size: 24px;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .star-filled {
@@ -300,7 +302,7 @@
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.3); 
 }
   
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .tech-container {
       padding: 10px;
     }
@@ -318,6 +320,57 @@
       height: 40px;
       margin: 8px;
     }
+}
+
+@media (max-width: 550px) {
+  .tech-icon {
+    width: 30px;
+    height: 30px;
   }
+
+  .star-icon {
+    font-size: 18px;
+    margin-left: 3px;
+  }
+
+  .tech-row {
+    margin-bottom: 10px; 
+  }
+}
+
+@media (max-width: 450px) {
+  .tech-icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .star-icon {
+    font-size: 16px;
+    margin-left: 2px;
+  }
+}
+
+@media (max-width: 430px) {
+  .star-icon {
+    font-size: 14px;
+    margin-left: 2px;
+  }
+
+  .tech-name {
+    font-size: clamp(8px, 3vw, 16px); 
+  }
+}
+
+@media (max-width: 350px) {
+  .tech-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .star-icon {
+    font-size: 12px;
+    margin-left: 1px;
+  }
+}
   </style>
   
