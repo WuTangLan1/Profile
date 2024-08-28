@@ -20,6 +20,7 @@
         backend: [
           { name: 'Express.js', src: require('@/assets/images/known tech/expressjs_icon.png'), rating : 5 },
           { name: 'ASP.NET', src: require('@/assets/images/known tech/aspnet_icon.png'), rating : 4 },
+          { name: 'NestJS', src: require('@/assets/images/known tech/nestJS_icon.png'), rating : 3 },
         ],
         dataManagement: [
           { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 5 },
@@ -29,6 +30,7 @@
         deployment: [
           { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png'), rating : 4 },
           { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 4 },
+          { name: 'Vercel', src: require('@/assets/images/known tech/vercel_icon.png'), rating : 3 },
         ],
         management: [
           { name: 'Github', src: require('@/assets/images/known tech/github_icon.png'), rating : 5 },

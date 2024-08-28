@@ -21,12 +21,10 @@ export default {
     };
 
     onMounted(() => {
-      // Start cycling images every 5 seconds
       intervalId = setInterval(cycleImages, 5000);
     });
 
     onBeforeUnmount(() => {
-      // Clear the interval when component is destroyed
       clearInterval(intervalId);
     });
 
@@ -73,16 +71,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 1500px;
+}
+
+@media(max-width: 600px)
+{
+    .image-stack-container {
+        width: 80%;
+    }
 }
 
 .image-card {
   position: absolute;
-  transition: transform 0.5s ease, opacity 0.5s ease, z-index 0.5s, filter 0.5s ease; 
+  transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease, z-index 0.5s, filter 0.5s ease; 
   cursor: pointer;
   transform-origin: center center;
   width: 80%;
-  opacity: 0.3; 
+  opacity: 0.2;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   filter: blur(5px);
@@ -109,6 +114,7 @@ export default {
   z-index: 5;
   box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3); 
   filter: none; 
+  transition: transform 0.8s ease, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
 }
 
 .image-card-content {
@@ -118,6 +124,15 @@ export default {
   overflow: hidden;
   transition: box-shadow 0.3s ease;
 }
+
+.image-card-active-enter-active, .image-card-active-leave-active {
+  transition: all 0.8s ease;
+}
+
+.image-card-active-enter, .image-card-active-leave-to {
+  opacity: 0;
+}
+
 
 .profile-image {
   width: 100%;
