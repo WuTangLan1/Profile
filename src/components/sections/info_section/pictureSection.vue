@@ -113,9 +113,13 @@ export default {
   transform: scale(1.15) rotate(0deg) translateX(0);
   opacity: 1;
   z-index: 5;
-  box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3); 
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); 
   filter: none; 
   transition: transform 0.8s ease, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
+}
+
+.dark .image-card-active {
+  box-shadow: 0 16px 32px rgba(255, 255, 255, 0.3); 
 }
 
 .image-card-content {
