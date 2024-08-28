@@ -9,7 +9,7 @@ export default {
   name: 'PictureSection',
   setup() {
     const images = [image1, image2, image3];
-    const activeImageIndex = ref(0);
+    const activeImageIndex = ref(1);
     let intervalId;
 
     const setActiveImage = (index) => {
@@ -21,7 +21,7 @@ export default {
     };
 
     onMounted(() => {
-      intervalId = setInterval(cycleImages, 5000);
+      intervalId = setInterval(cycleImages, 4000);
     });
 
     onBeforeUnmount(() => {
@@ -83,54 +83,39 @@ export default {
 
 .image-card {
   position: absolute;
-  transition: transform 1s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease, z-index 0.5s, filter 0.5s ease; 
+  animation: fadeOutShrink 0.8s ease forwards; 
+  transition: z-index 0.5s, filter 0.5s ease; 
   cursor: pointer;
   transform-origin: center center;
   width: 80%;
-  opacity: 0.2;
+  opacity: 0.1;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   filter: blur(5px);
 }
 
 .image-card:nth-child(1) {
-  transform: rotateY(-20deg) rotate(-10deg) translateX(-50px); 
+  transform: rotate(-10deg) translateX(-50px);
   z-index: 1;
 }
 
 .image-card:nth-child(2) {
-  transform: rotateY(0deg) rotate(0deg) translateX(0);
+  transform: rotate(0deg) translateX(0);
   z-index: 1;
 }
 
 .image-card:nth-child(3) {
-  transform: rotateY(20deg) rotate(10deg) translateX(50px); 
+  transform: rotate(10deg) translateX(50px);
   z-index: 1;
 }
 
 .image-card-active {
-  transform: scale(1.2) rotateY(0deg) rotate(0deg) translateX(0);
+  transform: scale(1.15) rotate(0deg) translateX(0);
   opacity: 1;
   z-index: 5;
-  box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3); 
   filter: none; 
-  transition: transform 1s ease-in-out, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
-  animation: flipIn 1s ease forwards; 
-}
-
-@keyframes flipIn {
-  0% {
-    transform: rotateY(90deg); 
-    opacity: 0;
-  }
-  50% {
-    transform: rotateY(0deg); 
-    opacity: 0.5;
-  }
-  100% {
-    transform: rotateY(0deg) scale(1.2);
-    opacity: 1;
-  }
+  transition: transform 0.8s ease, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
 }
 
 .image-card-content {
