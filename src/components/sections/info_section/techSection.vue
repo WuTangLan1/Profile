@@ -285,22 +285,32 @@
 }
 
 .tech-card.languages {
+  background-color: #F7D6E0; 
   animation-delay: 0.2s;
 }
 
 .tech-card.frameworks {
+  background-color: #D6EAF8; 
+  animation-delay: 0.6s;
+}
+
+.tech-card.backend {
+  background-color: #c5e6c1; 
   animation-delay: 0.6s;
 }
 
 .tech-card.data-management {
+  background-color: #FDEBD0; 
   animation-delay: 1s;
 }
 
 .tech-card.deployment {
+  background-color: #D1F2EB; 
   animation-delay: 1.4s;
 }
 
 .tech-card.management {
+  background-color: #E8DAEF; 
   animation-delay: 1.8s;
 }
 
@@ -406,7 +416,6 @@
 .dark .tech-card.management {
   background-color: #2a3b36; 
 }
-
 .dark .card-title {
   color: #d3d3d3;
 }

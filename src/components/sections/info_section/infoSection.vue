@@ -1,12 +1,13 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-  import imageMe from '@/assets/personal photos/personalphoto.png';
   import { inject } from 'vue';
+  import PictureSection from '@/components/sections/info_section/pictureSection.vue';
   import TechSection from '@/components/sections/info_section/techSection.vue'; 
 
   export default {
     components: {
-      TechSection 
+      TechSection,
+      PictureSection
     },
     setup() {
       const handleChangeSection = inject('handleChangeSection');
@@ -25,19 +26,7 @@
         resumeLink
       };
     },
-    data() {
-      return {
-
-        hover: false,
-        imageMe,
-        imageLoading: true 
-      };
-    },
     methods: {
-    handleImageLoaded(event) {
-      this.imageLoading = false;
-      event.target.style.opacity = 1;
-    },
     downloadResume() {
       try {
         const link = document.createElement('a');
@@ -58,21 +47,7 @@
 <template>
   <v-container class="info-container">
     <v-row class="info-row">
-      <v-col cols="12" md="6" class="d-flex justify-center align-center">
-        <v-progress-circular
-          v-if="imageLoading"
-          indeterminate
-          color="primary"
-          size="64"
-        ></v-progress-circular>
-        <img
-          :src="imageMe"
-          alt="Profile Image"
-          class="profile-image"
-          @load="handleImageLoaded"
-          v-show="!imageLoading"
-        />
-      </v-col>
+      <PictureSection />
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
