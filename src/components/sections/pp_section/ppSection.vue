@@ -116,7 +116,7 @@ export default {
       >
 
 
-        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2" @click="goToProject(project.url)">
+        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2">
           <v-card-title class="d-flex justify-space-between align-center">
             <span>{{ project.title }}</span>
             <span class="subtitle">{{ project.subtitle }}</span>
