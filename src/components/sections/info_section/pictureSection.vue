@@ -94,27 +94,43 @@ export default {
 }
 
 .image-card:nth-child(1) {
-  transform: rotate(-10deg) translateX(-50px);
+  transform: rotateY(-20deg) rotate(-10deg) translateX(-50px); 
   z-index: 1;
 }
 
 .image-card:nth-child(2) {
-  transform: rotate(0deg) translateX(0);
+  transform: rotateY(0deg) rotate(0deg) translateX(0);
   z-index: 1;
 }
 
 .image-card:nth-child(3) {
-  transform: rotate(10deg) translateX(50px);
+  transform: rotateY(20deg) rotate(10deg) translateX(50px); 
   z-index: 1;
 }
 
 .image-card-active {
-  transform: scale(1.15) rotate(0deg) translateX(0);
+  transform: scale(1.2) rotateY(0deg) rotate(0deg) translateX(0);
   opacity: 1;
   z-index: 5;
-  box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3); 
+  box-shadow: 0 16px 32px rgba(206, 110, 201, 0.3), 0 0 0 4px rgba(255, 255, 255, 0.2);
   filter: none; 
-  transition: transform 0.8s ease, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
+  transition: transform 1s ease-in-out, opacity 0.8s ease, z-index 0.5s, filter 0.5s ease; 
+  animation: flipIn 1s ease forwards; 
+}
+
+@keyframes flipIn {
+  0% {
+    transform: rotateY(90deg); 
+    opacity: 0;
+  }
+  50% {
+    transform: rotateY(0deg); 
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotateY(0deg) scale(1.2);
+    opacity: 1;
+  }
 }
 
 .image-card-content {
