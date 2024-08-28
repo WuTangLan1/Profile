@@ -97,6 +97,12 @@ export default {
 
 <template>
   <v-container>
+    <v-row justify="center">
+      <v-col cols="12" md="10">
+        <h1 class="display-1 text-center mb-4">Passion Projects</h1>
+        <v-divider class="my-4"></v-divider>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col
           v-for="(project, index) in projects"

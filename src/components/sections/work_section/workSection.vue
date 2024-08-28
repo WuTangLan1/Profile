@@ -86,6 +86,10 @@ export default {
 
 <template>
   <div class="work-section">
+    <div class="work-heading">
+      <h1 class="display-1 text-center mb-4">Work Experience</h1>
+      <v-divider class="my-4"></v-divider>
+    </div>
     <div class="work-timeline">
       <div
         v-for="(item, index) in workItems"
@@ -184,6 +188,19 @@ export default {
   text-align: center; 
 }
 
+.work-heading {
+  margin-top: 20px;
+}
+
+.display-1 {
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
 
 .v-card.expanded {
   margin-bottom: 40px;
