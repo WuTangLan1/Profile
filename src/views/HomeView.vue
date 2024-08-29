@@ -93,7 +93,7 @@ export default {
   flex-direction: column;
   overflow: hidden;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh-50px);
   height: auto;
   justify-content: center;
   margin: auto 0;

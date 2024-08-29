@@ -79,8 +79,8 @@ export default {
         <v-switch
           v-model="animationStore.animationEnabled"
           inset
-          color="primary"
           class="switch-control"
+          color="warning"
         />
       </div>
     </div>
@@ -172,27 +172,42 @@ export default {
 
 <style scoped>
 .contact-container {
-  padding: 20px;
   margin: auto;
   max-width: 100%;
-  min-height: 800px;
+  min-height: 600px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-out;
   position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.dark .contact-container {
+  box-shadow: 0 4px 12px rgba(198, 57, 213, 0.333);
+  border: 1px solid #ddd;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  padding: 20px; 
+  background-color: #0d4c44; 
+  color: #fff;
+}
+
+.dark .header {
+  background-color: #3a4971; 
+  color: #e0e0e0;
 }
 
 .section-heading {
   font-weight: 700;
   font-size: clamp(24px, 5vw, 32px);
-  color: #333;
   margin: 0;
   align-self: center; 
   line-height: 1;
@@ -246,13 +261,57 @@ export default {
 }
 
 .v-divider {
-  margin-bottom: 20px;
   height: 2px;
   background-color: #ddd;
 }
 
 .dark .v-divider {
   background-color: #555;
+}
+
+.v-row {
+  background: linear-gradient(to bottom right, #0f574e, #126e5b, #145e4d, #093d31);
+  background-size: 200% 200%; 
+  animation: gradientAnimation 8s ease infinite; 
+  width: 100%; 
+  height: 100%; 
+  min-height: 550px;
+  padding: 0; 
+  margin: 0; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center; 
+  border-radius: 0 0 15px 15px; 
+}
+
+.dark .v-row {
+  background: linear-gradient(to bottom right, #8aade5, #4d72ae, #3c5a8a, #8aade5);
+}
+
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.v-col {
+  background-color: transparent; 
+  width: 100%;
+  padding: 10px; 
+}
+@media(max-width: 600px)
+{
+  .v-row {
+    min-height: 850px;
+  }
 }
 
 .message-container {
@@ -298,10 +357,10 @@ export default {
 
 .message-bubble {
   max-width: 85%; 
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  font-size: 16px;
+  font-size: 12px;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -385,6 +444,9 @@ color: white;
 }
 
 @media (max-width: 600px) {
+  .contact-container{
+    border-radius: 0;
+  }
   .message-container {
     flex-direction: column;
     align-items: center;
@@ -408,10 +470,8 @@ color: white;
 @media (min-width: 600px) {
   .contact-container {
     width: 90%; 
-    border: 2px solid black;
-    padding-left: 5px; 
-    padding-right: 5px; 
-    max-width: 800px;
+    border: 2px solid black; 
+    max-width: 600px;
   }
 
   .section-heading {
@@ -454,8 +514,4 @@ color: white;
     max-width: 65%;
   }
 }
-
-
-
-
 </style>
