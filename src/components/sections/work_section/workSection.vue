@@ -85,10 +85,6 @@ export default {
 
 <template>
   <div class="work-section">
-    <div class="work-heading">
-      <h1 class="display-1 text-center mb-4">Work Experience</h1>
-      <v-divider class="my-4"></v-divider>
-    </div>
     <div class="work-timeline">
       <div
         v-for="(item, index) in workItems"
@@ -134,12 +130,12 @@ export default {
 .work-section {
   width: 100%;
   height: 100%;
-  max-height: 100vh;
   overflow-y: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .work-timeline {
@@ -187,15 +183,7 @@ export default {
   text-align: center; 
 }
 
-.work-heading {
-  margin-top: 20px;
-}
 
-.display-1 {
-  font-weight: 600;
-  font-size: 28px;
-  margin-bottom: 20px;
-}
 
 .text-center {
   text-align: center;
@@ -419,8 +407,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding: 20px;
-    min-height: 100vh;
+    max-height: 95vh;
+    margin: 0 auto;
   }
 
   .work-timeline {
@@ -429,9 +417,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 1100px;
+    min-height: 100%;
     margin: 0 auto;
-    padding: 0 5vw;
+    padding: 0 2vw;
     background: linear-gradient(to right, transparent 20px, #888 20px, #888 calc(100% - 20px), transparent calc(100% - 20px));
     background-size: 100% 2px;
     background-position: center center;
