@@ -41,8 +41,7 @@ export default {
                         expanded: false,
                         details: [
                         'Worked on the development of a full-stack system for capturing the post-graduate study and course selections for UCT students, decreasing the complexity of the original process.',
-                        'Revised, modularized, and updated old code bases to modern development standards, ensuring that the process of registering a student\'s postgraduate studies accounted for developments in the UCT curriculum and structure.',
-                        'Introduced a preference-based system for post-graduate student selection choices, providing further transparency on course registrations and class capacities.'
+                        'Revised, modularized, and updated old code bases to modern development standards, ensuring that the process of registering a student\'s postgraduate studies accounted for developments in the UCT curriculum and structure.'
                         ]
                         },
                         {
@@ -451,9 +450,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%; 
+    width: 19%; 
     padding-top: 0;
     position: relative;
+  }
+
+  .timeline-item-container:nth-child(2) {
+    width: 28%; 
   }
 
   .timeline-item-container:nth-child(2) {
@@ -489,7 +492,7 @@ export default {
   }
 
   .v-card.expanded {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
 
   .fade-enter-active, .fade-leave-active {
