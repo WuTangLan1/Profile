@@ -123,7 +123,7 @@ export default {
     >
       <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
         <transition name="fade-slide" appear>
-          <div class="card-content" :style="`animation-delay: ${index * 0.5}s;`">
+          <div class="card-content" :style="`animation-delay: ${index * 0.3}s;`">
             <v-img
               :src="getImageUrl(project.title)"
               alt="Project Logo"
@@ -173,7 +173,6 @@ export default {
     </v-col>
   </v-row>
 </v-container>
-
 </template>
 
 <style scoped>
@@ -188,14 +187,14 @@ export default {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
 
-@keyframes wipeFadeIn {
+@keyframes smoothFadeSlideIn {
   0% {
     opacity: 0;
-    clip-path: inset(0 100% 0 0);
+    transform: translateX(-20px); 
   }
   100% {
     opacity: 1;
-    clip-path: inset(0 0 0 0);
+    transform: translateX(0);
   }
 }
 
@@ -213,10 +212,10 @@ export default {
 }
 
 .card-content {
-  animation: wipeFadeIn 1s ease-out both;
+  animation: smoothFadeSlideIn 0.8s ease-out both; 
   animation-delay: var(--delay); 
+  will-change: transform, opacity; 
 }
-
 
 .project-image {
   border-radius: 8px 8px 0 0;
