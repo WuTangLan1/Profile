@@ -117,51 +117,64 @@ export default {
         class="d-flex"
       >
         <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
-          <v-img
-            :src="getImageUrl(project.title)"
-            alt="Project Logo"
-            class="project-image"
-            aspect-ratio="2.5"
-            contain
-          ></v-img>
+          <!-- Wrap with transition for entrance animation -->
+          <transition
+            name="fade-slide"
+            mode="out-in"
+            appear
+            appear-active-class="fade-slide-active"
+          >
+            <div class="card-content">
+              <v-img
+                :src="getImageUrl(project.title)"
+                alt="Project Logo"
+                class="project-image"
+                aspect-ratio="2.5"
+                contain
+              ></v-img>
 
-          <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
-          <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
+              <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
+              <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
 
-          <v-card-text class="project-description mt-3">
-            <p class="description-text">{{ project.description }}</p>
-            <ul class="details-list">
-              <li v-for="(detail, detailIndex) in project.details" :key="detailIndex" class="d-flex align-center detail-item">
-                <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
-                <span class="detail-text">{{ detail.text }}</span>
-              </li>
-            </ul>
-          </v-card-text>
+              <v-card-text class="project-description mt-3">
+                <p class="description-text">{{ project.description }}</p>
+                <ul class="details-list">
+                  <li
+                    v-for="(detail, detailIndex) in project.details"
+                    :key="detailIndex"
+                    class="d-flex align-center detail-item"
+                  >
+                    <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
+                    <span class="detail-text">{{ detail.text }}</span>
+                  </li>
+                </ul>
+              </v-card-text>
 
-          <v-card-actions v-if="project.title !== 'This website'">
-            <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
-          </v-card-actions>
-          <v-card-actions v-else style="visibility: hidden; height: 48px;"></v-card-actions> 
+              <v-card-actions v-if="project.title !== 'This website'">
+                <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
+              </v-card-actions>
+              <v-card-actions v-else style="visibility: hidden; height: 48px;"></v-card-actions>
 
-          <v-card-text class="tech-stack mt-4">
-            <div class="d-flex justify-space-between tech-icons-container">
-              <v-avatar
-                v-for="(tech, techIndex) in project.techStack"
-                :key="techIndex"
-                size="36"
-                :title="tech.name"
-                class="ma-1 tech-icon"
-              >
-                <img :src="tech.src" :alt="tech.name" class="tech-icon-img" />
-              </v-avatar>
+              <v-card-text class="tech-stack mt-4">
+                <div class="d-flex justify-space-between tech-icons-container">
+                  <v-avatar
+                    v-for="(tech, techIndex) in project.techStack"
+                    :key="techIndex"
+                    size="36"
+                    :title="tech.name"
+                    class="ma-1 tech-icon"
+                  >
+                    <img :src="tech.src" :alt="tech.name" class="tech-icon-img" />
+                  </v-avatar>
+                </div>
+              </v-card-text>
             </div>
-          </v-card-text>
+          </transition>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
 
 <style scoped>
 .project-card {
@@ -174,6 +187,36 @@ export default {
   transform: translateY(-12px);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
+
+@keyframes wipeFadeIn {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0); 
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.fade-slide-enter-active,
+.fade-slide-leave-active,
+.fade-slide-appear-active {
+  transition: opacity 1s ease-out, clip-path 1s ease-out;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to,
+.fade-slide-appear-from {
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+}
+
+.card-content {
+  animation: wipeFadeIn 1s ease-out both;
+  animation-delay: calc(var(--index) * 0.3s);
+}
+
 
 .project-image {
   border-radius: 8px 8px 0 0;
