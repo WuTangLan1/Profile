@@ -91,6 +91,15 @@ export default {
     goToProject(url) {
       window.open(url, '_blank');
     },
+    getImageUrl(projectTitle) {
+      const imageMap = {
+        CoPlaylist: require('@/assets/images/projects/coplaylist_logo.png'),
+        'The Big Picture': require('@/assets/images/projects/fullcircle_logo.png'),
+        Mapple: require('@/assets/images/projects/mapple_logo.png'),
+        'This website': require('@/assets/images/projects/profileweb_logo.png'),
+      };
+      return imageMap[projectTitle] || '';
+    }
   }
 }
 </script>
@@ -108,11 +117,17 @@ export default {
         class="d-flex"
       >
         <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
-          <!-- Project Title and Subtitle -->
+          <v-img
+            :src="getImageUrl(project.title)"
+            alt="Project Logo"
+            class="project-image"
+            aspect-ratio="2.5"
+            contain
+          ></v-img>
+
           <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
           <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
 
-          <!-- Project Description -->
           <v-card-text class="project-description mt-3">
             <p class="description-text">{{ project.description }}</p>
             <ul class="details-list">
@@ -123,12 +138,11 @@ export default {
             </ul>
           </v-card-text>
 
-          <!-- Visit Project Button -->
-          <v-card-actions>
+          <v-card-actions v-if="project.title !== 'This website'">
             <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
           </v-card-actions>
+          <v-card-actions v-else style="visibility: hidden; height: 48px;"></v-card-actions> 
 
-          <!-- Tech Stack Icons -->
           <v-card-text class="tech-stack mt-4">
             <div class="d-flex justify-space-between tech-icons-container">
               <v-avatar
@@ -161,6 +175,13 @@ export default {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
 
+.project-image {
+  border-radius: 8px 8px 0 0;
+  object-fit: cover;
+  max-height: 150px;
+  margin-bottom: 8px;
+}
+
 .project-description {
   font-size: 1rem;
   line-height: 1.6;
@@ -190,6 +211,7 @@ export default {
 
 .detail-text {
   font-size: 0.95rem;
+  text-align: left;
   color: #444;
 }
 
