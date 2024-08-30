@@ -72,6 +72,11 @@ export default {
     };
   },
   methods: {
+    setDelay(el, done) {
+      const index = Array.from(el.parentNode.children).indexOf(el);
+      el.style.transitionDelay = `${index * 0.3}s`;
+      done();
+    },
     getRandomDelay() {
       const minDelay = 2; 
       const maxDelay = 10; 
@@ -105,75 +110,70 @@ export default {
 </script>
 
 <template>
-  <v-container fluid class="pt-8">
-    <v-row dense>
-      <v-col
-        v-for="(project, index) in projects"
-        :key="index"
-        cols="12"
-        sm="6"
-        md="4"
-        lg="3"
-        class="d-flex"
-      >
-        <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
-          <!-- Wrap with transition for entrance animation -->
-          <transition
-            name="fade-slide"
-            mode="out-in"
-            appear
-            appear-active-class="fade-slide-active"
-          >
-            <div class="card-content">
-              <v-img
-                :src="getImageUrl(project.title)"
-                alt="Project Logo"
-                class="project-image"
-                aspect-ratio="2.5"
-                contain
-              ></v-img>
+<v-container fluid class="pt-8">
+  <v-row dense>
+    <v-col
+      v-for="(project, index) in projects"
+      :key="index"
+      cols="12"
+      sm="6"
+      md="4"
+      lg="3"
+      class="d-flex"
+    >
+      <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
+        <transition name="fade-slide" appear>
+          <div class="card-content" :style="`animation-delay: ${index * 0.5}s;`">
+            <v-img
+              :src="getImageUrl(project.title)"
+              alt="Project Logo"
+              class="project-image"
+              aspect-ratio="2.5"
+              contain
+            ></v-img>
 
-              <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
-              <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
+            <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
+            <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
 
-              <v-card-text class="project-description mt-3">
-                <p class="description-text">{{ project.description }}</p>
-                <ul class="details-list">
-                  <li
-                    v-for="(detail, detailIndex) in project.details"
-                    :key="detailIndex"
-                    class="d-flex align-center detail-item"
-                  >
-                    <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
-                    <span class="detail-text">{{ detail.text }}</span>
-                  </li>
-                </ul>
-              </v-card-text>
+            <v-card-text class="project-description mt-3">
+              <p class="description-text">{{ project.description }}</p>
+              <ul class="details-list">
+                <li
+                  v-for="(detail, detailIndex) in project.details"
+                  :key="detailIndex"
+                  class="d-flex align-center detail-item"
+                >
+                  <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
+                  <span class="detail-text">{{ detail.text }}</span>
+                </li>
+              </ul>
+            </v-card-text>
 
-              <v-card-actions v-if="project.title !== 'This website'">
-                <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
-              </v-card-actions>
-              <v-card-actions v-else style="visibility: hidden; height: 48px;"></v-card-actions>
+            <v-card-actions v-if="project.title !== 'This website'">
+              <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
+            </v-card-actions>
+            <v-card-actions v-else style="visibility: hidden; height: 48px;"></v-card-actions>
 
-              <v-card-text class="tech-stack mt-4">
-                <div class="d-flex justify-space-between tech-icons-container">
-                  <v-avatar
-                    v-for="(tech, techIndex) in project.techStack"
-                    :key="techIndex"
-                    size="36"
-                    :title="tech.name"
-                    class="ma-1 tech-icon"
-                  >
-                    <img :src="tech.src" :alt="tech.name" class="tech-icon-img" />
-                  </v-avatar>
-                </div>
-              </v-card-text>
-            </div>
-          </transition>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+            <v-card-text class="tech-stack mt-4">
+              <div class="d-flex justify-space-between tech-icons-container">
+                <v-avatar
+                  v-for="(tech, techIndex) in project.techStack"
+                  :key="techIndex"
+                  size="36"
+                  :title="tech.name"
+                  class="ma-1 tech-icon"
+                >
+                  <img :src="tech.src" :alt="tech.name" class="tech-icon-img" />
+                </v-avatar>
+              </div>
+            </v-card-text>
+          </div>
+        </transition>
+      </v-card>
+    </v-col>
+  </v-row>
+</v-container>
+
 </template>
 
 <style scoped>
@@ -191,7 +191,7 @@ export default {
 @keyframes wipeFadeIn {
   0% {
     opacity: 0;
-    clip-path: inset(0 100% 0 0); 
+    clip-path: inset(0 100% 0 0);
   }
   100% {
     opacity: 1;
@@ -214,7 +214,7 @@ export default {
 
 .card-content {
   animation: wipeFadeIn 1s ease-out both;
-  animation-delay: calc(var(--index) * 0.3s);
+  animation-delay: var(--delay); 
 }
 
 
