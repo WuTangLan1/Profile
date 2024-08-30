@@ -96,166 +96,137 @@ export default {
 </script>
 
 <template>
-  <v-container>
-    <v-row justify="center">
-      <v-col cols="12" md="10">
-        <h1 class="display-1 text-center mb-4">Passion Projects</h1>
-        <v-divider class="my-4"></v-divider>
-      </v-col>
-    </v-row>
-    <v-row>
+  <v-container fluid class="pt-8">
+    <v-row dense>
       <v-col
-          v-for="(project, index) in projects"
-          :key="index"
-          cols="12"
-          sm="6"
-          md="4"
-          lg="3"
-          xl="3"
-          class="d-flex align-stretch"
+        v-for="(project, index) in projects"
+        :key="index"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        class="d-flex"
       >
+        <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
+          <!-- Project Title and Subtitle -->
+          <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
+          <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
 
-
-        <v-card :color="getRandomColor()" dark elevation="2" class="ma-2">
-          <v-card-title class="d-flex justify-space-between align-center">
-            <span>{{ project.title }}</span>
-            <span class="subtitle">{{ project.subtitle }}</span>
-          </v-card-title>
-          <v-card-text>
-            {{ project.description }}
-            <v-list dense>
-              <v-list-item v-for="detail in project.details" :key="detail.text" class="detail-item">
-                <v-icon left>{{ detail.icon }}</v-icon>
+          <!-- Project Description -->
+          <v-card-text class="project-description mt-3">
+            <p class="description-text">{{ project.description }}</p>
+            <ul class="details-list">
+              <li v-for="(detail, detailIndex) in project.details" :key="detailIndex" class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
                 <span class="detail-text">{{ detail.text }}</span>
-              </v-list-item>
-            </v-list>
+              </li>
+            </ul>
           </v-card-text>
-          <v-card-actions class="card-actions">
-            <div class="tech-stack d-flex">
-              <v-btn 
-                v-for="tech in project.techStack" 
-                :key="tech.name" 
-                icon 
-                class="tech-btn"
-              >
-                <v-img 
-                  :src="tech.src"
-                  :alt="tech.name"
-                  class="tech-icon"
-                  :style="{ animationDelay: getRandomDelay() + 's' }"
-                ></v-img>
-              </v-btn>
-            </div>
-            <v-spacer></v-spacer>
-            <a v-if="project.title !== 'This website'" :href="project.url" target="_blank" class="visit">Visit</a>
+
+          <!-- Visit Project Button -->
+          <v-card-actions>
+            <v-btn color="primary" class="visit-btn" @click="goToProject(project.url)">Visit Project</v-btn>
           </v-card-actions>
+
+          <!-- Tech Stack Icons -->
+          <v-card-text class="tech-stack mt-4">
+            <div class="d-flex justify-space-between tech-icons-container">
+              <v-avatar
+                v-for="(tech, techIndex) in project.techStack"
+                :key="techIndex"
+                size="36"
+                :title="tech.name"
+                class="ma-1 tech-icon"
+              >
+                <img :src="tech.src" :alt="tech.name" class="tech-icon-img" />
+              </v-avatar>
+            </div>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
+
 <style scoped>
-.v-container {
-  overflow-y: auto;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  width: 100%;
+.project-card {
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.85); 
 }
 
-.v-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
+.project-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
 
-.v-card-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+.project-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333; 
 }
 
-.subtitle {
-  font-size: 0.9rem; 
-  color: rgba(34, 33, 33, 0.7); 
+.description-text {
+  margin-bottom: 12px; 
+}
+
+.details-list {
+  padding-left: 0;
+  list-style-type: none;
+  margin: 0;
 }
 
 .detail-item {
-  margin-top: 5px;
-  padding: 5px;
-  background-color: transparent;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.detail-icon {
+  margin-right: 10px;
+  color: #6c757d; 
 }
 
 .detail-text {
-  margin-left: 10px; 
-  font-size: 0.9rem; 
-  text-align: left;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.v-card-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+.v-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c3e50; 
 }
 
-.tech-stack {
-  display: flex;
-  justify-content: space-evenly; 
-  flex-wrap: wrap;
+.v-card-subtitle {
+  font-size: 1.1rem;
+  color: #7f8c8d;
 }
 
-.tech-btn {
-  flex: 0 1 24px; 
-  display: flex;
-  justify-content: center; 
+.tech-icon-img {
+  width: 40px; 
+  height: 40px;
+  object-fit: contain; 
+  border-radius: 50%; 
+  padding: 5px;
+  transition: transform 0.3s ease;
 }
 
-.visit {
-  white-space: nowrap;
-  margin-left: 8px;
+.tech-icon-img:hover {
+  transform: scale(1.1);
 }
 
-
-.tech-icon {
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  animation-name: hop;
-  animation-duration: 1s; 
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  animation-delay: getRandomDelay() + 's'; 
+.visit-btn {
+  text-transform: none;
+  font-weight: bold;
+  color: #1e88e5; 
+  background-color: transparent;
+  box-shadow: none;
 }
 
-@keyframes hop {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+.visit-btn:hover {
+  background-color: rgba(30, 136, 229, 0.1);
 }
-
-.dark .v-card {
-  color: #fff; 
-}
-
-.dark .subtitle {
-  color: #ccc;
-}
-
-.dark .detail-item {
-  background-color: white;
-}
-
-.dark .v-card-title {
-  border-bottom: 1px solid #555; 
-}
-.dark .visit {
-  color: rgb(156, 190, 221);
-}
-
 </style>
+

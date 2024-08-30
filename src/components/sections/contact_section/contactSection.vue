@@ -175,7 +175,6 @@ export default {
   margin: auto;
   max-width: 100%;
   min-height: 600px;
-  border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease-out;
   position: relative;
@@ -196,7 +195,7 @@ export default {
   align-items: center;
   margin-bottom: 0;
   padding: 20px; 
-  background-color: #0d4c44; 
+  background-color: #251a75; 
   color: #fff;
 }
 
