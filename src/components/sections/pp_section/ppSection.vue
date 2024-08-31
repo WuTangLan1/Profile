@@ -313,5 +313,54 @@ export default {
   background-color: rgba(30, 136, 229, 0.1);
 }
 
+.dark .project-card {
+  background: linear-gradient(135deg, #2e3b4e, #1c2833), var(--unique-color);
+  background-blend-mode: multiply;
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  color: #e0e0e0; 
+}
+
+.dark .header-section {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark .header-text .v-card-title {
+  color: #e6e6e6; 
+}
+
+.dark .v-card-subtitle {
+  color: #b0bec5; 
+}
+
+.dark .project-description {
+  color: #cfd8dc; 
+}
+
+.dark .detail-text{
+  color: #c9d7dd; 
+}
+
+.dark .detail-icon {
+  color: #90a4ae; 
+}
+
+.dark .visit-btn {
+  color: #42a5f5; 
+}
+
+.dark .visit-btn:hover {
+  background-color: rgba(66, 165, 245, 0.2); 
+}
+
+.dark .tech-icon-img {
+  filter: brightness(1.2); 
+}
+
+.dark .v-avatar:hover {
+  box-shadow: 0 0 12px rgba(66, 165, 245, 0.5); 
+}
+
+
 </style>
 
