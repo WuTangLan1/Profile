@@ -16,6 +16,7 @@ export default {
           ],
           techStack: [
           { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+          { name: "Pinia", src: require("@/assets/images/tech stack/piniaicon.png") },
           { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
           { name: "OpenAI", src: require("@/assets/images/tech stack/gpticon.png") },
           { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
@@ -33,6 +34,7 @@ export default {
           ],
           techStack: [
             { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
+            { name: "Pinia", src: require("@/assets/images/tech stack/piniaicon.png") },
             { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
             { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
             { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
@@ -72,16 +74,6 @@ export default {
     };
   },
   methods: {
-    setDelay(el, done) {
-      const index = Array.from(el.parentNode.children).indexOf(el);
-      el.style.transitionDelay = `${index * 0.3}s`;
-      done();
-    },
-    getRandomDelay() {
-      const minDelay = 2; 
-      const maxDelay = 10; 
-      return Math.random() * (maxDelay - minDelay) + minDelay; 
-    },
     getRandomColor() {
       const colors = [
         'rgba(255, 193, 7, 0.2)',   
@@ -122,19 +114,20 @@ export default {
       class="d-flex"
     >
       <v-card :style="{ backgroundColor: getRandomColor() }" class="pa-4 mb-4 elevation-3 project-card">
-        <transition name="fade-slide" appear>
-          <div class="card-content" :style="`animation-delay: ${index * 0.3}s;`">
-            <v-img
-              :src="getImageUrl(project.title)"
-              alt="Project Logo"
-              class="project-image"
-              aspect-ratio="2.5"
-              contain
-            ></v-img>
-
-            <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
-            <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
-
+          <div class="card-content">
+            <div class="header-section d-flex">
+                <v-img
+                  :src="getImageUrl(project.title)"
+                  alt="Project Logo"
+                  class="project-image-header"
+                  aspect-ratio="1"
+                  contain
+                ></v-img>
+                <div class="header-text">
+                  <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
+                  <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
+                </div>
+              </div>
             <v-card-text class="project-description mt-3">
               <p class="description-text">{{ project.description }}</p>
               <ul class="details-list">
@@ -168,7 +161,6 @@ export default {
               </div>
             </v-card-text>
           </div>
-        </transition>
       </v-card>
     </v-col>
   </v-row>
@@ -186,42 +178,45 @@ export default {
   transform: translateY(-12px);
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
 }
-
-@keyframes smoothFadeSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-20px); 
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.fade-slide-enter-active,
-.fade-slide-leave-active,
-.fade-slide-appear-active {
-  transition: opacity 1s ease-out, clip-path 1s ease-out;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to,
-.fade-slide-appear-from {
-  opacity: 0;
-  clip-path: inset(0 100% 0 0);
-}
-
 .card-content {
   animation: smoothFadeSlideIn 0.8s ease-out both; 
-  animation-delay: var(--delay); 
-  will-change: transform, opacity; 
 }
 
-.project-image {
-  border-radius: 8px 8px 0 0;
-  object-fit: cover;
-  max-height: 150px;
-  margin-bottom: 8px;
+.header-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 8px; 
+  border: 1px solid #dcdcdc;
+  border-radius: 12px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.project-image-header {
+  flex: 1;
+  width: 110px; 
+  height: 110px;
+}
+
+.header-text {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8px; 
+}
+
+.v-card-title {
+  font-size: 1.4rem; 
+  font-weight: 700;
+  color: #2b2b2b; 
+  margin: 0 0 4px 0; 
+}
+
+.v-card-subtitle {
+  font-size: 1.1rem;
+  color: #5f5f5f; 
+  font-style: italic; 
 }
 
 .project-description {
@@ -291,40 +286,6 @@ export default {
 
 .visit-btn:hover {
   background-color: rgba(30, 136, 229, 0.1);
-}
-
-@media (min-width: 600px) {
-  .card-content {
-    display: flex;
-    align-items: center;
-    padding: 0; 
-  }
-
-  .project-image {
-    flex: 1;
-    max-width: 50%;
-    border-radius: 8px 0 0 8px; 
-    margin: 0; 
-  }
-
-  .project-header {
-    flex: 1;
-    padding: 16px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-  }
-
-  .v-card-title {
-    margin-bottom: 4px;
-    font-size: 1.2rem; 
-  }
-
-  .v-card-subtitle {
-    font-size: 1rem; 
-    color: #7f8c8d;
-  }
 }
 
 </style>
