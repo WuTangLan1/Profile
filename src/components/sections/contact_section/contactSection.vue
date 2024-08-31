@@ -195,8 +195,7 @@ export default {
   align-items: center;
   margin-bottom: 0;
   padding: 20px; 
-  background-color: #251a75; 
-  color: #fff;
+  color: black;
 }
 
 .dark .header {

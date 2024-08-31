@@ -37,7 +37,7 @@ export default {
             { name: "Pinia", src: require("@/assets/images/tech stack/piniaicon.png") },
             { name: "Firebase", src: require("@/assets/images/tech stack/firebaseicon.png") },
             { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
-            { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
+            { name: "Tailwind", src: require("@/assets/images/tech stack/tailwindicon.png") },
           ]
         },
         {
@@ -67,7 +67,7 @@ export default {
           techStack: [
             { name: "Vue.js", src: require("@/assets/images/tech stack/vueicon.png") },
             { name: "PrimeVue", src: require("@/assets/images/tech stack/primevueicon.png") },
-            { name: "Tailwind", src: require("@/assets/images/tech stack/tailwindicon.png") },
+            { name: "Vuetify", src: require("@/assets/images/tech stack/vuetifyicon.png") },
           ]
         }
       ]
@@ -124,7 +124,7 @@ export default {
                   contain
                 ></v-img>
                 <div class="header-text">
-                  <v-card-title class="headline font-weight-bold">{{ project.title }}</v-card-title>
+                  <v-card-title class="v-card-title">{{ project.title }}</v-card-title>
                   <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
                 </div>
               </div>
@@ -171,7 +171,20 @@ export default {
 .project-card {
   border-radius: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.85); 
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2), var(--unique-color); 
+  background-blend-mode: multiply;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .project-card:hover {
@@ -186,7 +199,7 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
-  padding: 8px; 
+  padding: 4px; 
   border: 1px solid #dcdcdc;
   border-radius: 12px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -198,19 +211,29 @@ export default {
   height: 110px;
 }
 
+.project-image-header:hover {
+  animation: bounce 1.5s;
+}
+
 .header-text {
   flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 8px; 
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.v-card-title {
-  font-size: 1.4rem; 
-  font-weight: 700;
+.project-card:hover .header-text {
+  transform: translateX(10px);
+  opacity: 1;
+}
+
+.header-text .v-card-title {
+  font-size: 1.6rem; 
+  font-weight: 700; 
   color: #2b2b2b; 
-  margin: 0 0 4px 0; 
+  margin: 0; 
 }
 
 .v-card-subtitle {
@@ -272,8 +295,10 @@ export default {
   transition: transform 0.3s ease;
 }
 
-.tech-icon-img:hover {
-  transform: scale(1.1);
+.v-avatar:hover {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+  transform: scale(1.15);
+  transform: translateY(-5px);
 }
 
 .visit-btn {
