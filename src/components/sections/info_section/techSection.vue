@@ -248,6 +248,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   transition: background-color 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .tech-card {
@@ -256,12 +257,10 @@
   border-radius: 15px;
   opacity: 0;
   visibility: hidden;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .tech-card:hover {
-  transform: translateY(-5px); 
-  transform: scale(1.1);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
 }
 

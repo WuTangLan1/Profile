@@ -320,13 +320,13 @@ export default {
 <style scoped>
 .project-card {
   border-radius: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2), var(--unique-color);
   background-blend-mode: multiply;
   opacity: 0;
   transform: translateY(-20px);
   visibility: hidden;
-  animation: dropIn 0.6s ease-out forwards;
+  animation: dropIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
 }
 
 .sectionInView .project-card {
@@ -342,6 +342,17 @@ export default {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.project-card:hover,
+.sectionInView .project-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-content {
+  animation: smoothFadeSlideIn 0.8s ease-out both;
 }
 
 .sectionInView .project-card:nth-child(1) {
@@ -371,14 +382,6 @@ export default {
   100% {
     background-position: 0% 50%;
   }
-}
-
-.project-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
-}
-.card-content {
-  animation: smoothFadeSlideIn 0.8s ease-out both; 
 }
 
 .header-section {
