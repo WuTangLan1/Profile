@@ -292,5 +292,40 @@ export default {
 .visit-btn:hover {
   background-color: rgba(30, 136, 229, 0.1);
 }
+
+@media (min-width: 600px) {
+  .card-content {
+    display: flex;
+    align-items: center;
+    padding: 0; 
+  }
+
+  .project-image {
+    flex: 1;
+    max-width: 50%;
+    border-radius: 8px 0 0 8px; 
+    margin: 0; 
+  }
+
+  .project-header {
+    flex: 1;
+    padding: 16px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .v-card-title {
+    margin-bottom: 4px;
+    font-size: 1.2rem; 
+  }
+
+  .v-card-subtitle {
+    font-size: 1rem; 
+    color: #7f8c8d;
+  }
+}
+
 </style>
 

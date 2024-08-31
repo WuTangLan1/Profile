@@ -183,8 +183,6 @@ export default {
   text-align: center; 
 }
 
-
-
 .text-center {
   text-align: center;
 }
@@ -522,5 +520,21 @@ export default {
   }
 }
 
+@media(max-width: 600px)
+{
+  .work-section {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  margin-top: 80px;
+}
 
+.work-timeline {
+  margin-bottom: 20px;
+  max-height: 100%;
+  overflow-y: auto;
+  gap: 0.1vh;
+}
+
+}
 </style>
