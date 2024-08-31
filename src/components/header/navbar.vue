@@ -116,11 +116,6 @@ nav li:hover, nav li.active {
   transform: rotate(180deg); 
 }
 
-
-.dark-mode-icon:hover {
-  transform: scale(1.1) rotate(180deg); 
-}
-
 .dark-mode-icon {
   display: flex;
   justify-content: center;

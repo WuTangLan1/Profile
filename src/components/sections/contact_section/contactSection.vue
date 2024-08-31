@@ -182,6 +182,7 @@ export default {
   background-color: transparent;
   padding: 0;
   margin: 0;
+  border-radius: 15px;
 }
 
 .dark .contact-container {
@@ -443,7 +444,7 @@ color: white;
 
 @media (max-width: 600px) {
   .contact-container{
-    border-radius: 0;
+    border-radius: 0px;
   }
   .message-container {
     flex-direction: column;
