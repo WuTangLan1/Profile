@@ -42,7 +42,7 @@ export default {
       }
     },
     watch: {
-        currentSection(newVal, oldVal) {
+        currentSection(oldVal) {
             this.lastSection = oldVal;
         }
     },

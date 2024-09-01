@@ -20,7 +20,7 @@ export default {
           degree: 'Honours in Bachelor of Business Science: Management Information Systems',
           institution: 'University of Cape Town',
           location: 'Cape Town, South Africa',
-          average: '73% average',
+          average: '76% average',
           image: UCTImage
         },
         {
@@ -28,7 +28,7 @@ export default {
           degree: 'High School Diploma',
           institution: 'Wynberg Boys High School',
           location: 'Cape Town',
-          average: '80% average',
+          average: '82% average',
           image: WBHSImage
         }
       ],

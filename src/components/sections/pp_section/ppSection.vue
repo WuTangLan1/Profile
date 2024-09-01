@@ -350,11 +350,9 @@ export default {
   }
 }
 
-.project-card:hover,
-.sectionInView .project-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+.project-card:hover {
+  transform: translateY(-5px) scale(1.01) !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
 }
 
 .card-content {
