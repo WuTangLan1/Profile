@@ -58,7 +58,7 @@ export default {
       <!-- CoPlaylist Project Card -->
       <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
         <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.1s' : '0s' }"
+          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.5s' : '0s' }"
           class="pa-4 mb-4 elevation-3 project-card"
         >
           <div class="card-content">
@@ -124,7 +124,7 @@ export default {
       <!-- The Big Picture Project Card -->
       <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
         <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.3s' : '0s' }"
+          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '1s' : '0s' }"
           class="pa-4 mb-4 elevation-3 project-card"
         >
           <div class="card-content">
@@ -153,7 +153,7 @@ export default {
                 </li>
                 <li class="d-flex align-center detail-item">
                   <v-icon left size="20" class="detail-icon">mdi-school</v-icon>
-                  <span class="detail-text">Account registration to track efforts.</span>
+                  <span class="detail-text">Account registration to track efforts and provide insights.</span>
                 </li>
                 <li class="d-flex align-center detail-item">
                   <v-icon left size="20" class="detail-icon">mdi-share-variant</v-icon>
@@ -192,7 +192,7 @@ export default {
       <!-- Mapple Project Card -->
       <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
         <v-card
-            :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.5s' : '0s' }"
+            :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '1.5s' : '0s' }"
             class="pa-4 mb-4 elevation-3 project-card"
           >
           <div class="card-content">
@@ -218,13 +218,19 @@ export default {
                 <li class="d-flex align-center detail-item">
                   <v-icon left size="20" class="detail-icon">mdi-tooltip-check</v-icon>
                   <span class="detail-text">
-                    The user can choose between different levels of difficulty depending on their skill
+                    Three difficulty levels to customise the challenge the game provides to users.
                   </span>
                 </li>
                 <li class="d-flex align-center detail-item">
                   <v-icon left size="20" class="detail-icon">mdi-earth</v-icon>
                   <span class="detail-text">
-                    The user can set streaks and challenge themselves to recognise more countries across the world.
+                    Interactive selection map to allow users to select countries across the globe.
+                  </span>
+                </li>
+                <li class="d-flex align-center detail-item">
+                  <v-icon left size="20" class="detail-icon">mdi-list-status</v-icon>
+                  <span class="detail-text">
+                    Efforts tracking and management for high scores to allow users to improve.
                   </span>
                 </li>
               </ul>
@@ -257,7 +263,7 @@ export default {
       <!-- This Website Project Card -->
       <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
         <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.7s' : '0s' }"
+          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '2s' : '0s' }"
           class="pa-4 mb-4 elevation-3 project-card"
         >
           <div class="card-content">
@@ -353,6 +359,10 @@ export default {
 
 .card-content {
   animation: smoothFadeSlideIn 0.8s ease-out both;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 100%;
 }
 
 .sectionInView .project-card:nth-child(1) {
@@ -488,6 +498,17 @@ export default {
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
   transform: scale(1.15);
   transform: translateY(-5px);
+}
+
+.v-card-actions {
+  margin-top: auto; 
+  justify-content: center;
+}
+
+
+.tech-stack {
+  margin-top: auto; 
+  margin-bottom: 16px; 
 }
 
 .visit-btn {
