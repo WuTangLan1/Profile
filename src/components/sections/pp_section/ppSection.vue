@@ -318,6 +318,82 @@ export default {
           </div>
         </v-card>
       </v-col>
+
+      <!-- Strapp-Newer-Hope Platform Project Card -->
+    <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
+      <v-card
+        :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '2.5s' : '0s' }"
+        class="pa-4 mb-4 elevation-3 project-card"
+      >
+        <div class="card-content">
+          <div class="header-section d-flex">
+            <v-img
+              :src="getImageUrl('Strapp-Newer-Hope Platform')"
+              alt="Project Logo"
+              class="project-image-header"
+              aspect-ratio="1"
+              contain
+            ></v-img>
+            <div class="header-text">
+              <v-card-title class="v-card-title">Strapp-Newer-Hope Platform</v-card-title>
+              <v-card-subtitle class="text-muted">Marketplace Platform</v-card-subtitle>
+            </div>
+          </div>
+          <v-card-text class="project-description mt-3">
+            <p class="description-text">
+              Welcome to Strapp-Newer-Hope Platform, a dynamic peer-to-peer marketplace built using Vue 3 and Firebase. This platform provides users with an immersive experience to buy and sell secondhand products across various categories, fostering a vibrant and sustainable community-driven marketplace.
+            </p>
+            <ul class="details-list">
+              <li class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">mdi-basket</v-icon>
+                <span class="detail-text">
+                  Seamless product upload and listing across Adventure, Technology, and Creative categories.
+                </span>
+              </li>
+              <li class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">mdi-compass</v-icon>
+                <span class="detail-text">
+                  Intuitive user interface for easy navigation and product discovery.
+                </span>
+              </li>
+              <li class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">mdi-shield-account</v-icon>
+                <span class="detail-text">Secure authentication and user profile management.</span>
+              </li>
+              <li class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">mdi-chat-processing</v-icon>
+                <span class="detail-text">Real-time transaction management and communication features.</span>
+              </li>
+              <li class="d-flex align-center detail-item">
+                <v-icon left size="20" class="detail-icon">mdi-account-group</v-icon>
+                <span class="detail-text">
+                  Community engagement tools, including comments and messaging functionalities.
+                </span>
+              </li>
+            </ul>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="secondary" class="github-btn" @click="goToProject('https://github.com/WuTangLan1/Vue3.js_Firebase_SampleMarketplace')">
+              Visit Github
+            </v-btn>
+          </v-card-actions>
+          <v-card-text class="tech-stack mt-4">
+            <div class="d-flex justify-space-between tech-icons-container">
+              <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
+                <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+              </v-avatar>
+              <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
+                  <img src="@/assets/images/tech stack/piniaicon.png" alt="Pinia" class="tech-icon-img" />
+                </v-avatar>
+              <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
+                <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon-img" />
+              </v-avatar>
+            </div>
+          </v-card-text>
+        </div>
+      </v-card>
+    </v-col>
+
     </v-row>
   </v-container>
 </template>
