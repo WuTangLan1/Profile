@@ -20,6 +20,7 @@ export default {
     initGlobe() {
       const canvas = this.$refs.globeCanvas;
       const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -28,6 +29,18 @@ export default {
 
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       camera.position.z = 45;
+
+        const setRendererSize = () => {
+        const container = canvas.parentElement;
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      };
+
+      setRendererSize(); 
+    window.addEventListener('resize', setRendererSize);
 
       const globeRadius = 14; 
 
@@ -113,7 +126,7 @@ export default {
         });
 
         animateParticles();
-        
+
         controls.update();
         composer.render();
         };
@@ -139,8 +152,8 @@ export default {
 
 <style scoped>
 .globe-container {
-  width: 100%;
-  height: auto;
+  width: 100%;  
+  height: 800px;
   overflow: hidden;
   border-radius: 15px;
 }
