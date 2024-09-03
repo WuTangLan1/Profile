@@ -116,5 +116,6 @@ export default {
 .globe-container {
   width: 100%;
   overflow: hidden;
+  border-radius: 15px;
 }
 </style>
