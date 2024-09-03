@@ -123,10 +123,12 @@
           {{ buttonText }}
         </v-btn>
       </v-row>
-      <component 
-        :is="displayMode === 'ratings' ? 'TechSection' : 'TechGlobe'" 
-        class="mt-10 tech-section" 
-        :techImages="techImages" />
+      <transition name="fade" mode="out-in">
+        <component 
+          :is="displayMode === 'ratings' ? 'TechSection' : 'TechGlobe'" 
+          class="mt-10 tech-section" 
+          :techImages="techImages" />
+      </transition>
     </v-row>
   </v-container>
 </template>
@@ -143,6 +145,14 @@
 
 .dark .text-h3 {
   color: white;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
 @media(min-width: 1000px)

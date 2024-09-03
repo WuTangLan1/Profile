@@ -5,7 +5,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
-import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 export default {
   props: {
@@ -28,44 +27,36 @@ export default {
       scene.background = new THREE.Color(0x111827); 
 
       const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 60;
+      camera.position.z = 45;
+
+      const globeRadius = 14; 
 
       this.techImages.forEach((tech, index) => {
         const loader = new THREE.TextureLoader();
         loader.load(tech.src, (texture) => {
-            const iconSize = 2 + Math.random() * 0.5;
-            const iconGeometry = new THREE.PlaneGeometry(iconSize, iconSize);
-            const iconMaterial = new THREE.MeshBasicMaterial({
+          const iconSize = 3.5;
+          const iconGeometry = new THREE.PlaneGeometry(iconSize, iconSize);
+          const iconMaterial = new THREE.MeshBasicMaterial({
             map: texture,
             transparent: true,
-            depthTest: false, 
-            });
+            side: THREE.FrontSide,
+            depthTest: false,
+            depthWrite: false,
+            toneMapped: false
+          });
+          const icon = new THREE.Mesh(iconGeometry, iconMaterial);
 
-            const icon = new THREE.Mesh(iconGeometry, iconMaterial);
+          const phi = Math.acos(-1 + (2 * index + 1) / this.techImages.length);
+          const theta = Math.sqrt(this.techImages.length * Math.PI) * phi * 0.8;
 
-            const phi = Math.acos(-1 + (2 * index + 1) / this.techImages.length);
-            const theta = Math.sqrt(this.techImages.length * Math.PI) * phi;
+          icon.position.setFromSphericalCoords(globeRadius, phi, theta);
+          icon.lookAt(camera.position); 
+          icon.lookAt(new THREE.Vector3(0, 0, 0)); 
 
-            icon.position.setFromSphericalCoords(24, phi, theta);
-            icon.lookAt(new THREE.Vector3(0, 0, 0));
-            icon.rotation.z += Math.random() * Math.PI;
-            icon.userData = { speed: Math.random() * 0.01 };
-
-            const iconGlow = new THREE.SpriteMaterial({
-            map: texture,
-            color: 0xffffff,
-            blending: THREE.AdditiveBlending,
-            opacity: 0.6,
-            });
-
-            const glowSprite = new THREE.Sprite(iconGlow);
-            glowSprite.scale.set(iconSize * 1.5, iconSize * 1.5, 1);
-            icon.add(glowSprite);
-
-            scene.add(icon);
+          icon.userData = { speed: Math.random() * 0.01 };
+          scene.add(icon);
+               });
         });
-        });
-
 
       const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
@@ -78,17 +69,14 @@ export default {
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
 
-      const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.3, 0.4, 0.8);
-      composer.addPass(bloomPass);
-
       const animate = () => {
         requestAnimationFrame(animate);
-        scene.children.forEach((child) => {
-            if (child.userData.speed) {
-            child.rotation.y += child.userData.speed; 
-            }
+        scene.children.forEach((icon) => {
+          if (icon.isMesh) {
+            icon.lookAt(camera.position);
+          }
         });
-        
+
         controls.update();
         composer.render();
         };
