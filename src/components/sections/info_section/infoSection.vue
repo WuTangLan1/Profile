@@ -35,7 +35,7 @@
         { src: require('@/assets/images/known tech/discord_icon.png') },
         { src: require('@/assets/images/known tech/expressjs_icon.png') },
         { src: require('@/assets/images/known tech/firebase_icon.png') },
-        { src: require('@/assets/images/known tech/github_icon.png') },
+        { src: require('@/assets/images/known tech/githubwhite_icon.png') },
         { src: require('@/assets/images/known tech/gpt_icon.png') },
         { src: require('@/assets/images/known tech/heroku_icon.png') },
         { src: require('@/assets/images/known tech/javascript_icon.png') },
@@ -46,7 +46,7 @@
         { src: require('@/assets/images/known tech/tailwind_icon.png') },
 
         { src: require('@/assets/images/known tech/typescript_icon.png') },
-        { src: require('@/assets/images/known tech/vercel_icon.png') },
+        { src: require('@/assets/images/known tech/vercelwhite_icon.png') },
         { src: require('@/assets/images/known tech/vue_icon.png') },
         { src: require('@/assets/images/known tech/vuetify_icon.png') },
       ]);
@@ -61,7 +61,7 @@
         }
       };
 
-      const titles = ['New Graduate', 'Software Developer', 'Researcher', 'Systems Analyst'];
+      const titles = ['a new graduate', 'a software developer', 'a published author', 'a systems analyst', 'looking for work overseas'];
       const currentTitle = ref('');
       const typingSpeed = 100;
       const deletingSpeed = 50;
@@ -127,7 +127,7 @@
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
-          <h2 class="text-h5 grey--text">I am a <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
+          <h2 class="text-h5 grey--text">I am <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
         </div>
         <v-divider class="my-4"></v-divider>
         <p class="body-1">
@@ -181,8 +181,14 @@
 
 .typing {
   font-weight: bold;
-  color: #4A90E2;
-  transition: opacity 0.4s ease, transform 0.3s ease;
+  background: linear-gradient(90deg, #0073ff, #0fc57f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dark .typing {
+  background: linear-gradient(90deg, #72a8e6, #b57bec);
+  -webkit-background-clip: text;
 }
 
 .typing.fade-in {
