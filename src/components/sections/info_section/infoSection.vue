@@ -1,13 +1,15 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-  import { inject } from 'vue';
+  import { inject, ref } from 'vue';
   import PictureSection from '@/components/sections/info_section/pictureSection.vue';
   import TechSection from '@/components/sections/info_section/techSection.vue'; 
+  import TechGlobe from '@/components/sections/info_section/techGlobe.vue'
 
   export default {
     components: {
       TechSection,
-      PictureSection
+      PictureSection,
+      TechGlobe
     },
     setup() {
       const handleChangeSection = inject('handleChangeSection');
@@ -21,9 +23,51 @@
 
       const resumeLink = process.env.BASE_URL + 'cv/finnm_resume.pdf'
 
+      const displayMode = ref('ratings');
+      const buttonText = ref('globe');
+
+      const techImages = ref([
+        { src: require('@/assets/images/known tech/aspnet_icon.png') },
+        { src: require('@/assets/images/known tech/blazor_icon.png') },
+        { src: require('@/assets/images/known tech/csharp_icon.png') },
+        { src: require('@/assets/images/known tech/devopps_icon.png') },
+
+        { src: require('@/assets/images/known tech/discord_icon.png') },
+        { src: require('@/assets/images/known tech/expressjs_icon.png') },
+        { src: require('@/assets/images/known tech/firebase_icon.png') },
+        { src: require('@/assets/images/known tech/github_icon.png') },
+        { src: require('@/assets/images/known tech/gpt_icon.png') },
+        { src: require('@/assets/images/known tech/heroku_icon.png') },
+        { src: require('@/assets/images/known tech/javascript_icon.png') },
+        { src: require('@/assets/images/known tech/mysql_icon.png') },
+        { src: require('@/assets/images/known tech/nestJS_icon.png') },
+        { src: require('@/assets/images/known tech/primevue_icon.png') },
+        { src: require('@/assets/images/known tech/python_icon.png') },
+        { src: require('@/assets/images/known tech/tailwind_icon.png') },
+
+        { src: require('@/assets/images/known tech/typescript_icon.png') },
+        { src: require('@/assets/images/known tech/vercel_icon.png') },
+        { src: require('@/assets/images/known tech/vue_icon.png') },
+        { src: require('@/assets/images/known tech/vuetify_icon.png') },
+      ]);
+
+      const toggleDisplay = () => {
+        if (displayMode.value === 'ratings') {
+          displayMode.value = 'globe';
+          buttonText.value = 'ratings';
+        } else {
+          displayMode.value = 'ratings';
+          buttonText.value = 'globe';
+        }
+      };
+
       return {
         contact,
-        resumeLink
+        resumeLink,
+        displayMode,
+        buttonText,
+        toggleDisplay,
+        techImages
       };
     },
     methods: {
@@ -68,7 +112,21 @@
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
       </v-col>
-      <TechSection class="mt-10 tech-section" />
+      <v-row 
+        class="d-flex justify-end align-center mb-2" 
+        style="padding-right: 40px; margin-top: 20px;">
+        <span class="mr-2">Switch this display to</span>
+        <v-btn 
+          class="toggle-btn" 
+          color="primary" 
+          @click="toggleDisplay">
+          {{ buttonText }}
+        </v-btn>
+      </v-row>
+      <component 
+        :is="displayMode === 'ratings' ? 'TechSection' : 'TechGlobe'" 
+        class="mt-10 tech-section" 
+        :techImages="techImages" />
     </v-row>
   </v-container>
 </template>
@@ -138,6 +196,13 @@
   }
 }
 
+.toggle-btn {
+  font-size: 14px;
+  padding: 5px 10px;
+  min-width: 80px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .info-row {
   align-items: start;
   justify-content: center;
@@ -147,7 +212,7 @@
   align-items: center; 
 }
 
-.text-container, .buttons-container, .body-1 {
+.text-container, .buttons-container {
   z-index: 1;
   position: relative;
 }
