@@ -61,7 +61,7 @@
         }
       };
 
-      const titles = ['Researcher', 'Systems Analyst', 'Software Developer'];
+      const titles = ['New Graduate', 'Software Developer', 'Researcher', 'Systems Analyst'];
       const currentTitle = ref('');
       const typingSpeed = 100;
       const deletingSpeed = 50;
@@ -80,11 +80,11 @@
           setTimeout(typeEffect, deletingSpeed);
         } else if (!isDeleting && charIndex > titles[titleIndex].length) {
           isDeleting = true;
-          setTimeout(typeEffect, 1000); // Pause before deleting
+          setTimeout(typeEffect, 1000); 
         } else if (isDeleting && charIndex === 0) {
           isDeleting = false;
           titleIndex = (titleIndex + 1) % titles.length;
-          setTimeout(typeEffect, 500); // Pause before typing the next title
+          setTimeout(typeEffect, 500); 
         }
       };
 
@@ -182,22 +182,31 @@
 .typing {
   font-weight: bold;
   color: #4A90E2;
+  transition: opacity 0.4s ease, transform 0.3s ease;
+}
+
+.typing.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.typing.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 .cursor {
   display: inline-block;
   margin-left: 2px;
   font-weight: bold;
-  animation: blink 0.8s steps(2, start) infinite;
+  animation: blink 0.7s steps(2, start) infinite;
 }
 
 @keyframes blink {
-  0%,
-  50% {
+  0%, 50% {
     opacity: 1;
   }
-  51%,
-  100% {
+  51%, 100% {
     opacity: 0;
   }
 }
