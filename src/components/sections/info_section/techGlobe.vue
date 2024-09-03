@@ -31,6 +31,32 @@ export default {
 
       const globeRadius = 14; 
 
+      const light = new THREE.PointLight(0xffffff, 1.5, 50);
+      light.position.set(10, 10, 10);
+      scene.add(light);
+
+      const particleGeometry = new THREE.BufferGeometry();
+      const particleCount = 500;
+      const particlePositions = [];
+
+      for (let i = 0; i < particleCount; i++) {
+        particlePositions.push((Math.random() - 0.5) * 200); 
+        particlePositions.push((Math.random() - 0.5) * 200); 
+        particlePositions.push((Math.random() - 0.5) * 200); 
+      }
+
+      particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(particlePositions, 3));
+
+      const particleMaterial = new THREE.PointsMaterial({
+        color: 0xaaaaaa,
+        size: 1,
+        sizeAttenuation: true,
+      });
+
+      const particles = new THREE.Points(particleGeometry, particleMaterial);
+      scene.add(particles);
+
+
       this.techImages.forEach((tech, index) => {
         const loader = new THREE.TextureLoader();
         loader.load(tech.src, (texture) => {
@@ -55,17 +81,17 @@ export default {
 
           icon.userData = { speed: Math.random() * 0.01 };
           scene.add(icon);
-               });
+            });
         });
 
       const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
-        controls.dampingFactor = 0.1;
         controls.autoRotate = true;
-        controls.autoRotateSpeed = 1.5;
+        controls.dampingFactor = 0.05; 
+        controls.autoRotateSpeed = 0.8;
         controls.enableZoom = false; 
 
-
+        
       const composer = new EffectComposer(renderer);
       composer.addPass(new RenderPass(scene, camera));
 
@@ -73,6 +99,7 @@ export default {
         requestAnimationFrame(animate);
         scene.children.forEach((icon) => {
           if (icon.isMesh) {
+            icon.scale.setScalar(1 + 0.05 * Math.sin(Date.now() * 0.005));
             icon.lookAt(camera.position);
           }
         });
@@ -103,6 +130,8 @@ export default {
 <style scoped>
 .globe-container {
   width: 100%;
+  max-width: 600px;
+  height: auto;
   overflow: hidden;
   border-radius: 15px;
 }
