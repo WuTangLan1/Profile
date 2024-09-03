@@ -31,7 +31,6 @@
         { src: require('@/assets/images/known tech/blazor_icon.png') },
         { src: require('@/assets/images/known tech/csharp_icon.png') },
         { src: require('@/assets/images/known tech/devopps_icon.png') },
-
         { src: require('@/assets/images/known tech/discord_icon.png') },
         { src: require('@/assets/images/known tech/expressjs_icon.png') },
         { src: require('@/assets/images/known tech/firebase_icon.png') },
@@ -41,10 +40,12 @@
         { src: require('@/assets/images/known tech/javascript_icon.png') },
         { src: require('@/assets/images/known tech/mysql_icon.png') },
         { src: require('@/assets/images/known tech/nestJS_icon.png') },
+        { src: require('@/assets/images/known tech/nextjs_icon.png') },
         { src: require('@/assets/images/known tech/primevue_icon.png') },
         { src: require('@/assets/images/known tech/python_icon.png') },
+        { src: require('@/assets/images/known tech/react_icon.png') },
+        { src: require('@/assets/images/known tech/supabase_icon.png') },
         { src: require('@/assets/images/known tech/tailwind_icon.png') },
-
         { src: require('@/assets/images/known tech/typescript_icon.png') },
         { src: require('@/assets/images/known tech/vercelwhite_icon.png') },
         { src: require('@/assets/images/known tech/vue_icon.png') },
