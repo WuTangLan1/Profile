@@ -1,6 +1,6 @@
 <!-- src\components\sections\info_section\infoSection.vue -->
 <script>
-  import { inject, ref } from 'vue';
+  import { inject, ref, onMounted } from 'vue';
   import PictureSection from '@/components/sections/info_section/pictureSection.vue';
   import TechSection from '@/components/sections/info_section/techSection.vue'; 
   import TechGlobe from '@/components/sections/info_section/techGlobe.vue'
@@ -61,13 +61,45 @@
         }
       };
 
+      const titles = ['Researcher', 'Systems Analyst', 'Software Developer'];
+      const currentTitle = ref('');
+      const typingSpeed = 100;
+      const deletingSpeed = 50;
+      let titleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      const typeEffect = () => {
+        if (!isDeleting && charIndex <= titles[titleIndex].length) {
+          currentTitle.value = titles[titleIndex].substring(0, charIndex);
+          charIndex++;
+          setTimeout(typeEffect, typingSpeed);
+        } else if (isDeleting && charIndex > 0) {
+          currentTitle.value = titles[titleIndex].substring(0, charIndex);
+          charIndex--;
+          setTimeout(typeEffect, deletingSpeed);
+        } else if (!isDeleting && charIndex > titles[titleIndex].length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1000); // Pause before deleting
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          titleIndex = (titleIndex + 1) % titles.length;
+          setTimeout(typeEffect, 500); // Pause before typing the next title
+        }
+      };
+
+      onMounted(() => {
+        setTimeout(typeEffect, 500); 
+      });
+
       return {
         contact,
         resumeLink,
         displayMode,
         buttonText,
         toggleDisplay,
-        techImages
+        techImages,
+        currentTitle
       };
     },
     methods: {
@@ -95,7 +127,7 @@
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
-          <h2 class="text-h5 grey--text">Information Systems Developer and Analyst</h2>
+          <h2 class="text-h5 grey--text">I am a <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
         </div>
         <v-divider class="my-4"></v-divider>
         <p class="body-1">
@@ -147,11 +179,36 @@
   color: white;
 }
 
-.fade-enter-active, .fade-leave-active {
+.typing {
+  font-weight: bold;
+  color: #4A90E2;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  font-weight: bold;
+  animation: blink 0.8s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
