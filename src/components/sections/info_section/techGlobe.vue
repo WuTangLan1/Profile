@@ -56,6 +56,13 @@ export default {
       const particles = new THREE.Points(particleGeometry, particleMaterial);
       scene.add(particles);
 
+      const animateParticles = () => {
+      particleGeometry.attributes.position.array.forEach((_, index) => {
+        particleGeometry.attributes.position.array[index] += Math.sin(Date.now() * 0.0005 + index) * 0.01;
+      });
+      particleGeometry.attributes.position.needsUpdate = true;
+    };
+
 
       this.techImages.forEach((tech, index) => {
         const loader = new THREE.TextureLoader();
@@ -63,13 +70,14 @@ export default {
           const iconSize = 3.5;
           const iconGeometry = new THREE.PlaneGeometry(iconSize, iconSize);
           const iconMaterial = new THREE.MeshBasicMaterial({
-            map: texture,
-            transparent: true,
-            side: THREE.FrontSide,
-            depthTest: false,
-            depthWrite: false,
-            toneMapped: false
-          });
+              map: texture,
+              transparent: true,
+              side: THREE.FrontSide,
+              depthTest: false,
+              depthWrite: false,
+              toneMapped: false,
+            });
+
           const icon = new THREE.Mesh(iconGeometry, iconMaterial);
 
           const phi = Math.acos(-1 + (2 * index + 1) / this.techImages.length);
@@ -104,6 +112,8 @@ export default {
           }
         });
 
+        animateParticles();
+        
         controls.update();
         composer.render();
         };
@@ -130,7 +140,6 @@ export default {
 <style scoped>
 .globe-container {
   width: 100%;
-  max-width: 600px;
   height: auto;
   overflow: hidden;
   border-radius: 15px;

@@ -285,6 +285,9 @@
 .tech-section {
   margin-top: 40px; 
   width: 100%;
+  margin: auto;
+  align-items: center;
+  align-self: center;
 }
 
 
