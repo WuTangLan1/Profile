@@ -31,7 +31,7 @@
         deployment: [
           { name: 'Heroku', src: require('@/assets/images/known tech/heroku_icon.png'), rating : 4 },
           { name: 'Firebase hosting', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 4 },
-          { name: 'Vercel', src: require('@/assets/images/known tech/vercel_icon.png'), rating : 3 },
+          { name: 'Vercel', src: require('@/assets/images/known tech/vercel_icon.png'), rating : 4 },
         ],
         management: [
           { name: 'Github', src: require('@/assets/images/known tech/github_icon.png'), rating : 5 },
@@ -377,7 +377,7 @@
 }
 
 .tech-rating .star-icon.star-filled {
-  color: #FFD700; 
+  color: #d8af3f; 
 }
 
 .tech-rating .star-icon.star-empty {
