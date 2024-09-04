@@ -244,7 +244,7 @@ export default {
         cols="12"
         sm="6"
         md="4"
-        lg="3"
+        lg="4"
         class="d-flex"
       >
         <v-card
