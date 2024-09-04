@@ -62,7 +62,7 @@
         }
       };
 
-      const titles = ['a new graduate', 'a software developer', 'a published author', 'a systems analyst', 'looking for work overseas'];
+      const titles = ['new graduate', 'full stack developer', 'published author', 'systems analyst'];
       const currentTitle = ref('');
       const typingSpeed = 100;
       const deletingSpeed = 50;
@@ -128,7 +128,7 @@
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
-          <h2 class="text-h5 grey--text">I am <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
+          <h2 class="text-h5 grey--text">I am a <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
         </div>
         <v-divider class="my-4"></v-divider>
         <p class="body-1">
@@ -183,14 +183,18 @@
 .typing {
   font-weight: bold;
   background: linear-gradient(90deg, #0073ff, #0fc57f);
-  -webkit-background-clip: text;
+  background-clip: text; 
+  -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
 }
 
 .dark .typing {
   background: linear-gradient(90deg, #72a8e6, #b57bec);
-  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
 }
+
 
 .typing.fade-in {
   opacity: 1;

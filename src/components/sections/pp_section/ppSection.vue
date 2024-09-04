@@ -101,19 +101,19 @@ export default {
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/piniaicon.png" alt="Pinia" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="OpenAI" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/gpticon.png" alt="OpenAI" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/gpt_icon.png" alt="OpenAI" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -169,19 +169,19 @@ export default {
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/piniaicon.png" alt="Pinia" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="PrimeVue" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/primevue_icon.png" alt="PrimeVue" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Tailwind" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/tailwindicon.png" alt="Tailwind" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -243,16 +243,16 @@ export default {
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/piniaicon.png" alt="Pinia" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -305,13 +305,13 @@ export default {
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="PrimeVue" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/primevueicon.png" alt="PrimeVue" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/primevue_icon.png" alt="PrimeVue" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vuetifyicon.png" alt="Vuetify" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -380,13 +380,13 @@ export default {
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/vueicon.png" alt="Vue.js" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                    <img src="@/assets/images/tech stack/piniaicon.png" alt="Pinia" class="tech-icon-img" />
+                    <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
                 </v-avatar>
                 <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/tech stack/firebaseicon.png" alt="Firebase" class="tech-icon-img" />
+                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -395,7 +395,7 @@ export default {
       </v-col>
 
       <!-- 4 Guesses Project Card -->
-        <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
+      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
           <v-card
             :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '3s' : '0s' }"
             class="pa-4 mb-4 elevation-3 project-card"
@@ -447,22 +447,22 @@ export default {
               <v-card-text class="tech-stack mt-4">
                 <div class="d-flex justify-space-between tech-icons-container">
                   <v-avatar size="36" title="React" class="ma-1 tech-icon">
-                    <img src="@/assets/images/tech stack/reacticon.png" alt="React" class="tech-icon-img" />
+                    <img src="@/assets/images/known tech/react_icon.png" alt="React" class="tech-icon-img" />
                   </v-avatar>
                   <v-avatar size="36" title="Next.js" class="ma-1 tech-icon">
-                    <img src="@/assets/images/tech stack/nextjsicon.png" alt="Nextjs" class="tech-icon-img" />
+                    <img src="@/assets/images/known tech/nextjs_icon.png" alt="Nextjs" class="tech-icon-img" />
                   </v-avatar>
                   <v-avatar size="36" title="TypeScript" class="ma-1 tech-icon">
-                    <img src="@/assets/images/tech stack/typescripticon.png" alt="TypeScript" class="tech-icon-img" />
+                    <img src="@/assets/images/known tech/typescript_icon.png" alt="TypeScript" class="tech-icon-img" />
                   </v-avatar>
                   <v-avatar size="36" title="Tailwind CSS" class="ma-1 tech-icon">
-                    <img src="@/assets/images/tech stack/tailwindicon.png" alt="Tailwind CSS" class="tech-icon-img" />
+                    <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind CSS" class="tech-icon-img" />
                   </v-avatar>
                 </div>
               </v-card-text>
             </div>
           </v-card>
-        </v-col>
+      </v-col>
 
 
     </v-row>
