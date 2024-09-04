@@ -17,15 +17,25 @@ export default {
     onMounted(() => {
       const canvas = canvasRef.value;
       const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+
       resizeCanvas();
 
-      // Add mousemove event listener for canvas
       let mouseX = 0;
       let mouseY = 0;
+
+      // Mousemove event for desktop
       canvas.addEventListener('mousemove', (event) => {
         const rect = canvas.getBoundingClientRect();
         mouseX = event.clientX - rect.left;
         mouseY = event.clientY - rect.top;
+      });
+
+      // Touchmove event for mobile
+      canvas.addEventListener('touchmove', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = event.touches[0].clientX - rect.left;
+        mouseY = event.touches[0].clientY - rect.top;
       });
 
       props.techImages.forEach((tech) => {
@@ -47,7 +57,7 @@ export default {
       const animate = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach((particle) => {
-          particle.update(canvas, particles); 
+          particle.update(canvas, particles, mouseX, mouseY);
           particle.draw(mouseX, mouseY);
         });
         requestAnimationFrame(animate);
@@ -68,10 +78,22 @@ export default {
         this.angle = Math.random() * Math.PI * 2;
       }
 
-      update(canvas, particles) {
+      update(canvas, particles, mouseX, mouseY) {
         const gravityStrength = 0.03;
+        const repulsionStrength = 0.5;
 
         this.vy += gravityStrength;
+
+        // Repulsion effect from the mouse
+        const dx = this.x - mouseX;
+        const dy = this.y - mouseY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+          const angle = Math.atan2(dy, dx);
+          this.vx += Math.cos(angle) * repulsionStrength;
+          this.vy += Math.sin(angle) * repulsionStrength;
+        }
 
         this.x += this.vx;
         this.y += this.vy;
@@ -84,7 +106,7 @@ export default {
           this.vx *= -0.5;
         }
 
-        if (this.y + this.size / 2 > canvas.height - 20) { 
+        if (this.y + this.size / 2 > canvas.height - 20) {
           this.y = canvas.height - this.size / 2 - 20;
           this.vy *= -0.5;
         } else if (this.y - this.size / 2 < 0) {
@@ -117,16 +139,21 @@ export default {
       }
 
       draw(mouseX, mouseY) {
-        const scaleFactor = 1.2; 
+        const scaleFactor = 1.2;
         const distance = Math.sqrt((mouseX - this.x) ** 2 + (mouseY - this.y) ** 2);
         const isHovered = distance < this.size;
+
+        if (isHovered) {
+          this.ctx.shadowColor = 'rgba(0, 255, 0, 0.5)';
+          this.ctx.shadowBlur = 15;
+        } else {
+          this.ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+          this.ctx.shadowBlur = 10;
+        }
 
         this.ctx.save();
         this.ctx.translate(this.x, this.y);
         this.ctx.rotate(this.angle);
-        this.ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'; 
-        this.ctx.shadowBlur = 10; 
-
 
         const aspectRatio = this.img.width / this.img.height;
         const drawWidth = this.size * (isHovered ? scaleFactor : 1);
@@ -142,7 +169,6 @@ export default {
 
         this.ctx.restore();
       }
-
     }
 
     return {
@@ -164,17 +190,11 @@ export default {
   width: 100%;
   overflow: hidden;
   border-radius: 15px;
-  height: 25vh;
 }
-
 
 canvas {
   display: block;
   cursor: pointer;
-}
-
-canvas {
   image-rendering: crisp-edges;
 }
-
 </style>
