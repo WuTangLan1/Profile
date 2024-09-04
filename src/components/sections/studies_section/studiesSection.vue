@@ -1,8 +1,8 @@
 <!-- src\components\sections\studies_section\studiesSection.vue -->
 <script>
 import { VContainer, VCol, VRow, VDivider, VProgressCircular } from 'vuetify/lib/components';
-import UCTImage from '@/assets/images/UCT.png';
-import WBHSImage from '@/assets/images/wbhs.png';
+import UCTImage from '@/assets/images/studies/UCT.png';
+import WBHSImage from '@/assets/images/studies/wbhs.png';
 
 export default {
   components: {

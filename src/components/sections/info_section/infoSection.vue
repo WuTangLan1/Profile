@@ -4,12 +4,15 @@
   import PictureSection from '@/components/sections/info_section/pictureSection.vue';
   import TechSection from '@/components/sections/info_section/techSection.vue'; 
   import TechGlobe from '@/components/sections/info_section/techGlobe.vue'
+  import TechGravity from '@/components/sections/info_section/techGravity.vue';
+
 
   export default {
     components: {
       TechSection,
       PictureSection,
-      TechGlobe
+      TechGlobe,
+      TechGravity
     },
     setup() {
       const handleChangeSection = inject('handleChangeSection');
@@ -55,6 +58,9 @@
       const toggleDisplay = () => {
         if (displayMode.value === 'ratings') {
           displayMode.value = 'globe';
+          buttonText.value = 'gravity';
+        } else if (displayMode.value === 'globe') {
+          displayMode.value = 'gravity';
           buttonText.value = 'ratings';
         } else {
           displayMode.value = 'ratings';
@@ -158,9 +164,10 @@
       </v-row>
       <transition name="fade" mode="out-in">
         <component 
-          :is="displayMode === 'ratings' ? 'TechSection' : 'TechGlobe'" 
+          :is="displayMode === 'ratings' ? 'TechSection' : displayMode === 'globe' ? 'TechGlobe' : 'TechGravity'" 
           class="mt-10 tech-section" 
-          :techImages="techImages" />
+          :techImages="techImages" 
+        />
       </transition>
     </v-row>
   </v-container>

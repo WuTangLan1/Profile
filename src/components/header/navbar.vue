@@ -48,7 +48,7 @@ export default {
       </ul>
     </nav>
     <div @click="handleToggle" class="dark-mode-icon">
-      <img :class="{ rotated: isRotated }" src="@/assets/images/dark-mode.png" alt="Toggle Dark Mode" />
+      <img :class="{ rotated: isRotated }" src="@/assets/images/extra/dark-mode.png" alt="Toggle Dark Mode" />
     </div>
   </header>
 </template>
