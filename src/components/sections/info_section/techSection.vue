@@ -24,7 +24,7 @@
         ],
         dataManagement: [
           { name: 'Firebase', src: require('@/assets/images/known tech/firebase_icon.png'), rating : 5 },
-          { name: 'MongoDB', src: require('@/assets/images/known tech/supabase_icon.png'), rating : 4 },
+          { name: 'Supabase', src: require('@/assets/images/known tech/supabase_icon.png'), rating : 4 },
           { name: 'MySQL', src: require('@/assets/images/known tech/mysql_icon.png'), rating : 3 },
           { name: 'MongoDB', src: require('@/assets/images/known tech/mongodb_icon.png'), rating : 3 }
         ],
