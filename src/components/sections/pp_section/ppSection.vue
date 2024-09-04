@@ -117,6 +117,9 @@ export default {
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
                   <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
                 </v-avatar>
+                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
+                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
+                </v-avatar>
               </div>
             </v-card-text>
           </div>
@@ -184,6 +187,9 @@ export default {
                 </v-avatar>
                 <v-avatar size="36" title="Tailwind" class="ma-1 tech-icon">
                   <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind" class="tech-icon-img" />
+                </v-avatar>
+                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
+                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -256,6 +262,9 @@ export default {
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
                   <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
                 </v-avatar>
+                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
+                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
+                </v-avatar>
               </div>
             </v-card-text>
           </div>
@@ -314,6 +323,9 @@ export default {
                 </v-avatar>
                 <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
                   <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
+                </v-avatar>
+                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
+                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
                 </v-avatar>
               </div>
             </v-card-text>
@@ -390,6 +402,9 @@ export default {
                 <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
                   <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
                 </v-avatar>
+                <v-avatar size="36" title="Vercel" class="ma-1 tech-icon">
+                  <img src="@/assets/images/known tech/vercel_icon.png" alt="Vercel" class="tech-icon-img" />
+                </v-avatar>
               </div>
             </v-card-text>
           </div>
@@ -459,6 +474,9 @@ export default {
                   </v-avatar>
                   <v-avatar size="36" title="Tailwind CSS" class="ma-1 tech-icon">
                     <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind CSS" class="tech-icon-img" />
+                  </v-avatar>
+                  <v-avatar size="36" title="Vercel" class="ma-1 tech-icon">
+                    <img src="@/assets/images/known tech/vercel_icon.png" alt="Vercel" class="tech-icon-img" />
                   </v-avatar>
                 </div>
               </v-card-text>
