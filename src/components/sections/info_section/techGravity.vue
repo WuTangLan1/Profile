@@ -192,6 +192,13 @@ export default {
   border-radius: 15px;
 }
 
+@media(max-width: 500px)
+{
+  .gravity-container {
+    height: 25vh;
+  }
+}
+
 canvas {
   display: block;
   cursor: pointer;

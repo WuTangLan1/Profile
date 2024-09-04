@@ -14,14 +14,24 @@ export default {
 
     const setActiveImage = (index) => {
       activeImageIndex.value = index;
+      resetTimer(); 
     };
 
     const cycleImages = () => {
       activeImageIndex.value = (activeImageIndex.value + 1) % images.length;
     };
 
-    onMounted(() => {
+    const startTimer = () => {
       intervalId = setInterval(cycleImages, 4000);
+    };
+
+    const resetTimer = () => {
+      clearInterval(intervalId);
+      startTimer();
+    };
+
+    onMounted(() => {
+      startTimer();
     });
 
     onBeforeUnmount(() => {
@@ -45,17 +55,17 @@ export default {
         :key="index"
         :class="['image-card', { 'image-card-active': activeImageIndex === index }]"
         @click="setActiveImage(index)"
-        :style="{ zIndex: activeImageIndex === index ? 3 : index + 1 }" 
+        :style="{ zIndex: activeImageIndex === index ? 3 : index + 1 }"
       >
-      <v-card class="image-card-content" elevation="6">
-        <v-img
+        <v-card class="image-card-content" elevation="6">
+          <v-img
             :src="image"
             alt="Profile Image"
             class="profile-image"
             contain
             width="100%"
             height="100%"
-        ></v-img>
+          ></v-img>
         </v-card>
       </div>
     </div>
