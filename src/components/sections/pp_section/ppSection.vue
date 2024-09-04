@@ -294,7 +294,7 @@ export default {
               <v-btn
                 color="primary"
                 class="visit-btn"
-                @click="goToProject(project.link)"
+                @click="goToProject(project.Githublink)"
               >
                 Visit Github
               </v-btn>
