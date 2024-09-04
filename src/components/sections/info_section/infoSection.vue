@@ -40,7 +40,7 @@
         { src: require('@/assets/images/known tech/javascript_icon.png') },
         { src: require('@/assets/images/known tech/mysql_icon.png') },
         { src: require('@/assets/images/known tech/nestJS_icon.png') },
-        { src: require('@/assets/images/known tech/nextjs_icon.png') },
+        { src: require('@/assets/images/known tech/nextjswhite_icon.png') },
         { src: require('@/assets/images/known tech/primevue_icon.png') },
         { src: require('@/assets/images/known tech/python_icon.png') },
         { src: require('@/assets/images/known tech/react_icon.png') },

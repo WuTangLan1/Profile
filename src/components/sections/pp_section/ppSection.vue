@@ -45,6 +45,8 @@ export default {
         'The Big Picture': require('@/assets/images/projects/fullcircle_logo.png'),
         Mapple: require('@/assets/images/projects/mapple_logo.png'),
         'This website': require('@/assets/images/projects/profileweb_logo.png'),
+        'Strapp-Newer-Hope Platform': require('@/assets/images/projects/strapp_logo.png'),
+        '4 Guesses': require('@/assets/images/projects/4guesses_logo.png')
       };
       return imageMap[projectTitle] || '';
     }
