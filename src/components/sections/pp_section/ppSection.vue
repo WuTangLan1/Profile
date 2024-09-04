@@ -1,10 +1,200 @@
 <!-- src\components\sections\pp_section\ppSection.vue -->
+
 <script>
+import vueIcon from "@/assets/images/known tech/vue_icon.png";
+import piniaIcon from "@/assets/images/known tech/pinia_icon.png";
+import firebaseIcon from "@/assets/images/known tech/firebase_icon.png";
+import gptIcon from "@/assets/images/known tech/gpt_icon.png";
+import vuetifyIcon from "@/assets/images/known tech/vuetify_icon.png";
+import herokuIcon from "@/assets/images/known tech/heroku_icon.png";
+import primevueIcon from "@/assets/images/known tech/primevue_icon.png";
+import tailwindIcon from "@/assets/images/known tech/tailwind_icon.png";
+import typescriptIcon from "@/assets/images/known tech/typescript_icon.png";
+import reactIcon from "@/assets/images/known tech/react_icon.png";
+import nextjsIcon from "@/assets/images/known tech/nextjs_icon.png";
+import vercelIcon from "@/assets/images/known tech/vercel_icon.png";
 
 export default {
   data() {
     return {
       sectionInView: false,
+      projects: [
+        {
+          title: "CoPlaylist",
+          subtitle: "Playlist Generation",
+          description:
+            "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
+          details: [
+            {
+              icon: "mdi-account-music",
+              text: "Generate playlists based on options for tone, style, and similar music using the OpenAI API key.",
+            },
+            {
+              icon: "mdi-spotify",
+              text: "Spotify Playlist Integration for enhanced musical exploration.",
+            },
+          ],
+          link: "https://coplaylist-5ec2820dd416.herokuapp.com/",
+          techStack: [
+            { title: "Vue.js", img: vueIcon },
+            { title: "Pinia", img: piniaIcon },
+            { title: "Firebase", img: firebaseIcon },
+            { title: "OpenAI", img: gptIcon },
+            { title: "Vuetify", img: vuetifyIcon },
+            { title: "Heroku", img: herokuIcon },
+          ],
+          imageUrl: require("@/assets/images/projects/coplaylist_logo.png"),
+        },
+        {
+          title: "The Big Picture",
+          subtitle: "Game site",
+          description:
+            "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
+          details: [
+            {
+              icon: "mdi-image-area",
+              text: "Daily puzzles with a unique set of terms every day.",
+            },
+            {
+              icon: "mdi-school",
+              text: "Account registration to track efforts and provide insights.",
+            },
+            {
+              icon: "mdi-share-variant",
+              text: "Social Sharing to engage with a community of players.",
+            },
+          ],
+          link: "https://fullcircle-4856e527cad2.herokuapp.com/",
+          techStack: [
+            { title: "Vue.js", img: vueIcon },
+            { title: "Pinia", img: piniaIcon },
+            { title: "Firebase", img: firebaseIcon },
+            { title: "PrimeVue", img: primevueIcon },
+            { title: "Tailwind", img: tailwindIcon },
+            { title: "Heroku", img: herokuIcon },
+          ],
+          imageUrl: require("@/assets/images/projects/fullcircle_logo.png"),
+        },
+        {
+          title: "Mapple",
+          subtitle: "Game site",
+          description:
+            "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
+          details: [
+            {
+              icon: "mdi-tooltip-check",
+              text: "Three difficulty levels to customise the challenge the game provides to users.",
+            },
+            {
+              icon: "mdi-earth",
+              text: "Interactive selection map to allow users to select countries across the globe.",
+            },
+            {
+              icon: "mdi-list-status",
+              text: "Efforts tracking and management for high scores to allow users to improve.",
+            },
+          ],
+          link: "https://mapple-15f9c29f3ed1.herokuapp.com/",
+          techStack: [
+            { title: "Vue.js", img: vueIcon },
+            { title: "Firebase", img: firebaseIcon },
+            { title: "Pinia", img: piniaIcon },
+            { title: "Vuetify", img: vuetifyIcon },
+            { title: "Heroku", img: herokuIcon },
+          ],
+          imageUrl: require("@/assets/images/projects/mapple_logo.png"),
+        },
+        {
+          title: "This website",
+          subtitle: "Profile site",
+          description:
+            "I created a profile website for myself to show a level of capability I am currently at in terms of short-term projects.",
+          details: [
+            {
+              icon: "mdi-web",
+              text: "The website leverages my preferred technology stack for developing and styling small-to-medium sized projects.",
+            },
+            {
+              icon: "mdi-directions",
+              text: "Serves as a directory to different passion projects I have developed this year.",
+            },
+          ],
+          link: "",
+          techStack: [
+            { title: "Vue.js", img: vueIcon },
+            { title: "PrimeVue", img: primevueIcon },
+            { title: "Vuetify", img: vuetifyIcon },
+            { title: "Heroku", img: herokuIcon },
+          ],
+          imageUrl: require("@/assets/images/projects/profileweb_logo.png"),
+        },
+        {
+          title: "Strapp Platform",
+          subtitle: "Marketplace",
+          description:
+            "Welcome to Strapp-Newer-Hope Platform, a dynamic peer-to-peer marketplace built using Vue 3 and Firebase. This platform provides users with an immersive experience to buy and sell secondhand products across various categories, fostering a vibrant and sustainable community-driven marketplace.",
+          details: [
+            {
+              icon: "mdi-basket",
+              text: "Seamless product upload and listing across Adventure, Technology, and Creative categories.",
+            },
+            {
+              icon: "mdi-compass",
+              text: "Intuitive user interface for easy navigation and product discovery.",
+            },
+            {
+              icon: "mdi-shield-account",
+              text: "Secure authentication and user profile management.",
+            },
+            {
+              icon: "mdi-chat-processing",
+              text: "Real-time transaction management and communication features.",
+            },
+            {
+              icon: "mdi-account-group",
+              text: "Community engagement tools, including comments and messaging functionalities.",
+            },
+          ],
+          Githublink: "https://github.com/WuTangLan1/Vue3.js_Firebase_SampleMarketplace",
+          techStack: [
+            { title: "Vue.js", img: vueIcon },
+            { title: "Pinia", img: piniaIcon },
+            { title: "Firebase", img: firebaseIcon },
+            { title: "Vercel", img: vercelIcon },
+          ],
+
+          imageUrl: require("@/assets/images/projects/strapp_logo.png"),
+        },
+        {
+          title: "4 Guesses",
+          subtitle: "Drinking Game Website",
+          description:
+            '"4 Guesses" is an interactive and engaging drinking game website designed for 3 to 10 players. The game consists of 2 to 5 rounds, where players participate in various guessing games that involve both strategic thinking and fun drinking rules.',
+          details: [
+            {
+              icon: "mdi-account-group",
+              text: "Players register with unique usernames and take turns selecting mini-games.",
+            },
+            {
+              icon: "mdi-gamepad",
+              text: "Includes mini-games like Beer Goggles and Confidence, with strategic drinking rules.",
+            },
+            {
+              icon: "mdi-cup",
+              text: "Players guess images or quotes and assign drinks based on performance.",
+            },
+          ],
+          techStack: [
+            { title: "React", img: reactIcon },
+            { title: "Next.js", img: nextjsIcon },
+            { title: "TypeScript", img: typescriptIcon },
+            { title: "Tailwind CSS", img: tailwindIcon },
+            { title: "Vercel", img: vercelIcon },
+          ],
+
+          imageUrl: require("@/assets/images/projects/4guesses_logo.png"),
+        },
+      ],
     };
   },
   mounted() {
@@ -27,467 +217,112 @@ export default {
   methods: {
     getRandomColor() {
       const colors = [
-        'rgba(255, 193, 7, 0.2)',   
-        'rgba(76, 175, 80, 0.2)',   
-        'rgba(33, 150, 243, 0.2)', 
-        'rgba(156, 39, 176, 0.2)',  
-        'rgba(255, 87, 34, 0.2)',  
-        'rgba(96, 125, 139, 0.2)'   
+        "rgba(255, 193, 7, 0.2)",
+        "rgba(76, 175, 80, 0.2)",
+        "rgba(33, 150, 243, 0.2)",
+        "rgba(156, 39, 176, 0.2)",
+        "rgba(255, 87, 34, 0.2)",
+        "rgba(96, 125, 139, 0.2)",
       ];
       return colors[Math.floor(Math.random() * colors.length)];
     },
     goToProject(url) {
-      window.open(url, '_blank');
+      if (url) {
+        window.open(url, "_blank");
+      }
     },
-    getImageUrl(projectTitle) {
-      const imageMap = {
-        CoPlaylist: require('@/assets/images/projects/coplaylist_logo.png'),
-        'The Big Picture': require('@/assets/images/projects/fullcircle_logo.png'),
-        Mapple: require('@/assets/images/projects/mapple_logo.png'),
-        'This website': require('@/assets/images/projects/profileweb_logo.png'),
-        'Strapp-Newer-Hope Platform': require('@/assets/images/projects/strapp_logo.png'),
-        '4 Guesses': require('@/assets/images/projects/4guesses_logo.png')
-      };
-      return imageMap[projectTitle] || '';
-    }
-  }
-}
+  },
+};
 </script>
 
 <template>
-<v-container :class="{ sectionInView }" fluid class="pt-8">
+  <v-container :class="{ sectionInView }" fluid class="pt-8">
     <v-row dense>
-      <!-- CoPlaylist Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
+      <v-col
+        v-for="(project, index) in projects"
+        :key="index"
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        class="d-flex"
+      >
         <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '0.5s' : '0s' }"
+          :style="{
+            backgroundColor: getRandomColor(),
+            animationDelay: sectionInView ? `${0.5 * (index + 1)}s` : '0s'
+          }"
           class="pa-4 mb-4 elevation-3 project-card"
         >
           <div class="card-content">
             <div class="header-section d-flex">
               <v-img
-                :src="getImageUrl('CoPlaylist')"
+                :src="project.imageUrl"
                 alt="Project Logo"
                 class="project-image-header"
                 aspect-ratio="1"
                 contain
               ></v-img>
               <div class="header-text">
-                <v-card-title class="v-card-title">CoPlaylist</v-card-title>
-                <v-card-subtitle class="text-muted">Playlist Generation</v-card-subtitle>
+                <v-card-title class="v-card-title">{{ project.title }}</v-card-title>
+                <v-card-subtitle class="text-muted">{{ project.subtitle }}</v-card-subtitle>
               </div>
             </div>
             <v-card-text class="project-description mt-3">
-              <p class="description-text">
-                CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored
-                to the unique tastes and situational preferences of its users.
-              </p>
+              <p class="description-text">{{ project.description }}</p>
               <ul class="details-list">
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-account-music</v-icon>
-                  <span class="detail-text">
-                    Generate playlists based on options for tone, style, and similar music using the OpenAI API key.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-spotify</v-icon>
-                  <span class="detail-text">Spotify Playlist Integration for enhanced musical exploration.</span>
+                <li
+                  v-for="(detail, dIndex) in project.details"
+                  :key="dIndex"
+                  class="d-flex align-center detail-item"
+                >
+                  <v-icon left size="20" class="detail-icon">{{ detail.icon }}</v-icon>
+                  <span class="detail-text">{{ detail.text }}</span>
                 </li>
               </ul>
             </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" class="visit-btn" @click="goToProject('https://coplaylist-5ec2820dd416.herokuapp.com/')">
+            <v-card-actions v-if="project.link">
+              <v-btn
+                color="primary"
+                class="visit-btn"
+                @click="goToProject(project.link)"
+              >
                 Visit Project
               </v-btn>
             </v-card-actions>
-            <v-card-text class="tech-stack mt-4">
-              <div class="d-flex justify-space-between tech-icons-container">
-                <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="OpenAI" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/gpt_icon.png" alt="OpenAI" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
-                </v-avatar>
-              </div>
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-
-      <!-- The Big Picture Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
-        <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '1s' : '0s' }"
-          class="pa-4 mb-4 elevation-3 project-card"
-        >
-          <div class="card-content">
-            <div class="header-section d-flex">
-              <v-img
-                :src="getImageUrl('The Big Picture')"
-                alt="Project Logo"
-                class="project-image-header"
-                aspect-ratio="1"
-                contain
-              ></v-img>
-              <div class="header-text">
-                <v-card-title class="v-card-title">The Big Picture</v-card-title>
-                <v-card-subtitle class="text-muted">Game site</v-card-subtitle>
-              </div>
-            </div>
-            <v-card-text class="project-description mt-3">
-              <p class="description-text">
-                A daily puzzle game that challenges users to find connections between various terms to promote logical
-                thinking and cognitive skills.
-              </p>
-              <ul class="details-list">
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-image-area</v-icon>
-                  <span class="detail-text">Daily puzzles with a unique set of terms every day.</span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-school</v-icon>
-                  <span class="detail-text">Account registration to track efforts and provide insights.</span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-share-variant</v-icon>
-                  <span class="detail-text">Social Sharing to engage with a community of players.</span>
-                </li>
-              </ul>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" class="visit-btn" @click="goToProject('https://fullcircle-4856e527cad2.herokuapp.com/')">
-                Visit Project
-              </v-btn>
-            </v-card-actions>
-            <v-card-text class="tech-stack mt-4">
-              <div class="d-flex justify-space-between tech-icons-container">
-                <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="PrimeVue" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/primevue_icon.png" alt="PrimeVue" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Tailwind" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
-                </v-avatar>
-              </div>
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-
-      <!-- Mapple Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
-        <v-card
-            :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '1.5s' : '0s' }"
-            class="pa-4 mb-4 elevation-3 project-card"
-          >
-          <div class="card-content">
-            <div class="header-section d-flex">
-              <v-img
-                :src="getImageUrl('Mapple')"
-                alt="Project Logo"
-                class="project-image-header"
-                aspect-ratio="1"
-                contain
-              ></v-img>
-              <div class="header-text">
-                <v-card-title class="v-card-title">Mapple</v-card-title>
-                <v-card-subtitle class="text-muted">Game site</v-card-subtitle>
-              </div>
-            </div>
-            <v-card-text class="project-description mt-3">
-              <p class="description-text">
-                Mapple is a geography game providing users with sets of information about countries which the user has
-                to guess.
-              </p>
-              <ul class="details-list">
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-tooltip-check</v-icon>
-                  <span class="detail-text">
-                    Three difficulty levels to customise the challenge the game provides to users.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-earth</v-icon>
-                  <span class="detail-text">
-                    Interactive selection map to allow users to select countries across the globe.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-list-status</v-icon>
-                  <span class="detail-text">
-                    Efforts tracking and management for high scores to allow users to improve.
-                  </span>
-                </li>
-              </ul>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" class="visit-btn" @click="goToProject('https://mapple-15f9c29f3ed1.herokuapp.com/')">
-                Visit Project
-              </v-btn>
-            </v-card-actions>
-            <v-card-text class="tech-stack mt-4">
-              <div class="d-flex justify-space-between tech-icons-container">
-                <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
-                </v-avatar>
-              </div>
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-
-      <!-- This Website Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
-        <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '2s' : '0s' }"
-          class="pa-4 mb-4 elevation-3 project-card"
-        >
-          <div class="card-content">
-            <div class="header-section d-flex">
-              <v-img
-                :src="getImageUrl('This website')"
-                alt="Project Logo"
-                class="project-image-header"
-                aspect-ratio="1"
-                contain
-              ></v-img>
-              <div class="header-text">
-                <v-card-title class="v-card-title">This website</v-card-title>
-                <v-card-subtitle class="text-muted">Profile site</v-card-subtitle>
-              </div>
-            </div>
-            <v-card-text class="project-description mt-3">
-              <p class="description-text">
-                I created a profile website for myself to show a level of capability I am currently at in terms of
-                short-term projects.
-              </p>
-              <ul class="details-list">
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-web</v-icon>
-                  <span class="detail-text">
-                    The website leverages my preferred technology stack for developing and styling small-to-medium
-                    sized projects.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-directions</v-icon>
-                  <span class="detail-text">
-                    Serves as a directory to different passion projects I have developed this year.
-                  </span>
-                </li>
-              </ul>
-            </v-card-text>
-            <v-card-actions style="visibility: hidden; height: 20px;"></v-card-actions>
-            <v-card-text class="tech-stack mt-4">
-              <div class="d-flex justify-space-between tech-icons-container">
-                <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="PrimeVue" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/primevue_icon.png" alt="PrimeVue" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Vuetify" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vuetify_icon.png" alt="Vuetify" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Heroku" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/heroku_icon.png" alt="Heroku" class="tech-icon-img" />
-                </v-avatar>
-              </div>
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-
-      <!-- Strapp-Newer-Hope Platform Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
-        <v-card
-          :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '2.5s' : '0s' }"
-          class="pa-4 mb-4 elevation-3 project-card"
-        >
-          <div class="card-content">
-            <div class="header-section d-flex">
-              <v-img
-                :src="getImageUrl('Strapp-Newer-Hope Platform')"
-                alt="Project Logo"
-                class="project-image-header"
-                aspect-ratio="1"
-                contain
-              ></v-img>
-              <div class="header-text">
-                <v-card-title class="v-card-title">Strapp Platform</v-card-title>
-                <v-card-subtitle class="text-muted">Marketplace</v-card-subtitle>
-              </div>
-            </div>
-            <v-card-text class="project-description mt-3">
-              <p class="description-text">
-                Welcome to Strapp-Newer-Hope Platform, a dynamic peer-to-peer marketplace built using Vue 3 and Firebase. This platform provides users with an immersive experience to buy and sell secondhand products across various categories, fostering a vibrant and sustainable community-driven marketplace.
-              </p>
-              <ul class="details-list">
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-basket</v-icon>
-                  <span class="detail-text">
-                    Seamless product upload and listing across Adventure, Technology, and Creative categories.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-compass</v-icon>
-                  <span class="detail-text">
-                    Intuitive user interface for easy navigation and product discovery.
-                  </span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-shield-account</v-icon>
-                  <span class="detail-text">Secure authentication and user profile management.</span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-chat-processing</v-icon>
-                  <span class="detail-text">Real-time transaction management and communication features.</span>
-                </li>
-                <li class="d-flex align-center detail-item">
-                  <v-icon left size="20" class="detail-icon">mdi-account-group</v-icon>
-                  <span class="detail-text">
-                    Community engagement tools, including comments and messaging functionalities.
-                  </span>
-                </li>
-              </ul>
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" class="visit-btn" @click="goToProject('https://github.com/WuTangLan1/Vue3.js_Firebase_SampleMarketplace')">
+            <v-card-actions v-if="project.Githublink">
+              <v-btn
+                color="primary"
+                class="visit-btn"
+                @click="goToProject(project.link)"
+              >
                 Visit Github
               </v-btn>
             </v-card-actions>
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
-                <v-avatar size="36" title="Vue.js" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vue_icon.png" alt="Vue.js" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Pinia" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/pinia_icon.png" alt="Pinia" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Firebase" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/firebase_icon.png" alt="Firebase" class="tech-icon-img" />
-                </v-avatar>
-                <v-avatar size="36" title="Vercel" class="ma-1 tech-icon">
-                  <img src="@/assets/images/known tech/vercel_icon.png" alt="Vercel" class="tech-icon-img" />
+                <v-avatar
+                  v-for="(tech, tIndex) in project.techStack"
+                  :key="tIndex"
+                  :title="tech.title"
+                  size="36"
+                  class="ma-1 tech-icon"
+                >
+                  <img
+                    :src="tech.img"
+                    :alt="tech.title"
+                    class="tech-icon-img"
+                  />
                 </v-avatar>
               </div>
             </v-card-text>
           </div>
         </v-card>
       </v-col>
-
-      <!-- 4 Guesses Project Card -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex">
-          <v-card
-            :style="{ backgroundColor: getRandomColor(), animationDelay: sectionInView ? '3s' : '0s' }"
-            class="pa-4 mb-4 elevation-3 project-card"
-          >
-            <div class="card-content">
-              <div class="header-section d-flex">
-                <v-img
-                  :src="getImageUrl('4 Guesses')" 
-                  alt="Project Logo"
-                  class="project-image-header"
-                  aspect-ratio="1"
-                  contain
-                ></v-img>
-                <div class="header-text">
-                  <v-card-title class="v-card-title">4 Guesses</v-card-title>
-                  <v-card-subtitle class="text-muted">Drinking Game Website</v-card-subtitle>
-                </div>
-              </div>
-              <v-card-text class="project-description mt-3">
-                <p class="description-text">
-                  "4 Guesses" is an interactive and engaging drinking game website designed for 3 to 10 players. The game consists of 2 to 5 rounds, where players participate in various guessing games that involve both strategic thinking and fun drinking rules.
-                </p>
-                <ul class="details-list">
-                  <li class="d-flex align-center detail-item">
-                    <v-icon left size="20" class="detail-icon">mdi-account-group</v-icon>
-                    <span class="detail-text">
-                      Players register with unique usernames and take turns selecting mini-games.
-                    </span>
-                  </li>
-                  <li class="d-flex align-center detail-item">
-                    <v-icon left size="20" class="detail-icon">mdi-gamepad</v-icon>
-                    <span class="detail-text">
-                      Includes mini-games like Beer Goggles and Confidence, with strategic drinking rules.
-                    </span>
-                  </li>
-                  <li class="d-flex align-center detail-item">
-                    <v-icon left size="20" class="detail-icon">mdi-cup</v-icon>
-                    <span class="detail-text">
-                      Players guess images or quotes and assign drinks based on performance.
-                    </span>
-                  </li>
-                </ul>
-              </v-card-text>
-              <v-card-actions>
-                <v-btn color="primary" class="visit-btn" @click="goToProject('https://github.com/WuTangLan1/Vue3.js_Firebase_SampleMarketplace')">
-                  Visit Github
-                </v-btn>
-              </v-card-actions>
-              <v-card-text class="tech-stack mt-4">
-                <div class="d-flex justify-space-between tech-icons-container">
-                  <v-avatar size="36" title="React" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/react_icon.png" alt="React" class="tech-icon-img" />
-                  </v-avatar>
-                  <v-avatar size="36" title="Next.js" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/nextjs_icon.png" alt="Nextjs" class="tech-icon-img" />
-                  </v-avatar>
-                  <v-avatar size="36" title="TypeScript" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/typescript_icon.png" alt="TypeScript" class="tech-icon-img" />
-                  </v-avatar>
-                  <v-avatar size="36" title="Tailwind CSS" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/tailwind_icon.png" alt="Tailwind CSS" class="tech-icon-img" />
-                  </v-avatar>
-                  <v-avatar size="36" title="Vercel" class="ma-1 tech-icon">
-                    <img src="@/assets/images/known tech/vercel_icon.png" alt="Vercel" class="tech-icon-img" />
-                  </v-avatar>
-                </div>
-              </v-card-text>
-            </div>
-          </v-card>
-      </v-col>
-
-
     </v-row>
   </v-container>
 </template>
+
 
 
 <style scoped>
