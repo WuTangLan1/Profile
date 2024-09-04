@@ -56,17 +56,21 @@
       ]);
 
       const toggleDisplay = () => {
+        const isMobile = window.innerWidth <= 768; 
+
         if (displayMode.value === 'ratings') {
           displayMode.value = 'globe';
-          buttonText.value = 'gravity';
+          buttonText.value = isMobile ? 'ratings' : 'gravity';
         } else if (displayMode.value === 'globe') {
-          displayMode.value = 'gravity';
-          buttonText.value = 'ratings';
-        } else {
+          displayMode.value = isMobile ? 'ratings' : 'gravity';
+          buttonText.value = isMobile ? 'globe' : 'ratings'; 
+        } else if (displayMode.value === 'gravity') {
           displayMode.value = 'ratings';
           buttonText.value = 'globe';
         }
-      };
+    };
+
+
 
       const titles = ['new graduate', 'full stack developer', 'published author', 'systems analyst'];
       const currentTitle = ref('');
