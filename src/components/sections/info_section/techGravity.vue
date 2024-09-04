@@ -69,24 +69,24 @@ export default {
       }
 
       update(canvas, particles) {
-        const gravityStrength = 0.005;
+        const gravityStrength = 0.03;
 
         this.vy += gravityStrength;
 
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.x + this.size / 2 > canvas.width) {
-          this.x = canvas.width - this.size / 2;
-          this.vx *= -0.8;
-        } else if (this.x - this.size / 2 < 0) {
-          this.x = this.size / 2;
-          this.vx *= -0.8;
+        if (this.x + this.size / 2 > canvas.width - 20) {
+          this.x = canvas.width - this.size / 2 - 20;
+          this.vx *= -0.5;
+        } else if (this.x - this.size / 2 < 20) {
+          this.x = this.size / 2 + 20;
+          this.vx *= -0.5;
         }
 
-        if (this.y + this.size / 2 > canvas.height) {
-          this.y = canvas.height - this.size / 2;
-          this.vy *= -0.8;
+        if (this.y + this.size / 2 > canvas.height - 20) { 
+          this.y = canvas.height - this.size / 2 - 20;
+          this.vy *= -0.5;
         } else if (this.y - this.size / 2 < 0) {
           this.y = this.size / 2;
           this.vy *= -0.8;
@@ -94,7 +94,6 @@ export default {
 
         this.angle += (Math.random() - 0.5) * 0.02;
 
-        // Collision detection and resolution with other particles
         particles.forEach((other) => {
           if (other !== this) {
             const dx = other.x - this.x;
@@ -118,26 +117,32 @@ export default {
       }
 
       draw(mouseX, mouseY) {
-        const scaleFactor = 1.1;
-        const distance = Math.sqrt(
-          (mouseX - this.x) ** 2 + (mouseY - this.y) ** 2
-        );
-
+        const scaleFactor = 1.2; 
+        const distance = Math.sqrt((mouseX - this.x) ** 2 + (mouseY - this.y) ** 2);
         const isHovered = distance < this.size;
 
         this.ctx.save();
         this.ctx.translate(this.x, this.y);
         this.ctx.rotate(this.angle);
-        this.ctx.scale(isHovered ? scaleFactor : 1, isHovered ? scaleFactor : 1);
+        this.ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'; 
+        this.ctx.shadowBlur = 10; 
+
+
+        const aspectRatio = this.img.width / this.img.height;
+        const drawWidth = this.size * (isHovered ? scaleFactor : 1);
+        const drawHeight = drawWidth / aspectRatio;
+
         this.ctx.drawImage(
           this.img,
-          -this.size / 2,
-          -this.size / 2,
-          this.size,
-          this.size
+          -drawWidth / 2,
+          -drawHeight / 2,
+          drawWidth,
+          drawHeight
         );
+
         this.ctx.restore();
       }
+
     }
 
     return {
@@ -159,11 +164,17 @@ export default {
   width: 100%;
   overflow: hidden;
   border-radius: 15px;
-
+  height: 25vh;
 }
+
 
 canvas {
   display: block;
   cursor: pointer;
 }
+
+canvas {
+  image-rendering: crisp-edges;
+}
+
 </style>
