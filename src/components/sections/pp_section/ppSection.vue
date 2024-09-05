@@ -30,6 +30,10 @@ export default {
               text: "Generate playlists based on options for tone, style, and similar music using the OpenAI API key.",
             },
             {
+              icon: "mdi-music-note",
+              text: "Fetch and play snippets of songs using Spotify's preview song",
+            },
+            {
               icon: "mdi-spotify",
               text: "Spotify Playlist Integration for enhanced musical exploration.",
             },
@@ -65,6 +69,7 @@ export default {
             },
           ],
           link: "https://fullcircle-4856e527cad2.herokuapp.com/",
+          Githublink: "https://github.com/WuTangLan1/TheBigPicture",
           techStack: [
             { title: "Vue.js", img: vueIcon },
             { title: "Pinia", img: piniaIcon },
@@ -95,6 +100,7 @@ export default {
             },
           ],
           link: "https://mapple-15f9c29f3ed1.herokuapp.com/",
+          Githublink: "https://github.com/WuTangLan1/Mapple",
           techStack: [
             { title: "Vue.js", img: vueIcon },
             { title: "Firebase", img: firebaseIcon },
@@ -119,7 +125,7 @@ export default {
               text: "Serves as a directory to different passion projects I have developed this year.",
             },
           ],
-          link: "",
+          Githublink: "https://github.com/WuTangLan1/Profile",
           techStack: [
             { title: "Vue.js", img: vueIcon },
             { title: "PrimeVue", img: primevueIcon },
@@ -281,24 +287,25 @@ export default {
                 </li>
               </ul>
             </v-card-text>
-            <v-card-actions v-if="project.link">
+            <v-card-actions class="button-group">
               <v-btn
+                v-if="project.link"
                 color="primary"
-                class="visit-btn"
+                class="visit-project-btn"
                 @click="goToProject(project.link)"
               >
                 Visit Project
               </v-btn>
-            </v-card-actions>
-            <v-card-actions v-if="project.Githublink">
               <v-btn
-                color="primary"
-                class="visit-btn"
+                v-if="project.Githublink"
+                color="secondary"
+                class="visit-github-btn"
                 @click="goToProject(project.Githublink)"
               >
-                Visit Github
+                Visit GitHub
               </v-btn>
             </v-card-actions>
+
             <v-card-text class="tech-stack mt-4">
               <div class="d-flex justify-space-between tech-icons-container">
                 <v-avatar
@@ -511,17 +518,32 @@ export default {
   margin-bottom: 16px; 
 }
 
-.visit-btn {
-  text-transform: none;
-  font-weight: bold;
-  color: #1e88e5; 
-  background-color: transparent;
-  box-shadow: none;
+.button-group {
+  display: flex;
+  gap: 10px; 
+  justify-content: center; 
 }
 
-.visit-btn:hover {
-  background-color: rgba(30, 136, 229, 0.1);
+.visit-project-btn {
+  text-transform: none;
+  font-weight: bold;
+  color: #1e88e5;
 }
+
+.visit-github-btn {
+  text-transform: none;
+  font-weight: bold;
+  color: #f4511e;
+}
+
+.visit-project-btn:hover {
+  background-color: #bbdefb;
+}
+
+.visit-github-btn:hover {
+  background-color: #ffcc80;
+}
+
 
 .dark .project-card {
   background: linear-gradient(135deg, #2e3b4e, #1c2833), var(--unique-color);
