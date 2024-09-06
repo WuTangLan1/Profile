@@ -134,8 +134,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
-  max-height: 99vh;
+}
+
+@media (max-width: 1000px) {
+  .work-section {
+    padding-top: 70px; 
+  }
 }
 
 .work-timeline {
@@ -151,7 +155,6 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 3px 100%;
-  max-height: 98vh;
 }
 
 .timeline-item-container {

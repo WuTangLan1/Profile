@@ -185,6 +185,13 @@ export default {
   border-radius: 15px;
 }
 
+@media (max-width: 1000px) {
+  .contact-container {
+    padding-top: 90px !important; 
+  }
+}
+
+
 .dark .contact-container {
   box-shadow: 0 4px 12px rgba(198, 57, 213, 0.333);
   border: 1px solid #ddd;

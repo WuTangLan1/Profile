@@ -82,6 +82,13 @@ export default {
   overflow-y: auto;
 }
 
+
+@media (max-width: 1000px) {
+  .studies-container{ 
+    padding-top: 80px; 
+  }
+}
+
 .education-item {
   margin-bottom: 40px;
   align-items: center;
