@@ -1,6 +1,7 @@
-<!-- src\components\header\Navbar.vue -->
+<!-- src/components/header/Navbar.vue -->
 <script>
 import { ref, inject, nextTick } from 'vue';
+import 'primeicons/primeicons.css'; 
 
 export default {
   name: 'Navbar-View',
@@ -13,73 +14,78 @@ export default {
       throw new Error('toggleDark not provided!');
     }
 
+    const icons = ['pi pi-home', 'pi pi-book', 'pi pi-briefcase', 'pi pi-folder-open', 'pi pi-envelope'];
     const isRotated = ref(false);
 
     const handleToggle = async () => {
-      isRotated.value = !isRotated.value;
-      await nextTick(); 
+      await nextTick();
       toggleDark();
     };
 
-
     const handleSelectSection = (index) => {
       emit('change-section', index);
-  };
+    };
 
     const isCurrent = (index) => {
       return index === props.currentSection;
     };
 
-    return { handleToggle, handleSelectSection, isCurrent, isRotated };
+    return { handleToggle, handleSelectSection, isCurrent, isRotated, icons };
   }
-}
+};
 </script>
 
 <template>
-  <header>
+  <header class="floating-navbar">
     <nav>
       <ul>
-        <li v-for="(section, index) in ['Info', 'Studies', 'Work', 'Projects', 'Contact']"
-            :key="section"
-            @click="handleSelectSection(index)" 
-            :class="{ 'active': isCurrent(index) }">  
-          {{ section }}
+        <li v-for="(icon, index) in [...icons, isRotated ? 'pi pi-sun' : 'pi pi-moon']" 
+            :key="icon" 
+            @click="index === icons.length ? handleToggle() : handleSelectSection(index)" 
+            :class="{ 'active': isCurrent(index) && index !== icons.length }">
+          <i :class="icon"></i>
         </li>
       </ul>
     </nav>
-    <div @click="handleToggle" class="dark-mode-icon">
-      <img :class="{ rotated: isRotated }" src="@/assets/images/extra/dark-mode.png" alt="Toggle Dark Mode" />
-    </div>
   </header>
 </template>
 
+
 <style scoped>
-header {
-  height: 50px; 
-  background-color: #8abdf0;
-  color: rgb(0, 0, 0);
+.floating-navbar {
+  position: fixed;
+  top: 10px;
+  align-self: center;
+  height: 50px;
+  background-color: rgba(138, 189, 240, 0.95);
+  color: black;
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  padding: 0 5px;
+  justify-content: space-between;
+  padding: 0 15px;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.5s ease, color 0.5s ease;
+  z-index: 100;
 }
-
 .dark header {
   background-color: #2c3e50;
   color: white;
 }
 
 nav {
-  flex-grow: 1; 
+  flex-grow: 1;
   display: flex;
+  justify-content: center; 
+  align-items: center; 
 }
 
 nav ul {
   list-style-type: none;
   display: flex;
   gap: 20px;
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
 }
 
 nav li {
@@ -93,39 +99,6 @@ nav li:hover, nav li.active {
   background-color: #34495e;
   transform: translateY(-2px);
   color: white;
-}
-
-.dark nav li:hover, nav li.active {
-  background-color: #99b0c8;
-  transform: translateY(-2px);
-  color: black;
-}
-
-.dark-mode-icon {
-  cursor: pointer;
-  transition: transform 0.5s ease; 
-}
-
-.dark-mode-icon img {
-  width: 30px; 
-  height: auto;
-  transition: transform 0.5s ease;
-}
-
-.rotated {
-  transform: rotate(180deg); 
-}
-
-.dark-mode-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 @media(max-width:650px)
@@ -144,15 +117,6 @@ nav li:hover, nav li.active {
 
 @media(max-width:450px)
 {
-  .dark-mode-icon {
-    width: 32px;
-    height: 32px;
-  }
-  .dark-mode-icon img {
-    max-width: 20px; 
-    max-height: 20px;
-  }
-
   nav ul {
     gap: 8px;
   }
@@ -163,15 +127,7 @@ nav li:hover, nav li.active {
 }
 
 @media(max-width:350px)
-{
-  .dark-mode-icon {
-    width: 30px;
-    height: 30px;
-  }
-  .dark-mode-icon img {
-    max-width: 15px; 
-    max-height: 15px;
-  }
+ {
   nav ul {
     gap: 4px;
   }
@@ -184,8 +140,4 @@ nav li:hover, nav li.active {
   }
 }
 
-.dark .navbar-icon:hover,
-.dark .dark-mode-icon:hover {
-  background-color: #ac89c9;
-}
 </style>
