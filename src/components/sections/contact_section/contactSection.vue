@@ -207,7 +207,6 @@ export default {
 }
 
 .dark .header {
-  background-color: #3a4971; 
   color: #e0e0e0;
 }
 
@@ -271,12 +270,8 @@ export default {
   background-color: #ddd;
 }
 
-.dark .v-divider {
-  background-color: #555;
-}
-
 .v-row {
-  background: linear-gradient(to bottom right, #0f574e, #126e5b, #145e4d, #093d31);
+  background: linear-gradient(to bottom right, #a6dee6, #81bcc5, #68afb9 , #a0d2da);
   background-size: 200% 200%; 
   animation: gradientAnimation 8s ease infinite; 
   width: 100%; 
