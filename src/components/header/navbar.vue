@@ -133,6 +133,16 @@ nav li:hover, nav li.active, nav li.expand-active:hover {
   color: white;
 }
 
+@media(max-width: 1000px)
+{
+  .floating-navbar {
+    background-color: rgba(138, 189, 240, 0.75); 
+    backdrop-filter: blur(5px); 
+    opacity: 0.6; 
+    transition: background-color 0.3s ease, opacity 0.3s ease; 
+  }
+}
+
 @media(max-width:650px)
 {
   nav li {
