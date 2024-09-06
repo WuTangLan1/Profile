@@ -344,11 +344,9 @@ export default {
   animation: dropIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
 }
 
-@media (max-width: 1000px) {
-  .pt-8 {
+.pt-8 {
     padding-top: 90px !important; 
   }
-}
 
 .sectionInView .project-card {
   visibility: visible;
