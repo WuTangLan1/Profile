@@ -17,6 +17,12 @@ export default {
     const icons = ['pi pi-home', 'pi pi-book', 'pi pi-briefcase', 'pi pi-folder-open', 'pi pi-envelope'];
     const isRotated = ref(false);
 
+    const expandToggled = ref(false); 
+
+    const handleExpandToggle = () => {
+      expandToggled.value = !expandToggled.value;
+    };
+
     const handleToggle = async () => {
       await nextTick();
       toggleDark();
@@ -30,7 +36,7 @@ export default {
       return index === props.currentSection;
     };
 
-    return { handleToggle, handleSelectSection, isCurrent, isRotated, icons };
+    return { handleToggle, handleSelectSection, isCurrent, isRotated, icons, expandToggled, handleExpandToggle };
   }
 };
 </script>
@@ -39,17 +45,29 @@ export default {
   <header class="floating-navbar">
     <nav>
       <ul>
-        <li v-for="(icon, index) in [...icons, isRotated ? 'pi pi-sun' : 'pi pi-moon']" 
-            :key="icon" 
-            @click="index === icons.length ? handleToggle() : handleSelectSection(index)" 
-            :class="{ 'active': isCurrent(index) && index !== icons.length }">
+        <li
+          v-for="(icon, index) in [
+            ...icons, 
+            isRotated ? 'pi pi-sun' : 'pi pi-moon', 
+            expandToggled ? 'pi pi-angle-left' : 'pi pi-angle-right'
+          ]"
+          :key="icon"
+          @click="index === icons.length 
+                    ? handleToggle() 
+                    : index === icons.length + 1 
+                    ? handleExpandToggle() 
+                    : handleSelectSection(index)"
+          :class="{ 
+            'active': isCurrent(index) && index !== icons.length, 
+            'expand-active': index === icons.length + 1 && expandToggled 
+          }"
+        >
           <i :class="icon"></i>
         </li>
       </ul>
     </nav>
   </header>
 </template>
-
 
 <style scoped>
 .floating-navbar {
@@ -96,6 +114,18 @@ nav li {
 }
 
 nav li:hover, nav li.active {
+  background-color: #34495e;
+  transform: translateY(-2px);
+  color: white;
+}
+
+nav li.expand-active {
+  background-color: #34495e; 
+  transform: translateY(-2px);
+  color: white;
+}
+
+nav li:hover, nav li.active, nav li.expand-active:hover {
   background-color: #34495e;
   transform: translateY(-2px);
   color: white;
