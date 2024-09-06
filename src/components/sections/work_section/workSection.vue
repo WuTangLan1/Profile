@@ -130,12 +130,12 @@ export default {
 .work-section {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 30px;
+  max-height: 99vh;
 }
 
 .work-timeline {
@@ -146,13 +146,12 @@ export default {
   justify-content: flex-start;
   width: 100%;
   gap: 2vh;
-  margin-bottom: 20px;
-  max-height: 100%;
   overflow-y: auto;
   background: linear-gradient(to bottom, transparent 30px, #888 30px, #888 calc(100% - 30px), transparent calc(100% - 30px));
   background-position: center;
   background-repeat: no-repeat;
   background-size: 3px 100%;
+  max-height: 98vh;
 }
 
 .timeline-item-container {
@@ -526,7 +525,6 @@ export default {
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  margin-top: 80px;
 }
 
 .work-timeline {

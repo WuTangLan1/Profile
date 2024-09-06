@@ -72,21 +72,23 @@ export default {
 <style scoped>
 .floating-navbar {
   position: fixed;
-  top: 10px;
-  align-self: center;
+  top: 20px; 
+  left: 50%;
+  transform: translateX(-50%); 
   height: 50px;
   background-color: rgba(138, 189, 240, 0.95);
   color: black;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; 
   padding: 0 15px;
   border-radius: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.5s ease, color 0.5s ease;
   z-index: 100;
 }
-.dark header {
+
+.dark .floating-navbar {
   background-color: #2c3e50;
   color: white;
 }
