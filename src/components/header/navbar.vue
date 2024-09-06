@@ -14,9 +14,15 @@ export default {
       throw new Error('toggleDark not provided!');
     }
 
-    const icons = ['pi pi-home', 'pi pi-book', 'pi pi-briefcase', 'pi pi-folder-open', 'pi pi-envelope'];
-    const isRotated = ref(false);
+    const icons = [
+      { class: 'pi pi-home', label: 'Home' },
+      { class: 'pi pi-book', label: 'Docs' },
+      { class: 'pi pi-briefcase', label: 'Portfolio' },
+      { class: 'pi pi-folder-open', label: 'Projects' },
+      { class: 'pi pi-envelope', label: 'Contact' },
+    ];
 
+    const isRotated = ref(false);
     const expandToggled = ref(false); 
 
     const handleExpandToggle = () => {
@@ -42,16 +48,16 @@ export default {
 </script>
 
 <template>
-  <header class="floating-navbar">
+  <header :class="['floating-navbar', { expanded: expandToggled }]">
     <nav>
       <ul>
         <li
           v-for="(icon, index) in [
             ...icons, 
-            isRotated ? 'pi pi-sun' : 'pi pi-moon', 
-            expandToggled ? 'pi pi-angle-left' : 'pi pi-angle-right'
+            isRotated ? { class: 'pi pi-sun', label: 'Light Mode' } : { class: 'pi pi-moon', label: 'Dark Mode' }, 
+            expandToggled ? { class: 'pi pi-angle-left expand-toggle', label: 'Minimize' } : { class: 'pi pi-angle-right expand-toggle', label: 'Expand' }
           ]"
-          :key="icon"
+          :key="icon.class"
           @click="index === icons.length 
                     ? handleToggle() 
                     : index === icons.length + 1 
@@ -62,8 +68,10 @@ export default {
             'expand-active': index === icons.length + 1 && expandToggled 
           }"
         >
-          <i :class="icon"></i>
+          <i :class="icon.class"></i>
+          <span v-if="expandToggled" class="icon-label">{{ icon.label }}</span>
         </li>
+
       </ul>
     </nav>
   </header>
@@ -84,13 +92,28 @@ export default {
   padding: 0 15px;
   border-radius: 25px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background-color 0.5s ease, color 0.5s ease, height 0.3s, padding 0.3s;
   z-index: 100;
 }
 
 .dark .floating-navbar {
   background-color: #2c3e50;
   color: white;
+}
+
+.icon-label {
+  margin-top: 4px; 
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap; 
+  transition: opacity 0.3s ease;
+}
+
+.floating-navbar.expanded {
+  padding: 10px 25px; 
+  height: auto; 
+  opacity: 0.6;
+  gap: 15px; 
 }
 
 nav {
@@ -113,6 +136,9 @@ nav li {
   padding: 10px;
   border-radius: 5px;
   transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center icons and labels */
 }
 
 nav li:hover, nav li.active {
@@ -133,6 +159,25 @@ nav li:hover, nav li.active, nav li.expand-active:hover {
   color: white;
 }
 
+.expand-toggle {
+  display: none;
+}
+
+@media (min-width: 650px) {
+  .expand-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 649px) {
+  nav ul {
+    justify-content: space-between; 
+    gap: 0; 
+    padding-left: 25px;
+  }
+}
+
+
 @media(max-width: 1000px)
 {
   .floating-navbar {
@@ -143,10 +188,7 @@ nav li:hover, nav li.active, nav li.expand-active:hover {
   }
 
   .dark .floating-navbar {
-    background-color: rgba(138, 189, 240, 0.75); 
-    backdrop-filter: blur(5px); 
     opacity: 0.6; 
-    transition: background-color 0.3s ease, opacity 0.3s ease; 
   }
 }
 
