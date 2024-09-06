@@ -16,8 +16,8 @@ export default {
 
     const icons = [
       { class: 'pi pi-home', label: 'Home' },
-      { class: 'pi pi-book', label: 'Docs' },
-      { class: 'pi pi-briefcase', label: 'Portfolio' },
+      { class: 'pi pi-book', label: 'Studies' },
+      { class: 'pi pi-briefcase', label: 'Work' },
       { class: 'pi pi-folder-open', label: 'Projects' },
       { class: 'pi pi-envelope', label: 'Contact' },
     ];

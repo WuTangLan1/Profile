@@ -17,7 +17,7 @@ export default {
                   details: [
                     'Worked with two established academics in publishing and presenting a thesis on emerging challenges in SocialVR.',
                     'Presented said thesis at the 17th International Conference on Advanced Visual Interfaces in Arenzano, Italy.',
-                    { text: 'Available online, the published thesis currently has 21 reads and 3 requests for corroboration.', doi: '10.1145/3656650.3656702' }
+                    { text: 'Available online, the published thesis currently has 21 reads and 3 requests for further collaboration.', doi: '10.1145/3656650.3656702' }
                   ]
                 },
                         {
