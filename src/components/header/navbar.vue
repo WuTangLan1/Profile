@@ -94,6 +94,7 @@ export default {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: background-color 0.5s ease, color 0.5s ease, height 0.3s, padding 0.3s;
   z-index: 100;
+  opacity: 0.6; 
 }
 
 .dark .floating-navbar {
