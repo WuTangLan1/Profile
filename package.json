@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "heroku-postbuild": "npm run build",
-    "start": "serve -s dist"
+    "start": "node server.js"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
@@ -15,6 +15,7 @@
     "@vueuse/core": "^10.11.0",
     "core-js": "^3.8.3",
     "dotenv": "^16.4.5",
+    "express": "^4.20.0",
     "heroku": "^8.7.1",
     "pinia": "^2.2.0",
     "pinia-plugin-persist": "^1.0.0",

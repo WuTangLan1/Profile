@@ -24,9 +24,6 @@
         handleChangeSection(4); 
       };
 
-      const resumeLink = process.env.BASE_URL + 'cv/finnm_resume.pdf'
-      const cvLink = process.env.BASE_URL + 'cv/finnm_cv.pdf'
-
       const displayMode = ref('ratings');
       const buttonText = ref('globe');
 
@@ -71,7 +68,18 @@
         }
     };
 
+    const baseUrl = process.env.VUE_APP_BASE_URL || ''; 
+    const downloadFile = (type) => {
+    const url = type === 'resume' ? `${baseUrl}download/resume` : `${baseUrl}download/cv`;
 
+    // Create an anchor element and trigger the download
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', ''); // This attribute prompts the browser to download the file
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
       const titles = ['new graduate', 'full stack developer', 'published author', 'systems analyst'];
       const currentTitle = ref('');
@@ -106,8 +114,8 @@
 
       return {
         contact,
-        resumeLink,
-        cvLink,
+        baseUrl,
+        downloadFile,
         displayMode,
         buttonText,
         toggleDisplay,
@@ -139,22 +147,21 @@
         </p>
         <div class="buttons-container">
           <v-menu offset-y>
-  <template v-slot:activator="{ props }">
-    <v-btn color="primary" large class="ma-2" v-bind="props">
-      Download Info
-      <v-icon right class="ml-2">mdi-chevron-down</v-icon>
-    </v-btn>
-  </template>
-  <v-list>
-    <v-list-item @click="window.open(resumeLink, '_blank')">
-      <v-list-item-title>Download Resume</v-list-item-title>
-    </v-list-item>
-    <v-list-item @click="window.open(cvLink, '_blank')">
-      <v-list-item-title>Download CV</v-list-item-title>
-    </v-list-item>
-  </v-list>
-</v-menu>
-
+            <template v-slot:activator="{ props }">
+              <v-btn color="primary" large class="ma-2 dropdown-btn" v-bind="props">
+                Download Info
+                <v-icon right class="ml-2">mdi-chevron-down</v-icon>
+              </v-btn>
+            </template>
+            <v-list class="dropdown-list">
+              <v-list-item @click="downloadFile('resume')">
+                <v-list-item-title>Download Resume</v-list-item-title>
+              </v-list-item>
+              <v-list-item @click="downloadFile('cv')">
+                <v-list-item-title>Download CV</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-menu>
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
       </v-col>
