@@ -1,11 +1,11 @@
-//server.js 
+// server.js
 const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to serve static files securely
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Endpoint for downloading the Resume
 app.get('/download/resume', (req, res) => {
@@ -25,6 +25,11 @@ app.get('/download/cv', (req, res) => {
       res.status(500).send('Error downloading the file.');
     }
   });
+});
+
+// Fallback to index.html for SPA routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
