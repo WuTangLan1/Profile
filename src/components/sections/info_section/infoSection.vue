@@ -25,6 +25,7 @@
       };
 
       const resumeLink = process.env.BASE_URL + 'cv/finnm_resume.pdf'
+      const cvLink = process.env.BASE_URL + 'cv/finnm_cv.pdf'
 
       const displayMode = ref('ratings');
       const buttonText = ref('globe');
@@ -106,28 +107,14 @@
       return {
         contact,
         resumeLink,
+        cvLink,
         displayMode,
         buttonText,
         toggleDisplay,
         techImages,
         currentTitle
       };
-    },
-    methods: {
-    downloadResume() {
-      try {
-        const link = document.createElement('a');
-        console.log(this.resumeLink); 
-        link.href = this.resumeLink;
-        link.setAttribute('download', 'finnm_resume.pdf');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } catch (error) {
-        console.error("Failed to download the file:", error);
-      }
     }
-  }
 }
 </script>
 
@@ -151,7 +138,23 @@
            of the Metaverse.  
         </p>
         <div class="buttons-container">
-          <v-btn color="primary" large class="ma-2" :href="resumeLink" download="finnm_resume.pdf">Download CV</v-btn>
+          <v-menu offset-y>
+  <template v-slot:activator="{ props }">
+    <v-btn color="primary" large class="ma-2" v-bind="props">
+      Download Info
+      <v-icon right class="ml-2">mdi-chevron-down</v-icon>
+    </v-btn>
+  </template>
+  <v-list>
+    <v-list-item @click="window.open(resumeLink, '_blank')">
+      <v-list-item-title>Download Resume</v-list-item-title>
+    </v-list-item>
+    <v-list-item @click="window.open(cvLink, '_blank')">
+      <v-list-item-title>Download CV</v-list-item-title>
+    </v-list-item>
+  </v-list>
+</v-menu>
+
           <v-btn color="secondary" large class="ma-2" @click="contact">Contact Me</v-btn>
         </div>
       </v-col>
