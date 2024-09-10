@@ -70,16 +70,18 @@
 
     const baseUrl = process.env.VUE_APP_BASE_URL || ''; 
     const downloadFile = (type) => {
-    const url = type === 'resume' ? `${baseUrl}download/resume` : `${baseUrl}download/cv`;
+      const url = type === 'resume' ? `${baseUrl}/download/resume` : `${baseUrl}/download/cv`;
 
-    // Create an anchor element and trigger the download
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', ''); // This attribute prompts the browser to download the file
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+      // Create an anchor element for downloading
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', ''); // Optional: helps prompt download if the server headers are set correctly
+      link.setAttribute('target', '_self'); // Set target to "_self" to avoid "about:blank#blocked" issues
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+
 
       const titles = ['new graduate', 'full stack developer', 'published author', 'systems analyst'];
       const currentTitle = ref('');
