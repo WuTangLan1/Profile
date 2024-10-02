@@ -29,6 +29,7 @@ export default {
           isCurrent: false,
           subtitle: "Playlist Generation",
           isPlaying: false,
+          loading: true, 
           description:
             "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
           details: [
@@ -62,6 +63,7 @@ export default {
           subtitle: "Game site",
           isCurrent: false,
           video: bigpicture_preview,
+          loading: true, 
           description:
             "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
           details: [
@@ -96,6 +98,7 @@ export default {
           isCurrent: false,
           video: mapple_preview,
           isPlaying: false,
+          loading: true, 
           description:
             "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
           details: [
@@ -261,16 +264,16 @@ export default {
       const video = this.$refs[`projectVideo_${index}`];
       if (video && video[0]) {
         if (this.projects[index].isPlaying) {
-          console.log("video is playing");
           video[0].pause();
         } else {
-          console.log("video is paused");
           video[0].play();
         }
         this.projects[index].isPlaying = !this.projects[index].isPlaying;
       }
+    },
+    videoLoaded(index) {
+     this.projects[index].loading = false; 
     }
-
   },
 };
 </script>
@@ -325,18 +328,23 @@ export default {
             <div v-if="project.video">
               <div class="video-container">
                 <video
-                  :ref="`projectVideo_${index}`"
-                  :src="project.video"
-                  class="project-video"
-                  muted
-                  loop
-                  playsinline
-                  @click="toggleVideoPlay(index)"
+                    :ref="`projectVideo_${index}`"
+                    :src="project.video"
+                    class="project-video"
+                    muted
+                    loop
+                    playsinline
+                    @click="toggleVideoPlay(index)"
+                    @loadeddata="videoLoaded(index)"
                 ></video>
 
+                <div v-if="project.loading" class="video-loading-spinner">
+                    <v-progress-circular indeterminate color="primary"></v-progress-circular>
+                </div>
+
                 <div class="video-overlay" @click="toggleVideoPlay(index)">
-                  <v-icon v-if="!project.isPlaying" class="video-control-icon">mdi-play-circle-outline</v-icon>
-                  <v-icon v-else class="video-control-icon">mdi-pause-circle-outline</v-icon>
+                    <v-icon v-if="!project.isPlaying" class="video-control-icon">mdi-play-circle-outline</v-icon>
+                    <v-icon v-else class="video-control-icon">mdi-pause-circle-outline</v-icon>
                 </div>
               </div>
           </div>
@@ -485,7 +493,17 @@ export default {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 .video-container {
-  position: relative;
+    position: relative;
+}
+.video-loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 10px;
 }
 .video-overlay {
   position: absolute;
