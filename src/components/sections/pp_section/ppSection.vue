@@ -13,15 +13,22 @@ import tailwindIcon from "@/assets/images/known tech/tailwind_icon.png";
 import typescriptIcon from "@/assets/images/known tech/typescript_icon.png";
 import vercelIcon from "@/assets/images/known tech/vercel_icon.png"
 
+import coplaylist_preview from "@/assets/videos/coplaylist_preview.mp4"
+import mapple_preview from "@/assets/videos/mapple_preview.mp4"
+import bigpicture_preview from "@/assets/videos/bigpicture_preview.mp4"
+
+
 export default {
   data() {
     return {
       sectionInView: false,
+      videoRefs: [],
       projects: [
         {
           title: "CoPlaylist",
           isCurrent: false,
           subtitle: "Playlist Generation",
+          isPlaying: false,
           description:
             "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
           details: [
@@ -47,11 +54,14 @@ export default {
             { title: "Vuetify", img: vuetifyIcon },
             { title: "Heroku", img: herokuIcon },
           ],
+          video: coplaylist_preview,
           imageUrl: require("@/assets/images/projects/coplaylist_logo.png"),
         },
         {
           title: "The Big Picture",
           subtitle: "Game site",
+          isCurrent: false,
+          video: bigpicture_preview,
           description:
             "A daily puzzle game that challenges users to find connections between various terms to promote logical thinking and cognitive skills.",
           details: [
@@ -84,6 +94,8 @@ export default {
           title: "Mapple",
           subtitle: "Game site",
           isCurrent: false,
+          video: mapple_preview,
+          isPlaying: false,
           description:
             "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
           details: [
@@ -214,20 +226,19 @@ export default {
   },
   mounted() {
     const options = {
-      root: null,
-      threshold: 0.1,
-    };
+    root: null,
+    threshold: 0.1,
+  };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.sectionInView = true;
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        this.sectionInView = true;
+      } 
+    });
+  }, options);
 
-    observer.observe(this.$el);
+  observer.observe(this.$el);
   },
   methods: {
     getRandomColor() {
@@ -246,6 +257,20 @@ export default {
         window.open(url, "_blank");
       }
     },
+    toggleVideoPlay(index) {
+      const video = this.$refs[`projectVideo_${index}`];
+      if (video && video[0]) {
+        if (this.projects[index].isPlaying) {
+          console.log("video is playing");
+          video[0].pause();
+        } else {
+          console.log("video is paused");
+          video[0].play();
+        }
+        this.projects[index].isPlaying = !this.projects[index].isPlaying;
+      }
+    }
+
   },
 };
 </script>
@@ -297,6 +322,24 @@ export default {
                 </li>
               </ul>
             </v-card-text>
+            <div v-if="project.video">
+              <div class="video-container">
+                <video
+                  :ref="`projectVideo_${index}`"
+                  :src="project.video"
+                  class="project-video"
+                  muted
+                  loop
+                  playsinline
+                  @click="toggleVideoPlay(index)"
+                ></video>
+
+                <div class="video-overlay" @click="toggleVideoPlay(index)">
+                  <v-icon v-if="!project.isPlaying" class="video-control-icon">mdi-play-circle-outline</v-icon>
+                  <v-icon v-else class="video-control-icon">mdi-pause-circle-outline</v-icon>
+                </div>
+              </div>
+          </div>
             <v-card-actions class="button-group">
               <v-btn
                 v-if="project.link"
@@ -433,6 +476,38 @@ export default {
     background-position: 0% 50%;
   }
 }
+
+.project-video {
+  width: 100%;
+  height: 200px; 
+  border-radius: 16px; 
+  object-fit: cover;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+.video-container {
+  position: relative;
+}
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+.video-container:hover .video-overlay {
+  opacity: 1;
+}
+.video-control-icon {
+  font-size: 48px;
+}
+
 
 .header-section {
   display: flex;
