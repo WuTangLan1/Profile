@@ -2,6 +2,7 @@
 
 <script>
 import vueIcon from "@/assets/images/known tech/vue_icon.png";
+import viteIcon from "@/assets/images/known tech/vite_icon.png"
 import piniaIcon from "@/assets/images/known tech/pinia_icon.png";
 import firebaseIcon from "@/assets/images/known tech/firebase_icon.png";
 import gptIcon from "@/assets/images/known tech/gpt_icon.png";
@@ -10,9 +11,7 @@ import herokuIcon from "@/assets/images/known tech/heroku_icon.png";
 import primevueIcon from "@/assets/images/known tech/primevue_icon.png";
 import tailwindIcon from "@/assets/images/known tech/tailwind_icon.png";
 import typescriptIcon from "@/assets/images/known tech/typescript_icon.png";
-import reactIcon from "@/assets/images/known tech/react_icon.png";
-import nextjsIcon from "@/assets/images/known tech/nextjs_icon.png";
-import vercelIcon from "@/assets/images/known tech/vercel_icon.png";
+import vercelIcon from "@/assets/images/known tech/vercel_icon.png"
 
 export default {
   data() {
@@ -21,6 +20,7 @@ export default {
       projects: [
         {
           title: "CoPlaylist",
+          isCurrent: false,
           subtitle: "Playlist Generation",
           description:
             "CoPlaylist is a playlist generation website designed to deliver deeply personalized playlists tailored to the unique tastes and situational preferences of its users.",
@@ -83,6 +83,7 @@ export default {
         {
           title: "Mapple",
           subtitle: "Game site",
+          isCurrent: false,
           description:
             "Mapple is a geography game providing users with sets of information about countries which the user has to guess.",
           details: [
@@ -113,6 +114,7 @@ export default {
         {
           title: "This website",
           subtitle: "Profile site",
+          isCurrent: false,
           description:
             "I created a profile website for myself to show a level of capability I am currently at in terms of short-term projects.",
           details: [
@@ -137,6 +139,7 @@ export default {
         {
           title: "Strapp Platform",
           subtitle: "Marketplace",
+          isCurrent: false,
           description:
             "Welcome to Strapp-Newer-Hope Platform, a dynamic peer-to-peer marketplace built using Vue 3 and Firebase. This platform provides users with an immersive experience to buy and sell secondhand products across various categories, fostering a vibrant and sustainable community-driven marketplace.",
           details: [
@@ -172,33 +175,39 @@ export default {
           imageUrl: require("@/assets/images/projects/strapp_logo.png"),
         },
         {
-          title: "4 Guesses",
-          subtitle: "Drinking Game Website",
-          description:
-            '"4 Guesses" is an interactive and engaging drinking game website designed for 3 to 10 players. The game consists of 2 to 5 rounds, where players participate in various guessing games that involve both strategic thinking and fun drinking rules.',
+           title: "Judge Tony Platform",
+          subtitle: "Interactive Web Platform",
+          isCurrent: true,
+          description: "Welcome to Judge Tony, an interactive web platform dedicated to the Kill Tony live podcast. This platform enables fans to rate, review, and analyze various elements of each episode, creating a community-driven space that enhances engagement and provides insights into audience preferences and episode highlights.",
           details: [
             {
-              icon: "mdi-account-group",
-              text: "Players register with unique usernames and take turns selecting mini-games.",
+              icon: "mdi-movie-open-star",
+              text: "Detailed episode pages featuring episode numbers, titles, lengths, air dates, associated personalities, and community-driven ratings and reviews."
             },
             {
-              icon: "mdi-gamepad",
-              text: "Includes mini-games like Beer Goggles and Confidence, with strategic drinking rules.",
+              icon: "mdi-text-box-multiple",
+              text: "Minute-by-minute transcript viewing and rating system, allowing users to provide granular feedback on specific segments of the episodes."
             },
             {
-              icon: "mdi-cup",
-              text: "Players guess images or quotes and assign drinks based on performance.",
+              icon: "mdi-chart-bell-curve",
+              text: "Data analytics features displaying aggregated ratings, top-rated moments, and user engagement statistics."
             },
+            {
+              icon: "mdi-human-greeting",
+              text: "Community engagement tools that include a dynamic ranking system for hosts, guests, regulars, and comedians based on user ratings."
+            }
           ],
+          link: "https://judgetony-8a5b58dae866.herokuapp.com/",
           techStack: [
-            { title: "React", img: reactIcon },
-            { title: "Next.js", img: nextjsIcon },
-            { title: "TypeScript", img: typescriptIcon },
-            { title: "Tailwind CSS", img: tailwindIcon },
-            { title: "Vercel", img: vercelIcon },
+            { title: "Vue.js", img: vueIcon },
+            { title: "Typescript", img: typescriptIcon },
+            { title: "VITE", img: viteIcon },
+            { title: "Pinia", img: piniaIcon },
+            { title: "Firebase", img: firebaseIcon },
+            { title: "Heroku", img: herokuIcon },
           ],
 
-          imageUrl: require("@/assets/images/projects/4guesses_logo.png"),
+          imageUrl: require("@/assets/images/projects/ratetony_logo.png"),
         },
       ],
     };
@@ -260,6 +269,7 @@ export default {
           }"
           class="pa-4 mb-4 elevation-3 project-card"
         >
+        <div v-if="project.isCurrent" class="in-progress-tag">In Progress</div>
           <div class="card-content">
             <div class="header-section d-flex">
               <v-img
@@ -334,6 +344,7 @@ export default {
 
 <style scoped>
 .project-card {
+  position: relative;
   border-radius: 16px;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2), var(--unique-color);
@@ -342,6 +353,24 @@ export default {
   transform: translateY(-20px);
   visibility: hidden;
   animation: dropIn 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
+}
+
+.in-progress-tag {
+  position: absolute;
+  right: -8px;
+  top: 15px;
+  background-color: #FFC107; 
+  color: #000000;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: rotate(35deg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.dark .in-progress-tag {
+  background-color: #771cac; 
+  color: #ffffff;
 }
 
 .pt-8 {
@@ -541,11 +570,11 @@ export default {
 }
 
 .visit-project-btn:hover {
-  background-color: #bbdefb;
+  transform: translateY(-5px);
 }
 
 .visit-github-btn:hover {
-  background-color: #ffcc80;
+  transform: translateY(-5px);
 }
 
 
