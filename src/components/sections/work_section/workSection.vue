@@ -4,7 +4,7 @@
 export default {
   name: 'WorkSection',
 
-  data() {
+        data() {
         return {
                 detailsShown: null,
                 workItems: [
@@ -59,6 +59,11 @@ export default {
         },
         created() {
             window.addEventListener('resize', this.handleResize);
+          },
+          mounted() {
+            setTimeout(() => {
+            document.querySelector('.work-section').classList.add('loaded');
+          }, 100);
           },
           unmounted() {
             window.removeEventListener('resize', this.handleResize);
@@ -193,6 +198,39 @@ export default {
   transform: translateX(-50%); 
   text-align: center; 
 }
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-item-container {
+  opacity: 0;
+  animation: slideIn 0.8s ease forwards;
+}
+
+.timeline-item-container:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.timeline-item-container:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.timeline-item-container:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.timeline-item-container:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
 
 .text-center {
   text-align: center;
@@ -335,13 +373,6 @@ export default {
   color: #e0e0e0;
 }
 
-.dark .work-timeline {
-  background: linear-gradient(to bottom, transparent 30px, #555 30px, #555 calc(100% - 30px), transparent calc(100% - 30px));
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 3px 100%;
-}
-
 .dark .v-card {
   background-color: #2b2b3b;
   border: 1px solid #444;
@@ -434,13 +465,7 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     position: relative;
-  }
-
-  .dark .work-timeline {
-    background: linear-gradient(to right, transparent 30px, #555 30px, #555 calc(100% - 30px), transparent calc(100% - 30px));
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 3px 100%;
+    z-index: 100;
   }
 
   .timeline-item-container {
@@ -478,6 +503,7 @@ export default {
     width: 2px;
     height: 65px; 
     background-color: #888;
+    z-index: 0;
   }
 
   .v-card {
@@ -519,16 +545,7 @@ export default {
     z-index: 1;
   }
 
-  .work-timeline::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 5vw;
-    right: 5vw;
-    height: 2px;
-    background-color: #888;
-    z-index: 1;
-  }
+
 }
 
 @media(max-width: 600px)
