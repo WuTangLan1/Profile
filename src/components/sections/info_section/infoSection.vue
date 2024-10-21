@@ -296,6 +296,7 @@
     font-size: 22px; 
     color: #444; 
     margin-bottom: 24px; 
+    text-align: left;
   }
 
   .body-1 {
@@ -404,4 +405,28 @@
     font-size: 14px;
   }
 }
+
+.v-btn.ma-2:nth-child(2) {
+  animation: hop 1.5s infinite ease-in-out;
+}
+
+@keyframes hop {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  30% {
+    transform: translateY(-15px);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+  70% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+}
+
 </style>
