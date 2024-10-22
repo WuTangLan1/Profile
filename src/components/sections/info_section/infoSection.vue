@@ -72,11 +72,10 @@
     const downloadFile = (type) => {
       const url = type === 'resume' ? `${baseUrl}/download/resume` : `${baseUrl}/download/cv`;
 
-      // Create an anchor element for downloading
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', ''); // Optional: helps prompt download if the server headers are set correctly
-      link.setAttribute('target', '_self'); // Set target to "_self" to avoid "about:blank#blocked" issues
+      link.setAttribute('download', ''); 
+      link.setAttribute('target', '_self');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -135,7 +134,7 @@
       <v-col cols="12" md="6" class="d-flex flex-column justify-center align-center">
         <div class="text-container">
           <h1 class="text-h3 mb-2">Finn Massari</h1>
-          <h2 class="text-h5 grey--text">I am a <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
+          <h2 class="text-h5">I am a <span class="typing">{{ currentTitle }}</span><span class="cursor">|</span></h2>
         </div>
         <v-divider class="my-4"></v-divider>
         <p class="body-1">
@@ -360,12 +359,20 @@
   margin-bottom: 20px; 
 }
 
+.dark .text-h5 {
+  color: white;
+}
+
 .body-1 {
   line-height: 1.8;
   font-size: 16px;
   color: #555; 
   text-align: justify; 
   padding: 0 20px; 
+}
+
+.dark .body-1 {
+  color : white;
 }
 
 @keyframes fadeIn {
