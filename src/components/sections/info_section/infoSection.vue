@@ -192,9 +192,7 @@
 <style scoped>
 .info-container {
   padding: 60px 30px 30px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
-  border-radius: 10px; 
   overflow-y: auto;
 }
 
@@ -204,14 +202,14 @@
 
 .typing {
   font-weight: bold;
-  background: linear-gradient(90deg, #0073ff, #0fc57f);
+  background: linear-gradient(90deg, #63bb79, #0f73c5);
   background-clip: text; 
   -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
 }
 
 .dark .typing {
-  background: linear-gradient(90deg, #72a8e6, #b57bec);
+  background: linear-gradient(90deg, #a0c1e5, #dad1e2);
   background-clip: text;
   -webkit-background-clip: text; 
   -webkit-text-fill-color: transparent;
@@ -260,7 +258,6 @@
   .info-container {
     overflow-y: hidden;
     padding: 80px 40px 40px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     position: relative;
     border-radius: 15px; 
     flex-direction: column;
