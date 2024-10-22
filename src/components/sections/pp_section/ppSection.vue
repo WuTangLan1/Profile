@@ -127,31 +127,6 @@ export default {
           imageUrl: require("@/assets/images/projects/mapple_logo.png"),
         },
         {
-          title: "This website",
-          subtitle: "Profile site",
-          isCurrent: false,
-          description:
-            "I created a profile website for myself to show a level of capability I am currently at in terms of short-term projects.",
-          details: [
-            {
-              icon: "mdi-web",
-              text: "The website leverages my preferred technology stack for developing and styling small-to-medium sized projects.",
-            },
-            {
-              icon: "mdi-directions",
-              text: "Serves as a directory to different passion projects I have developed this year.",
-            },
-          ],
-          Githublink: "https://github.com/WuTangLan1/Profile",
-          techStack: [
-            { title: "Vue.js", img: vueIcon },
-            { title: "PrimeVue", img: primevueIcon },
-            { title: "Vuetify", img: vuetifyIcon },
-            { title: "Heroku", img: herokuIcon },
-          ],
-          imageUrl: require("@/assets/images/projects/profileweb_logo.png"),
-        },
-        {
           title: "Strapp Platform",
           subtitle: "Marketplace",
           isCurrent: false,
@@ -279,7 +254,7 @@ export default {
 </script>
 
 <template>
-  <v-container :class="{ sectionInView }" fluid class="pt-8">
+  <v-container :class="{ sectionInView }" fluid class="pt-8 view">
     <v-row dense>
       <v-col
         v-for="(project, index) in projects"
@@ -394,6 +369,15 @@ export default {
 
 
 <style scoped>
+
+.view {
+  background-color: #f3f4f6; 
+}
+
+.dark .view {
+  background-color: #111827; 
+}
+
 .project-card {
   position: relative;
   border-radius: 16px;
