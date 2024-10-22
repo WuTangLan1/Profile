@@ -247,8 +247,11 @@ export default {
       }
     },
     videoLoaded(index) {
-     this.projects[index].loading = false; 
+      this.projects[index].loading = false;
+      const videoElement = this.$refs[`projectVideo_${index}`][0];
+      videoElement.classList.add('loaded');  
     }
+
   },
 };
 </script>
@@ -471,11 +474,12 @@ export default {
 
 .project-video {
   width: 100%;
-  height: 200px; 
-  border-radius: 16px; 
+  height: 100%; 
   object-fit: cover;
+  border-radius: 16px; 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
+
 .video-container {
     position: relative;
 }
@@ -489,6 +493,7 @@ export default {
     border-radius: 50%;
     padding: 10px;
 }
+
 .video-overlay {
   position: absolute;
   top: 0;
@@ -503,8 +508,21 @@ export default {
   transition: opacity 0.3s ease;
   opacity: 0;
 }
+@media (max-width:660px )
+{
+  .video-overlay {
+    opacity: 0.8;
+  }
+
+  .video-container:hover .video-overlay {
+      opacity: 0.6;
+  }
+}
+
+
 .video-container:hover .video-overlay {
   opacity: 1;
+  background: rgba(0, 0, 0, 0.5); 
 }
 .video-control-icon {
   font-size: 48px;
