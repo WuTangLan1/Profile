@@ -447,7 +447,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-height: 95vh;
+    max-height: 100vh;
     margin: 0 auto;
   }
 
