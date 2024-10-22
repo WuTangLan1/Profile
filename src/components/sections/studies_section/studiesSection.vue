@@ -39,7 +39,16 @@ export default {
     handleImageLoaded(index) {
       this.loadingState[index] = false;
     }
-  }
+  },
+  mounted() {
+  this.$nextTick(() => {
+    const divider = this.$el.querySelector('.v-divider');
+    if (divider) {
+      divider.classList.add('v-divider-animated');
+    }
+  });
+}
+
 }
 </script>
 
@@ -120,6 +129,10 @@ export default {
   margin-top: 5px;
 }
 
+.dark .text-h6 {
+  color: rgb(211, 194, 194);
+}
+
 .education-image {
   max-width: 80%;
   height: auto;
@@ -133,6 +146,21 @@ export default {
   to {
     opacity: 1;
   }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.v-divider-animated {
+  width: 0;
+  transition: width 3s ease-in-out;
+  animation: grow 3s forwards;
 }
 
 </style>

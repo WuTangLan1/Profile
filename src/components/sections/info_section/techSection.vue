@@ -245,7 +245,6 @@
   
 <style scoped>
 .tech-container {
-  border-radius: 12px;
   padding: 20px;
   transition: background-color 0.3s ease;
   animation: fadeIn 0.5s ease-out;
