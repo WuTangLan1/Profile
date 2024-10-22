@@ -96,6 +96,14 @@ export default {
   min-height: 100vh;
   justify-content: center;
   margin: auto 0;
+  transition: background-image 0.8s ease-in-out;
+  background-image: url('@/assets/images/background_svg/workbg_light.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.dark .home-view {
+  background-image: url('@/assets/images/background_svg/workbg_dark.svg');
 }
 
 .info-section, .studies-section, .work-section, .pp-section, .contact-section {

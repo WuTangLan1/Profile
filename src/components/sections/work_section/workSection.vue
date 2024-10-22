@@ -139,21 +139,12 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: background-image 0.8s ease-in-out;
-  background-image: url('@/assets/images/background_svg/workbg_light.svg');
-  background-size: cover;
-  background-position: center;
 }
 
 @media (max-width: 1000px) {
   .work-section {
     padding-top: 70px; 
   }
-}
-
-
-.dark .work-section {
-  background-image: url('@/assets/images/background_svg/workbg_dark.svg');
 }
 
 .work-timeline {
